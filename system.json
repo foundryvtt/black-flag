@@ -1,0 +1,40 @@
+{
+  "name": "black-flag",
+  "title": "Black Flag",
+  "description": "A placeholder for Kobold Press's Black Flag TTRPG",
+  "version": "This is auto replaced",
+  "compatibility": {
+    "minimum": 10,
+    "verified": 11,
+    "maximum": 11
+  },
+  "relationships": {
+    "requires": [],
+    "recommends": []
+  },
+  "authors": [
+    {
+      "name": "The League of Extraordinary FVTT Developers",
+      "url": "https://github.com/League-of-Foundry-Developers",
+      "discord": "discordID#0001"
+    }
+  ],
+  "scripts": [],
+  "esmodules": ["blackFlag.mjs"],
+  "styles": ["css/black-flag.css"],
+  "packs": [],
+  "license": "LICENSE",
+  "readme": "README.md",
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "primaryTokenAttribute": "",
+  "secondaryTokenAttribute": "",
+  "url": "This is auto replaced",
+  "manifest": "This is auto replaced",
+  "download": "This is auto replaced"
+}
