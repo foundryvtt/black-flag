@@ -14,13 +14,12 @@
   },
   "authors": [
     {
-      "name": "The League of Extraordinary FVTT Developers",
-      "url": "https://github.com/League-of-Foundry-Developers",
-      "discord": "discordID#0001"
+      "name": "Cody Swendrowski",
+      "discord": "cswendrowski#9701"
     }
   ],
   "scripts": [],
-  "esmodules": ["blackFlag.mjs"],
+  "esmodules": ["system/black-flag.mjs"],
   "styles": ["css/black-flag.css"],
   "packs": [],
   "license": "LICENSE",
@@ -32,8 +31,6 @@
       "path": "lang/en.json"
     }
   ],
-  "primaryTokenAttribute": "",
-  "secondaryTokenAttribute": "",
   "url": "This is auto replaced",
   "manifest": "This is auto replaced",
   "download": "This is auto replaced"
