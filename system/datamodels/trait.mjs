@@ -1,15 +1,27 @@
-export default class TraitDataModel extends foundry.abstract.TypeDataModel {
+export default class TraitDataModel extends foundry.abstract.DataModel {
 
     /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
             name: new fields.StringField({required: true}),
-            description: new fields.StringField(),
-            proficiencies: new fields.ArrayField({default: [], type: new fields.StringField()}),
-            resistances: new fields.ArrayField({default: [], type: new fields.StringField()}),
-            languages: new fields.ArrayField({default: [], type: new fields.StringField()}),
-            saveAdvantages: new fields.ArrayField({default: [], type: new fields.StringField()}),
+            description: new fields.HTMLField(),
+            proficiencies: new fields.SetField(new fields.StringField({
+                required: true,
+                choices: CONFIG.SYSTEM.PROFICIENCY_TYPES,
+            })),
+            resistances: new fields.SetField(new fields.StringField({
+                required: true,
+                choices: CONFIG.SYSTEM.DAMAGE_TYPES,
+            })),
+            languages: new fields.SetField(new fields.StringField({
+                required: true,
+                choices: CONFIG.SYSTEM.LANGUAGE_TYPES,
+            })),
+            saveAdvantages: new fields.SetField(new fields.StringField({
+                required: true,
+                choices: CONFIG.SYSTEM.DAMAGE_TYPES,
+            })),
         }
     }
 }
