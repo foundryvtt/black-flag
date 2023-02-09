@@ -101,9 +101,20 @@ const ALIGNMENT_TYPES = {
 
 /**
  * The supported equipment sizes.
+ * @type {{label: string}}
  */
 const EQUIPMENT_SIZES = {
     small: {label: "[EXAMPLE] Small"},
+}
+
+/**
+ * The supported Talent Categories.
+ * @type {{label: string}}
+ */
+const TALENT_CATEGORIES = {
+    magic: {label: "Magic"},
+    martial: {label: "Martial"},
+    technical: {label: "Technical"},
 }
 
 /**
@@ -120,4 +131,5 @@ export const SYSTEM = {
     RACE_SIZE_TYPES,
     ALIGNMENT_TYPES,
     EQUIPMENT_SIZES,
+    TALENT_CATEGORIES,
 };

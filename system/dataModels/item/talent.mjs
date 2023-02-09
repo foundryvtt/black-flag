@@ -6,6 +6,7 @@ export default class TalentTypeDataModel extends foundry.abstract.TypeDataModel 
         return {
             description: new fields.HTMLField(),
             prerequisite: new fields.StringField(),
+            category: new fields.StringField({ initial: "technical", choices: CONFIG.SYSTEM.TALENT_CATEGORIES }),
         }
     }
 }

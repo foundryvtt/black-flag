@@ -19,7 +19,7 @@ export default class BackgroundTypeDataModel extends foundry.abstract.TypeDataMo
             equipment: new fields.SetField(new fields.StringField({
                 required: true,
                 default: ""
-                })),
-            }
+            })),
+        }
     }
 }
