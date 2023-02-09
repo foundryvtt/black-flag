@@ -1,5 +1,10 @@
 export const SYSTEM_ID = "black-flag";
-export const SYSTEM_NAME = "Black Flag";
+export const SYSTEM_NAME = "Black Flag 🏴";
+
+function log(...args) {
+    const isDebugging = game.modules.get('_dev-mode')?.api?.getPackageDebugValue(SYSTEM_ID);
+    if ( isDebugging ) console.log(`${SYSTEM_NAME} |`, ...args);
+}
 
 /**
  * The supported skill types.
@@ -20,6 +25,17 @@ const TOOL_TYPES = {
 }
 
 /**
+ * The supported weapon types.
+ * @type {{label: string}}
+ */
+const WEAPON_TYPES = {
+    battleaxe: {label: "Battleaxe"},
+    handaxe: {label: "Handaxe"},
+    lightHammer: {label: "Light Hammer"},
+    warhammer: {label: "Warhammer"},
+}
+
+/**
  * The supported vehicle types.
  * @type {{label: string}}
  */
@@ -34,6 +50,7 @@ const VEHICLE_TYPES = {
 const PROFICIENCY_TYPES = {
     ...SKILL_TYPES,
     ...TOOL_TYPES,
+    ...WEAPON_TYPES,
     ...VEHICLE_TYPES,
 }
 
@@ -51,7 +68,8 @@ const DAMAGE_TYPES = {
  * @enum {{label: string}}
  */
 const LANGUAGE_TYPES = {
-    common: {label: "Common"}
+    common: {label: "Common"},
+    trade: {label: "Trade"},
 }
 
 /**
@@ -64,14 +82,41 @@ const RACE_SIZE_TYPES = {
 }
 
 /**
+ * The supported alignment types.
+ * @type {{label: string}}
+ */
+const ALIGNMENT_TYPES = {
+    lawfulGood: {label: "Lawful Good"},
+    neutralGood: {label: "Neutral Good"},
+    chaoticGood: {label: "Chaotic Good"},
+
+    lawfulNeutral: {label: "Lawful Neutral"},
+    neutral: {label: "Neutral"},
+    chaoticNeutral: {label: "Chaotic Neutral"},
+
+    lawfulEvil: {label: "Lawful Evil"},
+    neutralEvil: {label: "Neutral Evil"},
+    chaoticEvil: {label: "Chaotic Evil"},
+}
+
+/**
+ * The supported equipment sizes.
+ */
+const EQUIPMENT_SIZES = {
+
+}
+
+/**
  * Include all constant definitions within the SYSTEM global export
  * @type {Object}
  */
 export const SYSTEM = {
     id: SYSTEM_ID,
     name: SYSTEM_NAME,
+    log,
     PROFICIENCY_TYPES,
     DAMAGE_TYPES,
     LANGUAGE_TYPES,
-    RACE_SIZE_TYPES: RACE_SIZE_TYPES,
+    RACE_SIZE_TYPES,
+    ALIGNMENT_TYPES,
 };

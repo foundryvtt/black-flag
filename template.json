@@ -1,3 +1,14 @@
 {
-
+  "Actor": {
+    "types": ["pc"],
+    "pc": {}
+  },
+  "Item": {
+    "types": ["background", "equipment", "heritage", "race", "talent"],
+    "background": {},
+    "equipment": {},
+    "heritage": {},
+    "race": {},
+    "talent": {}
+  }
 }

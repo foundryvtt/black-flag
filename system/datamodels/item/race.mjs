@@ -1,4 +1,4 @@
-import TraitDataModel from "./trait.mjs";
+import TraitDataModel from "../trait.mjs";
 
 export default class RaceTypeDataModel extends foundry.abstract.TypeDataModel {
 
@@ -19,7 +19,7 @@ export default class RaceTypeDataModel extends foundry.abstract.TypeDataModel {
                 dark: new fields.NumberField({min: 0, default: 0, integer: true}),
                 bright: new fields.NumberField({min: 0, default: 30, integer: true}),
             }),
-            traits: new fields.SetField({default: [], type: TraitDataModel.defineSchema()}),
+            traits: new fields.SetField(new fields.SchemaField(TraitDataModel.defineSchema()), {default: []}),
         }
     }
 }
