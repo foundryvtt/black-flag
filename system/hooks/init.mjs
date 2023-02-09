@@ -1,4 +1,4 @@
-import {SYSTEM} from "../CONSTANTS.mjs";
+import {SYSTEM, SYSTEM_ID} from "../CONSTANTS.mjs";
 import PlayerCharacterTypeDataModel from "../datamodels/actor/player-character.mjs";
 import BackgroundTypeDataModel from "../datamodels/item/background.mjs";
 import EquipmentTypeDataModel from "../datamodels/item/equipment.mjs";
@@ -7,6 +7,7 @@ import RaceTypeDataModel from "../datamodels/item/race.mjs";
 import TalentTypeDataModel from "../datamodels/item/talent.mjs";
 import BlackFlagActor from "../documents/actor.mjs";
 import Item from "../documents/item.mjs";
+import TalentConfig from "../sheets/items/talent-config.mjs";
 
 
 export function init() {
@@ -45,5 +46,6 @@ function registerDocumentClasses() {
 /* -------------------------------------------- */
 
 function registerDocumentSheets() {
-
+    //Items.unregisterSheet("core", ItemSheet);
+    Items.registerSheet(SYSTEM_ID, TalentConfig, {types: ["talent"], makeDefault: true});
 }

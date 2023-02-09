@@ -1,0 +1,22 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header flexrow">
+        <img class="profile" src="{{document.img}}" title="{{document.name}}" data-edit="img"/>
+        <h1 class="title">
+            <input name="name" type="text" value="{{document.name}}" placeholder="Talent Name"/>
+        </h1>
+    </header>
+
+    {{!-- Description Tab --}}
+    <section class="sheet-body">
+        <div class="form-group stacked">
+            <label>{{ localize "Description" }}</label>
+            {{editor descriptionHTML target="system.description" button=false editable=editable engine="prosemirror" collaborate=false}}
+        </div>
+    </section>
+
+    <footer>
+        <button type="submit">Save Changes</button>
+    </footer>
+</form>
