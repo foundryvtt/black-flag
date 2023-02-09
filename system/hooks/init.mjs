@@ -5,6 +5,8 @@ import EquipmentTypeDataModel from "../datamodels/item/equipment.mjs";
 import HeritageTypeDataModel from "../datamodels/item/heritage.mjs";
 import RaceTypeDataModel from "../datamodels/item/race.mjs";
 import TalentTypeDataModel from "../datamodels/item/talent.mjs";
+import BlackFlagActor from "../documents/actor.mjs";
+import Item from "../documents/item.mjs";
 
 
 export function init() {
@@ -12,10 +14,14 @@ export function init() {
 
     CONFIG.SYSTEM = SYSTEM;
 
-    registerDatamodels();
+    registerDataModels();
+    registerDocumentSheets();
+    registerDocumentClasses();
 }
 
-function registerDatamodels() {
+/* -------------------------------------------- */
+
+function registerDataModels() {
     CONFIG.Actor.dataModels = {
         pc: PlayerCharacterTypeDataModel,
     }
@@ -27,4 +33,17 @@ function registerDatamodels() {
         race: RaceTypeDataModel,
         talent: TalentTypeDataModel
     }
+}
+
+/* -------------------------------------------- */
+
+function registerDocumentClasses() {
+    CONFIG.Actor.documentClass = BlackFlagActor;
+    CONFIG.Item.documentClass = Item;
+}
+
+/* -------------------------------------------- */
+
+function registerDocumentSheets() {
+
 }

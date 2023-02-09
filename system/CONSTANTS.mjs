@@ -103,7 +103,7 @@ const ALIGNMENT_TYPES = {
  * The supported equipment sizes.
  */
 const EQUIPMENT_SIZES = {
-
+    small: {label: "[EXAMPLE] Small"},
 }
 
 /**
@@ -119,4 +119,5 @@ export const SYSTEM = {
     LANGUAGE_TYPES,
     RACE_SIZE_TYPES,
     ALIGNMENT_TYPES,
+    EQUIPMENT_SIZES,
 };

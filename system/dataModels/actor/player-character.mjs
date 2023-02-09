@@ -3,6 +3,7 @@ import RaceTypeDataModel from "../item/race.mjs";
 import BackgroundTypeDataModel from "../item/background.mjs";
 import TalentTypeDataModel from "../item/talent.mjs";
 import EquipmentTypeDataModel from "../item/equipment.mjs";
+import BlackFlagItem from "../../documents/item.mjs";
 
 export default class PlayerCharacterTypeDataModel extends foundry.abstract.TypeDataModel {
 
@@ -27,7 +28,7 @@ export default class PlayerCharacterTypeDataModel extends foundry.abstract.TypeD
                 required: true,
                 choices: CONFIG.SYSTEM.LANGUAGE_TYPES,
             })),
-            // features: new fields.SetField({default: [], type: TraitDataModel.defineSchema()}), // TODO: Define features (although aren't these traits now?)
+            // features: new fields.SetField({default: [], type: TraitDataModel.defineSchema()}), // TODO: Define features (although aren't these talents now?)
             proficiencies: new fields.SetField(new fields.StringField({
                 required: true,
                 choices: CONFIG.SYSTEM.PROFICIENCY_TYPES,
@@ -41,12 +42,12 @@ export default class PlayerCharacterTypeDataModel extends foundry.abstract.TypeD
                 wisdom: new fields.NumberField({min: 0, default: 0, integer: true}),
                 charisma: new fields.NumberField({min: 0, default: 0, integer: true})
             }),
-            //class: new fields.ForeignDocumentField({required: true, type: "ClassTypeDataModel"}),
-            //race: new fields.ForeignDocumentField(RaceTypeDataModel, {idOnly: true}),
-            //heritage: new fields.ForeignDocumentField(HeritageTypeDataModel, {idOnly: true}),
-            // backgrounds: new fields.SetField(BackgroundTypeDataModel, {default: []}),
-            // talents: new fields.SetField(TalentTypeDataModel, {default: []}),
-            //equipment: fields.EmbeddedCollectionField(EquipmentTypeDataModel),
+            class: new fields.ForeignDocumentField(BlackFlagItem, {required: true, type: "class", idOnly: true}),
+            race: new fields.ForeignDocumentField(BlackFlagItem, {required: true, type: "race", idOnly: true}),
+            heritage: new fields.ForeignDocumentField(BlackFlagItem, {required: true, type: "heritage", idOnly: true}),
+            backgrounds: new fields.SetField(new fields.ForeignDocumentField(BlackFlagItem, {required: true, type: "background", idOnly: true})),
+            talents: new fields.SetField(new fields.ForeignDocumentField(BlackFlagItem, {required: true, type: "talent", idOnly: true})),
+            equipment: new fields.SetField(new fields.ForeignDocumentField(BlackFlagItem, {required: true, type: "equipment", idOnly: true}))
         }
     }
 }

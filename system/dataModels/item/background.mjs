@@ -1,3 +1,5 @@
+import BlackFlagItem from "../../documents/item.mjs";
+
 export default class BackgroundTypeDataModel extends foundry.abstract.TypeDataModel {
 
     /** @inheritDoc */
@@ -9,9 +11,7 @@ export default class BackgroundTypeDataModel extends foundry.abstract.TypeDataMo
                 required: true,
                 choices: CONFIG.SYSTEM.PROFICIENCY_TYPES,
             })),
-            // talents: new fields.SetField(new fields.ForeignDocumentField(Talent, {
-            //     required: true,
-            // })),
+            talents: new fields.SetField(new fields.ForeignDocumentField(BlackFlagItem, {required: true, type: "talent", idOnly: true})),
             languages: new fields.SetField(new fields.StringField({
                 required: true,
                 choices: CONFIG.SYSTEM.LANGUAGE_TYPES,
