@@ -12,6 +12,7 @@ function log(...args) {
  */
 const SKILL_TYPES = {
     arcana: {label: "Arcana"},
+    history: {label: "History"},
     nature: {label: "Nature"},
     religion: {label: "Religion"},
 }

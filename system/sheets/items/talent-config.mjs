@@ -7,8 +7,7 @@ export default class TalentConfig extends ItemDocumentSheet {
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
             classes: [SYSTEM_ID, "sheet", "item", "talent"],
-            width: 520,
-            height: 480,
+            height: 400,
         });
     }
 

@@ -1,0 +1,72 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header flexrow">
+        <img class="profile" src="{{document.img}}" title="{{document.name}}" data-edit="img"/>
+        <h1 class="title">
+            <input name="name" type="text" value="{{document.name}}" placeholder="Talent Name"/>
+        </h1>
+    </header>
+
+    {{!-- Body --}}
+    <section class="sheet-body">
+        {{!-- Description --}}
+        <div class="form-group stacked" data-name="system.description">
+            <label>{{ localize "Description" }}</label>
+            {{editor descriptionHTML target="system.description" button=false editable=editable engine="prosemirror" collaborate=false}}
+        </div>
+
+        {{!-- Proficiencies --}}
+        <div class="form-group stacked" data-name="system.proficiencies">
+            <label>{{ localize "Proficiencies" }}</label>
+            <select name="system.proficiencies" multiple>
+                {{#each PROFICIENCY_TYPES}}
+                    <option value="{{this.value}}" {{#if this.selected}}selected="true"{{/if}}>{{this.label}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        {{!-- Talents --}}
+        <div class="form-group stacked" data-name="system.talents">
+            <label>{{ localize "Talents" }}</label>
+            {{!-- Render each existing Talent as a document link, with a button to remove --}}
+            <div class="talents flexcol">
+                {{#each document.system.talents}}
+                    <div class="talent flexrow">
+                        <a class="content-link talent-link" draggable="true" data-uuid="{{this.uuid}}" data-id="{{this.id}}" data-type="Item" data-tooltip="Item">
+                            <i class="fas fa-suitcase"></i> {{this.name}}
+                        </a>
+                        <i class="fas fa-delete-left" data-action="delete"></i>
+                    </div>
+                {{/each}}
+                {{!-- Render a text input with search ahead to add a new Talent --}}
+                <input name="system.talents" list="system-talents-list" type="text" value="" placeholder="Talent"/>
+                <datalist id="system-talents-list">
+                    {{#each allTalents}}
+                        <option value="{{this.entry.id}}" label="{{this.entry.name}}"></option>
+                    {{/each}}
+                </datalist>
+            </div>
+        </div>
+
+        {{!-- Languages --}}
+        <div class="form-group stacked" data-name="system.languages">
+            <label>{{ localize "Languages" }}</label>
+            <select name="system.languages" multiple>
+                {{#each LANGUAGE_TYPES}}
+                    <option value="{{this.value}}" {{#if this.selected}}selected="true"{{/if}}>{{this.label}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        {{!-- Equipment --}}
+        <div class="form-group stacked" data-name="system.equipment">
+            <label>{{ localize "Equipment" }}</label>
+            <input name="system.equipment" type="text" value="{{document.system.equipment}}" placeholder="Equipment"/>
+        </div>
+    </section>
+
+    <footer>
+        <button type="submit">Save Changes</button>
+    </footer>
+</form>

@@ -1,5 +1,20 @@
 .black-flag .prosemirror.editor {
-  min-height: 140px;
+  height: 190px;
+}
+.black-flag select[name="system.proficiencies"] {
+  height: 200px;
+}
+.black-flag option[selected] {
+  background-color: #aeaea8;
+}
+.black-flag .talents .talent {
+  padding-bottom: 5px;
+}
+.black-flag .talents .talent [data-action="delete"] {
+  flex: none;
+  margin-left: 5px;
+  padding-top: 2px;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=black-flag.css.map */

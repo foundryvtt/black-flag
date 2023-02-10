@@ -1,5 +1,26 @@
 .black-flag {
   .prosemirror.editor {
-    min-height: 140px;
+    height: 190px;
+  }
+
+  select[name="system.proficiencies"] {
+    height: 200px;
+  }
+
+  option[selected] {
+    background-color: #aeaea8;
+  }
+
+  .talents {
+    .talent {
+      padding-bottom: 5px;
+
+      [data-action="delete"] {
+        flex: none;
+        margin-left: 5px;
+        padding-top: 2px;
+        cursor: pointer;
+      }
+    }
   }
 }

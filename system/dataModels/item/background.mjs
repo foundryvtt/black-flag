@@ -16,10 +16,10 @@ export default class BackgroundTypeDataModel extends foundry.abstract.TypeDataMo
                 required: true,
                 choices: CONFIG.SYSTEM.LANGUAGE_TYPES,
             })),
-            equipment: new fields.SetField(new fields.StringField({
+            equipment: new fields.StringField({
                 required: true,
                 default: ""
-            })),
+            }),
         }
     }
 }
