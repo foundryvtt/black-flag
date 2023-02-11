@@ -9,6 +9,7 @@ import BlackFlagActor from "../documents/actor.mjs";
 import Item from "../documents/item.mjs";
 import TalentConfig from "../sheets/items/talent-config.mjs";
 import BackgroundConfig from "../sheets/items/background-config.mjs";
+import ForeignDocumentSet from "../templates/webcomponents/foreignDocumentSet.mjs";
 
 
 export function init() {
@@ -19,6 +20,7 @@ export function init() {
     registerDataModels();
     registerDocumentSheets();
     registerDocumentClasses();
+    registerWebComponents();
 }
 
 /* -------------------------------------------- */
@@ -50,4 +52,10 @@ function registerDocumentSheets() {
     //Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet(SYSTEM_ID, TalentConfig, {types: ["talent"], makeDefault: true});
     Items.registerSheet(SYSTEM_ID, BackgroundConfig, {types: ["background"], makeDefault: true});
+}
+
+/* -------------------------------------------- */
+
+function registerWebComponents() {
+    customElements.define("foreign-document-set", ForeignDocumentSet);
 }

@@ -49,6 +49,21 @@
             </div>
         </div>
 
+        <div class="form-group stacked" data-name="system.talents">
+            <label>Custom Thing</label>
+            {{!-- Render each existing Talent as a document link, with a button to remove --}}
+            <foreign-document-set class="talent" name="system.talents" type="Item" placeholder="Talent">
+                {{#each document.system.talents}}
+                    <div class="foreign-document flexrow">
+                        <a class="content-link" draggable="true" data-uuid="{{this.uuid}}" data-id="{{this.id}}" data-type="Item" data-tooltip="Item">
+                            <i class="fas fa-suitcase"></i> {{this.name}}
+                        </a>
+                        <i class="fas fa-delete-left" data-action="delete"></i>
+                    </div>
+                {{/each}}
+            </foreign-document-set>
+        </div>
+
         {{!-- Languages --}}
         <div class="form-group stacked" data-name="system.languages">
             <label>{{ localize "Languages" }}</label>
