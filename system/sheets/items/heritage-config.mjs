@@ -9,7 +9,8 @@ export default class HeritageConfig extends ItemDocumentSheet {
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
             classes: [SYSTEM_ID, "sheet", "item", "heritage"],
-            height: 500,
+            width: 725,
+            height: 650,
         });
     }
 
@@ -50,10 +51,7 @@ export default class HeritageConfig extends ItemDocumentSheet {
         event.preventDefault();
         const traitId = event.currentTarget.closest(".trait").dataset.traitId;
         const trait = this.object.system.traits.find(t => t.id === traitId);
-        const traitForm = new TraitForm(this, trait, {
-            submitOnChange: false,
-            submitOnClose: true,
-        });
+        const traitForm = new TraitForm(this, trait, {});
         traitForm.render(true);
     }
 

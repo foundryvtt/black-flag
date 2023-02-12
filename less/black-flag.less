@@ -3,10 +3,18 @@
     height: 190px;
   }
 
+  .ace_editor {
+    height: 375px;
+  }
+
   .foreign-documents {
     .foreign-document {
       padding-bottom: 5px;
     }
+  }
+
+  .sheet-header, .sheet-tabs, footer {
+    flex: 0;
   }
 
   .tag-list {
@@ -46,18 +54,18 @@
       color: var(--color-text-light-0);
       text-shadow: 0 0 10px rgba(0,0,0,.5);
       margin: 0 0 1px 0;
-      text-align: center;
 
       >* {
         display: flex;
-        justify-content: center;
         align-items: center;
       }
 
       >.trait-header {
+        padding-right: 10px;
+
         .trait-name {
+          color: #edd391;
           display: flex;
-          justify-content: center;
           align-items: center;
           margin: 0;
         }
@@ -68,6 +76,10 @@
         margin-right: 5px;
         width: 32px;
         height: 32px;
+      }
+
+      .description {
+        flex: 2;
       }
 
       .item-control {

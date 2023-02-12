@@ -22,7 +22,8 @@ const SKILL_TYPES = {
  * @type {{label: string}}
  */
 const TOOL_TYPES = {
-    alchemist: {label: "[EXAMPLE] Alchemist's Supplies"},
+    glassblower: {label: "Glassblower's Tools"},
+    smith: {label: "Smith's Tools"},
 }
 
 /**
@@ -62,6 +63,7 @@ const PROFICIENCY_TYPES = {
 const DAMAGE_TYPES = {
     bludgeoning: {label: "Bludgeoning"},
     poison: {label: "Poison"},
+    fire: {label: "Fire"},
 }
 
 /**
@@ -71,6 +73,8 @@ const DAMAGE_TYPES = {
 const LANGUAGE_TYPES = {
     common: {label: "Common"},
     trade: {label: "Trade"},
+    ignan: {label: "Ignan"},
+    dwarvish: {label: "Dwarvish"},
 }
 
 /**

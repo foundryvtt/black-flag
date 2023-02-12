@@ -33,14 +33,26 @@ export default class BlackFlagSheet extends DocumentSheet {
 
     /* -------------------------------------------- */
 
-    getMultiSelectOptions(choices, selected) {
+    /** Provides a slightly cleaner way of calling this for extending classes */
+    getDatalistOptions(choices, selected) {
+        return this.constructor.getDatalistOptions(choices, selected);
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Turns a choices object into an array of options for a multi-select, with the selected options excluded
+     * @param choices
+     * @param selected
+     * @returns {unknown[]}
+     */
+    static getDatalistOptions(choices, selected) {
         return Object.entries(choices).map(type => {
             // If already selected, skip as a choice
             if ( selected.has(type[0]) ) return null;
             return {
                 label: type[1].label,
-                value: type[0],
-                selected: selected.has(type[0]),
+                value: type[0]
             }
         }).filter(type => type !== null);
     }

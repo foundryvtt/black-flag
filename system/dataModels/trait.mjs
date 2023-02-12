@@ -9,22 +9,24 @@ export default class TraitDataModel extends foundry.abstract.DataModel {
             img: new fields.FilePathField({categories: ["IMAGE"], initial: () => "icons/skills/social/trading-justice-scale-gold.webp"}),
             description: new fields.HTMLField(),
             builderInfo: new fields.ObjectField(),
-            proficiencies: new fields.SetField(new fields.StringField({
-                required: true,
-                choices: CONFIG.SYSTEM.PROFICIENCY_TYPES,
-            })),
-            resistances: new fields.SetField(new fields.StringField({
-                required: true,
-                choices: CONFIG.SYSTEM.DAMAGE_TYPES,
-            })),
-            languages: new fields.SetField(new fields.StringField({
-                required: true,
-                choices: CONFIG.SYSTEM.LANGUAGE_TYPES,
-            })),
-            saveAdvantages: new fields.SetField(new fields.StringField({
-                required: true,
-                choices: CONFIG.SYSTEM.DAMAGE_TYPES,
-            })),
+            innate: new fields.SchemaField({
+                proficiencies: new fields.SetField(new fields.StringField({
+                    required: true,
+                    choices: CONFIG.SYSTEM.PROFICIENCY_TYPES,
+                })),
+                resistances: new fields.SetField(new fields.StringField({
+                    required: true,
+                    choices: CONFIG.SYSTEM.DAMAGE_TYPES,
+                })),
+                languages: new fields.SetField(new fields.StringField({
+                    required: true,
+                    choices: CONFIG.SYSTEM.LANGUAGE_TYPES,
+                })),
+                saveAdvantages: new fields.SetField(new fields.StringField({
+                    required: true,
+                    choices: CONFIG.SYSTEM.DAMAGE_TYPES,
+                })),
+            })
         }
     }
 }

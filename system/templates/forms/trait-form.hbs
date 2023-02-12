@@ -11,7 +11,7 @@
     <!-- Configuration Tabs -->
     <nav class="sheet-tabs tabs">
         <a class="item" data-tab="summary"><i class="fas fa-scroll"></i> Summary</a>
-        <a class="item" data-tab="config"><i class="fas fa-cogs"></i> Configuration</a>
+        <a class="item" data-tab="advanced"><i class="fas fa-cogs"></i> Advanced</a>
     </nav>
 
     {{!-- Main Content --}}
@@ -22,17 +22,115 @@
             {{!-- Description --}}
             <div class="form-group stacked" data-name="description">
                 <label>{{ localize "Description" }}</label>
-                <input name="description" type="text" value="{{document.description}}" placeholder="Trait Description"/>
+                <textarea name="description" rows=4>{{document.description}}</textarea>
             </div>
+
+            <fieldset>
+                <legend>{{localize "Innate"}}</legend>
+                <p class="hint">These values are granted automatically to an owning PC</p>
+
+                {{!-- Proficiencies --}}
+                <div class="form-group stacked" data-name="innate.proficiencies">
+                    <label>{{ localize "Proficiencies" }}</label>
+                    {{!-- Render each existing Proficiency as a .tag, with a button to remove --}}
+                    <div class="proficiencies flexcol">
+                        <div class="tag-list flexrow">
+                            {{#each document.innate.proficiencies}}
+                                <div class="proficiency tag" data-value="{{this}}">
+                                    {{typeLabel "PROFICIENCY_TYPES" this}} <i class="fas fa-delete-left" data-action="delete"></i>
+                                </div>
+                            {{/each}}
+                        </div>
+                        {{!-- Render a text input with search ahead to add a new Proficiency --}}
+                        <input name="innate.proficiencies" list="innate-proficiencies-list" type="text" value="" placeholder="Proficiency"/>
+                        <datalist id="innate-proficiencies-list">
+                            {{#each PROFICIENCY_TYPES}}
+                                <option value="{{this.value}}" label="{{this.label}}"></option>
+                            {{/each}}
+                        </datalist>
+                    </div>
+                </div>
+
+                {{!-- Languages --}}
+                <div class="form-group stacked" data-name="innate.languages">
+                    <label>{{ localize "Languages" }}</label>
+                    {{!-- Render each existing Language as a .tag, with a button to remove --}}
+                    <div class="languages flexcol">
+                        <div class="tag-list flexrow">
+                            {{#each document.innate.languages}}
+                                <div class="language tag" data-value="{{this}}">
+                                    {{typeLabel "LANGUAGE_TYPES" this}} <i class="fas fa-delete-left" data-action="delete"></i>
+                                </div>
+                            {{/each}}
+                        </div>
+                        {{!-- Render a text input with search ahead to add a new Talent --}}
+                        <input name="innate.languages" list="innate-languages-list" type="text" value="" placeholder="Language"/>
+                        <datalist id="innate-languages-list">
+                            {{#each LANGUAGE_TYPES}}
+                                <option value="{{this.value}}" label="{{this.label}}"></option>
+                            {{/each}}
+                        </datalist>
+                    </div>
+                </div>
+
+                {{!-- Resistances --}}
+                <div class="form-group stacked" data-name="innate.resistances">
+                    <label>{{ localize "Resistances" }}</label>
+                    {{!-- Render each existing Resistance as a .tag, with a button to remove --}}
+                    <div class="languages flexcol">
+                        <div class="tag-list flexrow">
+                            {{#each document.innate.resistances}}
+                                <div class="resistance tag" data-value="{{this}}">
+                                    {{typeLabel "DAMAGE_TYPES" this}} <i class="fas fa-delete-left" data-action="delete"></i>
+                                </div>
+                            {{/each}}
+                        </div>
+                        {{!-- Render a text input with search ahead to add a new Talent --}}
+                        <input name="innate.resistances" list="innate-resistances-list" type="text" value="" placeholder="Damage Type"/>
+                        <datalist id="innate-resistances-list">
+                            {{#each RESISTANCE_TYPES}}
+                                <option value="{{this.value}}" label="{{this.label}}"></option>
+                            {{/each}}
+                        </datalist>
+                    </div>
+                </div>
+
+                {{!-- Save Advantages --}}
+                <div class="form-group stacked" data-name="innate.saveAdvantages">
+                    <label>{{ localize "Save Advantages" }}</label>
+                    {{!-- Render each existing Save Advantage as a .tag, with a button to remove --}}
+                    <div class="languages flexcol">
+                        <div class="tag-list flexrow">
+                            {{#each document.innate.saveAdvantages}}
+                                <div class="saveAdvantage tag" data-value="{{this}}">
+                                    {{typeLabel "DAMAGE_TYPES" this}} <i class="fas fa-delete-left" data-action="delete"></i>
+                                </div>
+                            {{/each}}
+                        </div>
+                        {{!-- Render a text input with search ahead to add a new Talent --}}
+                        <input name="innate.saveAdvantages" list="innate-saveAdvantages-list" type="text" value="" placeholder="Damage Type"/>
+                        <datalist id="innate-saveAdvantages-list">
+                            {{#each SAVE_ADVANTAGE_TYPES}}
+                                <option value="{{this.value}}" label="{{this.label}}"></option>
+                            {{/each}}
+                        </datalist>
+                    </div>
+                </div>
+
+            </fieldset>
         </section>
 
         <!-- Configuration Tab -->
-        <section class="tab sheet-body" data-tab="config">
+        <section class="tab sheet-body" data-tab="advanced">
 
             {{!-- Character Builder JSON --}}
             <div class="form-group stacked">
                 <label>{{localize "Character Builder JSON"}}</label>
-                <textarea name="builderInfo" rows="24" data-dtype="JSON">{{builderInfoJson}}</textarea>
+                {{#if hasAceEditor}}
+                    <div id="editor">{{builderInfoJson}}</div>
+                {{else}}
+                    <textarea name="builderInfo" rows=24 data-dtype="JSON">{{builderInfoJson}}</textarea>
+                {{/if}}
             </div>
         </section>
 

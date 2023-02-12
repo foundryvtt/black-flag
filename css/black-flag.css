@@ -1,8 +1,16 @@
 .black-flag .editor {
   height: 190px;
 }
+.black-flag .ace_editor {
+  height: 375px;
+}
 .black-flag .foreign-documents .foreign-document {
   padding-bottom: 5px;
+}
+.black-flag .sheet-header,
+.black-flag .sheet-tabs,
+.black-flag footer {
+  flex: 0;
 }
 .black-flag .tag-list .tag {
   flex: none;
@@ -34,16 +42,17 @@
   color: var(--color-text-light-0);
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   margin: 0 0 1px 0;
-  text-align: center;
 }
 .black-flag .directory-list .trait > * {
   display: flex;
-  justify-content: center;
   align-items: center;
 }
+.black-flag .directory-list .trait > .trait-header {
+  padding-right: 10px;
+}
 .black-flag .directory-list .trait > .trait-header .trait-name {
+  color: #edd391;
   display: flex;
-  justify-content: center;
   align-items: center;
   margin: 0;
 }
@@ -52,6 +61,9 @@
   margin-right: 5px;
   width: 32px;
   height: 32px;
+}
+.black-flag .directory-list .trait .description {
+  flex: 2;
 }
 .black-flag .directory-list .trait .item-control {
   width: 25px;

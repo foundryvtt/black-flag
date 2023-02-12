@@ -16,28 +16,6 @@
             {{editor descriptionHTML target="system.description" button=false editable=editable engine="prosemirror" collaborate=false}}
         </div>
 
-        {{!-- Proficiencies --}}
-        <div class="form-group stacked" data-name="system.proficiencies">
-            <label>{{ localize "Proficiencies" }}</label>
-            {{!-- Render each existing Proficiency as a .tag, with a button to remove --}}
-            <div class="proficiencies flexcol">
-                <div class="tag-list flexrow">
-                    {{#each document.system.proficiencies}}
-                        <div class="proficiency tag" data-value="{{this}}">
-                            {{typeLabel "PROFICIENCY_TYPES" this}} <i class="fas fa-delete-left" data-action="delete"></i>
-                        </div>
-                    {{/each}}
-                </div>
-                {{!-- Render a text input with search ahead to add a new Proficiency --}}
-                <input name="system.proficiencies" list="system-proficiencies-list" type="text" value="" placeholder="Proficiency"/>
-                <datalist id="system-proficiencies-list">
-                    {{#each PROFICIENCY_TYPES}}
-                        <option value="{{this.value}}" label="{{this.label}}"></option>
-                    {{/each}}
-                </datalist>
-            </div>
-        </div>
-
         {{!-- Talents --}}
         <div class="form-group stacked" data-name="system.talents">
             <label>{{ localize "Talents" }}</label>
@@ -56,28 +34,6 @@
                 <datalist id="system-talents-list">
                     {{#each allTalents}}
                         <option value="{{this.entry.id}}" label="{{this.entry.name}}"></option>
-                    {{/each}}
-                </datalist>
-            </div>
-        </div>
-
-        {{!-- Languages --}}
-        <div class="form-group stacked" data-name="system.languages">
-            <label>{{ localize "Languages" }}</label>
-            {{!-- Render each existing Language as a .tag, with a button to remove --}}
-            <div class="languages flexcol">
-                <div class="tag-list flexrow">
-                    {{#each document.system.languages}}
-                        <div class="language tag" data-value="{{this}}">
-                            {{typeLabel "LANGUAGE_TYPES" this}} <i class="fas fa-delete-left" data-action="delete"></i>
-                        </div>
-                    {{/each}}
-                </div>
-                {{!-- Render a text input with search ahead to add a new Talent --}}
-                <input name="system.languages" list="system-languages-list" type="text" value="" placeholder="Language"/>
-                <datalist id="system-languages-list">
-                    {{#each LANGUAGE_TYPES}}
-                        <option value="{{this.value}}" label="{{this.label}}"></option>
                     {{/each}}
                 </datalist>
             </div>

@@ -16,8 +16,6 @@ export default class BackgroundConfig extends ItemDocumentSheet {
     /** @override */
     async getData() {
         const context = await super.getData();
-        context.PROFICIENCY_TYPES = this.getMultiSelectOptions(CONFIG.SYSTEM.PROFICIENCY_TYPES, context.document.system.proficiencies);
-        context.LANGUAGE_TYPES = this.getMultiSelectOptions(CONFIG.SYSTEM.LANGUAGE_TYPES, context.document.system.languages);
         context.document.system.talents = context.document.system.talents.map(talent => game.items.get(talent));
         context.allTalents = this._searchTalents("");
         return context;
@@ -33,14 +31,6 @@ export default class BackgroundConfig extends ItemDocumentSheet {
         const talentLinks = this.element.find("a.talent-link");
         update["system.talents"] = talentLinks.map((i, link) => link.dataset.id);
 
-        // Get the list of div.proficiency and add them to the update
-        const proficiencies = this.element.find("div.proficiency");
-        update["system.proficiencies"] = proficiencies.map((i, proficiency) => proficiency.dataset.value);
-
-        // Get the list of div.language and add them to the update
-        const languages = this.element.find("div.language");
-        update["system.languages"] = languages.map((i, language) => language.dataset.value);
-
         return update;
     }
 
@@ -51,8 +41,6 @@ export default class BackgroundConfig extends ItemDocumentSheet {
         super.activateListeners(html);
         html.find("a.content-link").click(this._onClickContentLink.bind(this));
         html.find("input[name='system.talents']").on('input', this._onTalentInputChange.bind(this));
-        html.find("input[name='system.proficiencies']").on('input', (event) => this._onTagInputChange(event, "proficiency", CONFIG.SYSTEM.PROFICIENCY_TYPES));
-        html.find("input[name='system.languages']").on('input', (event) => this._onTagInputChange(event, "language", CONFIG.SYSTEM.LANGUAGE_TYPES));
         html.find(`[data-action="delete"]`).click(this._onDeleteItem.bind(this));
     }
 
@@ -139,37 +127,5 @@ export default class BackgroundConfig extends ItemDocumentSheet {
 
         event.currentTarget.parentElement.insertBefore(talentRow, event.currentTarget);
         event.currentTarget.value = "";
-    }
-
-    /* -------------------------------------------- */
-
-    /**
-     * If the input changes to match a value from the given CONFIG list, add it to the list
-     * @param {Event} event
-     * @private
-     */
-    _onTagInputChange(event, tagClass, configList) {
-        const value = event.currentTarget.value;
-
-        // If the current value is not a value from the config list, return
-        if ( !Object.keys(configList).includes(value) ) return;
-
-        // Otherwise, insert the value into the list
-        const proficiency = document.createElement("div");
-        proficiency.classList.add(tagClass);
-        proficiency.classList.add("tag");
-        proficiency.dataset.value = value;
-        proficiency.innerText = game.i18n.localize(configList[value].label);
-
-        const deleteIcon = document.createElement("i");
-        deleteIcon.classList.add("fas");
-        deleteIcon.classList.add("fa-delete-left");
-        deleteIcon.dataset.action = "delete";
-        deleteIcon.addEventListener("click", this._onDeleteItem.bind(this));
-        proficiency.appendChild(deleteIcon);
-
-        event.currentTarget.parentElement.querySelector(".tag-list").append(proficiency);
-        event.currentTarget.value = "";
-        event.currentTarget.parentElement.querySelector(`option[value="${value}"]`).remove();
     }
 }
