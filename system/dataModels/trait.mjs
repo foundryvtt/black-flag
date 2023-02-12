@@ -4,8 +4,11 @@ export default class TraitDataModel extends foundry.abstract.DataModel {
     static defineSchema() {
         const fields = foundry.data.fields;
         return {
+            id: new fields.StringField({required: true}),
             name: new fields.StringField({required: true}),
+            img: new fields.FilePathField({categories: ["IMAGE"], initial: () => "icons/skills/social/trading-justice-scale-gold.webp"}),
             description: new fields.HTMLField(),
+            builderInfo: new fields.ObjectField(),
             proficiencies: new fields.SetField(new fields.StringField({
                 required: true,
                 choices: CONFIG.SYSTEM.PROFICIENCY_TYPES,

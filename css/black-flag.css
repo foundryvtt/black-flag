@@ -1,20 +1,69 @@
-.black-flag .prosemirror.editor {
+.black-flag .editor {
   height: 190px;
 }
-.black-flag select[name="system.proficiencies"] {
-  height: 200px;
-}
-.black-flag option[selected] {
-  background-color: #aeaea8;
-}
-.black-flag .talents .talent {
+.black-flag .foreign-documents .foreign-document {
   padding-bottom: 5px;
 }
-.black-flag .talents .talent [data-action="delete"] {
+.black-flag .tag-list .tag {
+  flex: none;
+  min-width: 22px;
+  text-align: center;
+  height: 20px;
+  border: 1px solid var(--color-border-dark);
+  border-radius: 3px;
+  padding: 0 5px;
+  font-size: var(--font-size-11);
+  line-height: 18px;
+  text-decoration: none;
+  background: #333;
+  color: var(--color-text-light-highlight);
+  margin: 0 0 5px 2px;
+}
+.black-flag .header > .item-controls {
+  flex: 0 auto;
+}
+.black-flag .directory-list {
+  padding: 0 0.5em 0 0.5em;
+  margin: 0;
+}
+.black-flag .directory-list .item-controls {
+  flex: 0 auto;
+}
+.black-flag .directory-list .trait {
+  background: linear-gradient(45deg, #0d0d0d, #bebebe);
+  color: var(--color-text-light-0);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin: 0 0 1px 0;
+  text-align: center;
+}
+.black-flag .directory-list .trait > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.black-flag .directory-list .trait > .trait-header .trait-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+.black-flag .directory-list .trait .trait-icon {
+  flex: none;
+  margin-right: 5px;
+  width: 32px;
+  height: 32px;
+}
+.black-flag .directory-list .trait .item-control {
+  width: 25px;
+}
+.black-flag [data-action="delete"] {
   flex: none;
   margin-left: 5px;
   padding-top: 2px;
   cursor: pointer;
+}
+.black-flag [data-action="delete"]:hover {
+  color: var(--color-level-error);
 }
 
 /*# sourceMappingURL=black-flag.css.map */

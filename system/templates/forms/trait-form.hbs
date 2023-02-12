@@ -1,0 +1,44 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header flexrow">
+        <img class="profile" src="{{document.img}}" title="{{document.name}}" data-edit="img"/>
+        <h1 class="title">
+            <input name="name" type="text" value="{{document.name}}" placeholder="Talent Name"/>
+        </h1>
+    </header>
+
+    <!-- Configuration Tabs -->
+    <nav class="sheet-tabs tabs">
+        <a class="item" data-tab="summary"><i class="fas fa-scroll"></i> Summary</a>
+        <a class="item" data-tab="config"><i class="fas fa-cogs"></i> Configuration</a>
+    </nav>
+
+    {{!-- Main Content --}}
+    <section class="sheet-body flexcol">
+        {{!-- Description Tab --}}
+        <section class="tab sheet-body" data-tab="summary">
+
+            {{!-- Description --}}
+            <div class="form-group stacked" data-name="description">
+                <label>{{ localize "Description" }}</label>
+                <input name="description" type="text" value="{{document.description}}" placeholder="Trait Description"/>
+            </div>
+        </section>
+
+        <!-- Configuration Tab -->
+        <section class="tab sheet-body" data-tab="config">
+
+            {{!-- Character Builder JSON --}}
+            <div class="form-group stacked">
+                <label>{{localize "Character Builder JSON"}}</label>
+                <textarea name="builderInfo" rows="24" data-dtype="JSON">{{builderInfoJson}}</textarea>
+            </div>
+        </section>
+
+        {{!-- Save Changes --}}
+        <footer>
+            <button type="submit">Save Changes</button>
+        </footer>
+    </section>
+</form>

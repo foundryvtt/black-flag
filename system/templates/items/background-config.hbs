@@ -19,20 +19,32 @@
         {{!-- Proficiencies --}}
         <div class="form-group stacked" data-name="system.proficiencies">
             <label>{{ localize "Proficiencies" }}</label>
-            <select name="system.proficiencies" multiple>
-                {{#each PROFICIENCY_TYPES}}
-                    <option value="{{this.value}}" {{#if this.selected}}selected="true"{{/if}}>{{this.label}}</option>
-                {{/each}}
-            </select>
+            {{!-- Render each existing Proficiency as a .tag, with a button to remove --}}
+            <div class="proficiencies flexcol">
+                <div class="tag-list flexrow">
+                    {{#each document.system.proficiencies}}
+                        <div class="proficiency tag" data-value="{{this}}">
+                            {{typeLabel "PROFICIENCY_TYPES" this}} <i class="fas fa-delete-left" data-action="delete"></i>
+                        </div>
+                    {{/each}}
+                </div>
+                {{!-- Render a text input with search ahead to add a new Proficiency --}}
+                <input name="system.proficiencies" list="system-proficiencies-list" type="text" value="" placeholder="Proficiency"/>
+                <datalist id="system-proficiencies-list">
+                    {{#each PROFICIENCY_TYPES}}
+                        <option value="{{this.value}}" label="{{this.label}}"></option>
+                    {{/each}}
+                </datalist>
+            </div>
         </div>
 
         {{!-- Talents --}}
         <div class="form-group stacked" data-name="system.talents">
             <label>{{ localize "Talents" }}</label>
             {{!-- Render each existing Talent as a document link, with a button to remove --}}
-            <div class="talents flexcol">
+            <div class="foreign-documents talents flexcol">
                 {{#each document.system.talents}}
-                    <div class="talent flexrow">
+                    <div class="foreign-document talent flexrow">
                         <a class="content-link talent-link" draggable="true" data-uuid="{{this.uuid}}" data-id="{{this.id}}" data-type="Item" data-tooltip="Item">
                             <i class="fas fa-suitcase"></i> {{this.name}}
                         </a>
@@ -52,11 +64,23 @@
         {{!-- Languages --}}
         <div class="form-group stacked" data-name="system.languages">
             <label>{{ localize "Languages" }}</label>
-            <select name="system.languages" multiple>
-                {{#each LANGUAGE_TYPES}}
-                    <option value="{{this.value}}" {{#if this.selected}}selected="true"{{/if}}>{{this.label}}</option>
-                {{/each}}
-            </select>
+            {{!-- Render each existing Language as a .tag, with a button to remove --}}
+            <div class="languages flexcol">
+                <div class="tag-list flexrow">
+                    {{#each document.system.languages}}
+                        <div class="language tag" data-value="{{this}}">
+                            {{typeLabel "LANGUAGE_TYPES" this}} <i class="fas fa-delete-left" data-action="delete"></i>
+                        </div>
+                    {{/each}}
+                </div>
+                {{!-- Render a text input with search ahead to add a new Talent --}}
+                <input name="system.languages" list="system-languages-list" type="text" value="" placeholder="Language"/>
+                <datalist id="system-languages-list">
+                    {{#each LANGUAGE_TYPES}}
+                        <option value="{{this.value}}" label="{{this.label}}"></option>
+                    {{/each}}
+                </datalist>
+            </div>
         </div>
 
         {{!-- Equipment --}}

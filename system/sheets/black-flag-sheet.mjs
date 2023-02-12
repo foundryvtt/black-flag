@@ -10,6 +10,8 @@ export default class BlackFlagSheet extends DocumentSheet {
             height: 480,
             resizable: true,
             submitOnClose: true,
+            submitOnChange: false,
+            closeOnSubmit: true,
         });
     }
 
@@ -33,11 +35,13 @@ export default class BlackFlagSheet extends DocumentSheet {
 
     getMultiSelectOptions(choices, selected) {
         return Object.entries(choices).map(type => {
+            // If already selected, skip as a choice
+            if ( selected.has(type[0]) ) return null;
             return {
                 label: type[1].label,
                 value: type[0],
                 selected: selected.has(type[0]),
             }
-        });
+        }).filter(type => type !== null);
     }
 }
