@@ -4,6 +4,12 @@
 .black-flag .ace_editor {
   height: 375px;
 }
+.black-flag form {
+  background-image: url("/systems/black-flag/system/sheets/assets/black-flag-mask-inverse.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 .black-flag .foreign-documents .foreign-document {
   padding-bottom: 5px;
 }

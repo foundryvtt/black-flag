@@ -126,7 +126,8 @@ export default class TraitForm extends FormApplication {
 
         // Activate Ace Editor
         if ( this.hasAceEditor ) {
-            this.editor = ace.edit("editor");
+            const editorElement = html.find("div[name='builderInfo']");
+            this.editor = ace.edit(editorElement[0]);
             this.editor.setTheme("ace/theme/monokai");
             this.editor.session.setMode("ace/mode/json");
             this.editor.setOptions({

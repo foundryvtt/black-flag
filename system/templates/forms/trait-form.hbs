@@ -127,7 +127,7 @@
             <div class="form-group stacked">
                 <label>{{localize "Character Builder JSON"}}</label>
                 {{#if hasAceEditor}}
-                    <div id="editor">{{builderInfoJson}}</div>
+                    <div name="builderInfo">{{builderInfoJson}}</div>
                 {{else}}
                     <textarea name="builderInfo" rows=24 data-dtype="JSON">{{builderInfoJson}}</textarea>
                 {{/if}}

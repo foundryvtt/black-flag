@@ -24,6 +24,8 @@ const SKILL_TYPES = {
 const TOOL_TYPES = {
     glassblower: {label: "Glassblower's Tools"},
     smith: {label: "Smith's Tools"},
+    brewer: {label: "Brewer's Supplies"},
+    mason: {label: "Mason's Tools"},
 }
 
 /**
@@ -46,6 +48,16 @@ const VEHICLE_TYPES = {
 }
 
 /**
+ * The supported armor types.
+ * @type {{label: string}}
+ */
+const ARMOR_TYPES = {
+    light: {label: "Light Armor"},
+    medium: {label: "Medium Armor"},
+    heavy: {label: "Heavy Armor"},
+}
+
+/**
  * The supported proficiency types.
  * @enum {{label: string}}
  */
@@ -54,6 +66,7 @@ const PROFICIENCY_TYPES = {
     ...TOOL_TYPES,
     ...WEAPON_TYPES,
     ...VEHICLE_TYPES,
+    ...ARMOR_TYPES,
 }
 
 /**
