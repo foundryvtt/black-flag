@@ -10,6 +10,7 @@ import Item from "../documents/item.mjs";
 import TalentConfig from "../sheets/items/talent-config.mjs";
 import BackgroundConfig from "../sheets/items/background-config.mjs";
 import HeritageConfig from "../sheets/items/heritage-config.mjs";
+import RaceConfig from "../sheets/items/race-config.mjs";
 
 
 export function init() {
@@ -53,6 +54,7 @@ function registerDocumentSheets() {
     Items.registerSheet(SYSTEM_ID, TalentConfig, {types: ["talent"], makeDefault: true});
     Items.registerSheet(SYSTEM_ID, BackgroundConfig, {types: ["background"], makeDefault: true});
     Items.registerSheet(SYSTEM_ID, HeritageConfig, {types: ["heritage"], makeDefault: true});
+    Items.registerSheet(SYSTEM_ID, RaceConfig, {types: ["race"], makeDefault: true});
 }
 
 /* -------------------------------------------- */

@@ -12,6 +12,7 @@ export default class BackgroundTypeDataModel extends foundry.abstract.TypeDataMo
                 choices: CONFIG.SYSTEM.PROFICIENCY_TYPES,
             })),
             talents: new fields.SetField(new fields.ForeignDocumentField(BlackFlagItem, {required: true, type: "talent", idOnly: true})),
+            numberOfTalents: new fields.NumberField({min: 0, default: 0, integer: true}),
             languages: new fields.SetField(new fields.StringField({
                 required: true,
                 choices: CONFIG.SYSTEM.LANGUAGE_TYPES,

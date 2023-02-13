@@ -18,7 +18,7 @@
 
         {{!-- Talents --}}
         <div class="form-group stacked" data-name="system.talents">
-            <label>{{ localize "Talents" }}</label>
+            <label>{{ localize "Talent Options" }}</label>
             {{!-- Render each existing Talent as a document link, with a button to remove --}}
             <div class="foreign-documents talents flexcol">
                 {{#each document.system.talents}}
@@ -37,6 +37,12 @@
                     {{/each}}
                 </datalist>
             </div>
+        </div>
+
+        {{!-- Number of Talents --}}
+        <div class="form-group stacked" data-name="system.numberOfTalents">
+            <label>{{ localize "Number of Talents to select" }}</label>
+            <input name="system.numberOfTalents" type="number" value="{{document.system.numberOfTalents}}" placeholder="Number of Talents to select"/>
         </div>
 
         {{!-- Equipment --}}

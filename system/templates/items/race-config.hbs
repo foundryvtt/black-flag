@@ -1,0 +1,118 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header flexrow">
+        <img class="profile" src="{{document.img}}" title="{{document.name}}" data-edit="img"/>
+        <h1 class="title">
+            <input name="name" type="text" value="{{document.name}}" placeholder="Race Name"/>
+        </h1>
+    </header>
+
+    {{!-- Description Tab --}}
+    <section class="sheet-body">
+
+        {{!-- Description --}}
+        <div class="form-group stacked" data-name="system.description">
+            <label>{{ localize "Description" }}</label>
+            {{editor descriptionHTML target="system.description" button=false editable=editable engine="prosemirror" collaborate=false}}
+        </div>
+
+        <fieldset>
+            <legend>{{ localize "Hereditary Traits" }}</legend>
+
+            {{!-- Age --}}
+            <div class="form-group" data-name="system.age">
+                <label>{{ localize "Age" }}</label>
+                <textarea name="system.age" rows=2 type="text" placeholder="Age">{{document.system.age}}</textarea>
+            </div>
+
+            {{!-- Size Description --}}
+            <div class="form-group" data-name="system.size.description">
+                <label>{{ localize "Size Info" }}</label>
+                <textarea name="system.size.description" rows=2 type="text" placeholder="Size">{{document.system.size.description}}</textarea>
+            </div>
+
+            {{!-- Size --}}
+            <div class="form-group" data-name="system.size.type">
+                <label>{{ localize "Size" }}</label>
+                <select name="system.size.type">
+                    {{selectOptions SIZE_TYPES selected=document.system.size.type}}
+                </select>
+            </div>
+
+            {{!-- Speed --}}
+            <div class="form-group" data-name="system.speed">
+                <label>{{ localize "Speed" }} <span class="units">({{localize "Feet"}})</span></label>
+                <input name="system.speed" type="number" value="{{document.system.speed}}" placeholder="Speed"/>
+            </div>
+
+            <fieldset>
+                <legend>{{localize "Sight"}}</legend>
+
+                {{!-- Sight Description --}}
+                <div class="form-group" data-name="system.sight.description">
+                    <label>{{ localize "Info" }}</label>
+                    <textarea name="system.sight.description" rows=2 type="text" placeholder="Sight">{{document.system.sight.description}}</textarea>
+                </div>
+
+                {{!-- Bright --}}
+                <div class="form-group" data-name="system.sight.bright">
+                    <label>{{ localize "Bright Vision" }} <span class="units">({{localize "Feet"}})</span></label>
+                    <input name="system.sight.bright" type="number" value="{{document.system.sight.bright}}" placeholder="Bright Vision"/>
+                </div>
+
+                {{!-- Dim --}}
+                <div class="form-group" data-name="system.sight.dim">
+                    <label>{{ localize "Dim Vision" }} <span class="units">({{localize "Feet"}})</span></label>
+                    <input name="system.sight.dim" type="number" value="{{document.system.sight.dim}}" placeholder="Dim Vision"/>
+                </div>
+
+                {{!-- Dark --}}
+                <div class="form-group" data-name="system.sight.dark">
+                    <label>{{ localize "Dark Vision" }} <span class="units">({{localize "Feet"}})</span></label>
+                    <input name="system.sight.dark" type="number" value="{{document.system.sight.dark}}" placeholder="Dark Vision"/>
+                </div>
+
+            </fieldset>
+        </fieldset>
+
+        <hr>
+
+        {{!-- Traits --}}
+        <div class="form-group stacked">
+            <div class="header flexrow">
+                <h3>{{ localize "Traits" }}</h3>
+                {{#if owner}}
+                    <div class="item-controls">
+                        <a class="item-control trait-create" data-tooltip="{{localize "Create"}} {{localize "Trait"}}">
+                            <i class="fas fa-plus"></i> {{localize 'Add'}}
+                        </a>
+                    </div>
+                {{/if}}
+            </div>
+
+            <ul class="directory-list">
+                {{#each document.system.traits as |trait t|}}
+                    <li class="trait flexrow" data-trait-id="{{trait.id}}">
+                        <div class="trait-header flexrow" data-tooltip="{{trait.name}}">
+                            <img class="trait-icon" src="{{trait.img}}"/>
+                            <h4 class="trait-name">{{truncate trait.name 25}}</h4>
+                        </div>
+                        <div class="description" data-tooltip="{{{trait.description}}}">{{truncate trait.description 50}}</div>
+                        {{#if ../owner}}
+                            <div class="item-controls">
+                                <a class="item-control trait-edit" data-tooltip="{{localize "Edit"}}"><i class="fas fa-edit"></i></a>
+                                <a class="item-control trait-delete" data-tooltip="{{localize "Delete"}}"><i class="fas fa-trash"></i></a>
+                            </div>
+                        {{/if}}
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </section>
+
+    {{!-- Save Changes --}}
+    <footer>
+        <button type="submit">{{localize "Save"}}</button>
+    </footer>
+</form>

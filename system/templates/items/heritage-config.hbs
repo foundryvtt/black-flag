@@ -17,6 +17,12 @@
             {{editor descriptionHTML target="system.description" button=false editable=editable engine="prosemirror" collaborate=false}}
         </div>
 
+        {{!-- Alignment --}}
+        <div class="form-group stacked" data-name="system.alignment">
+            <label>{{ localize "Alignment" }}</label>
+            <textarea name="system.alignment" rows=2 type="text" placeholder="Alignment">{{document.system.alignment}}</textarea>
+        </div>
+
         <hr>
 
         {{!-- Traits --}}
@@ -54,6 +60,6 @@
 
     {{!-- Save Changes --}}
     <footer>
-        <button type="submit">Save Changes</button>
+        <button type="submit">{{localize "Save"}}</button>
     </footer>
 </form>

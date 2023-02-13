@@ -19,7 +19,7 @@ export default class RaceTypeDataModel extends foundry.abstract.TypeDataModel {
                 dark: new fields.NumberField({min: 0, default: 0, integer: true}),
                 bright: new fields.NumberField({min: 0, default: 30, integer: true}),
             }),
-            traits: new fields.SetField(new fields.SchemaField(TraitDataModel.defineSchema()), {default: []}),
+            traits: new fields.ArrayField(new fields.EmbeddedDataField(TraitDataModel), {default: []}),
         }
     }
 }
