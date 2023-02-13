@@ -1,12 +1,34 @@
+@import "bf-actor-pc.less";
+
 .black-flag {
+
+  // Font Styles
+
+  div, p, input, textarea, label, span, button, select, option {
+    font-family: "Verdigris MVP Pro Text, Verdana, Arial, sans-serif";
+  }
+
+  h1 {
+    font-family: "Modesto Condensed Bold";
+  }
+
+  h2 {
+    font-family: "Modesto Condensed Bold";
+    font-variant: small-caps;
+  }
+
+
+  // Set Prosemirror editor height
   .editor {
     height: 190px;
   }
 
+  // Set Ace editor height
   .ace_editor {
     height: 375px;
   }
 
+  // Set a faint background image for all forms
   form {
     background-image: url("/systems/black-flag/system/sheets/assets/black-flag-mask-inverse.png");
     background-size: contain;
@@ -14,16 +36,25 @@
     background-position: center;
   }
 
+  // Foreign Documents
   .foreign-documents {
     .foreign-document {
       padding-bottom: 5px;
     }
   }
 
+  // Sheet headers shouldn't grow
   .sheet-header, .sheet-tabs, footer {
     flex: 0;
   }
 
+  .header {
+    >.item-controls {
+      flex: 0 auto;
+    }
+  }
+
+  // Tag List
   .tag-list {
     .tag {
       flex: none;
@@ -42,12 +73,7 @@
     }
   }
 
-  .header {
-    >.item-controls {
-      flex: 0 auto;
-    }
-  }
-
+  // Directory List
   .directory-list {
     padding: 0 0.5em 0 0.5em;
     margin: 0;
@@ -95,6 +121,7 @@
     }
   }
 
+  // Delete button TODO: Move under a joined css selector for tags and foreign documents
   [data-action="delete"] {
     flex: none;
     margin-left: 5px;

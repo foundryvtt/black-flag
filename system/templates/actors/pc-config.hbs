@@ -1,0 +1,25 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+    {{!-- Body --}}
+    <section class="sheet-body">
+
+        {{!-- Bio --}}
+        <div class="bio flexrow">
+
+            {{!-- Flag --}}
+            <div class="flag">
+                <img class="flag-background" src="/systems/black-flag/system/sheets/assets/black-flag-double-banner.webp" />
+            </div>
+
+            <div class="flexcol">
+                {{!-- Name --}}
+                <h1 class="name"><input name="name" type="text" value="{{document.name}}" placeholder="PC Name"/></h1>
+
+                {{!-- Description --}}
+                <div class="description" data-name="system.description">
+                    {{editor descriptionHTML target="system.description" button=true editable=editable engine="prosemirror" collaborate=false}}
+                </div>
+            </div>
+        </div>
+
+    </section>
+</form>

@@ -1,0 +1,51 @@
+.black-flag.actor.pc {
+
+  .window-content {
+    padding: 0;
+  }
+
+  .sheet-body {
+    display: grid;
+    grid-template-areas:
+      "bio bio summary"
+      "effects main inventory"
+      "actions main inventory"
+      "skills main inventory"
+      "resistances abilities inventory";
+    grid-gap: 10px;
+  }
+
+  .bio {
+    grid-area: bio;
+
+    // Flag
+    .flag {
+      flex: 0 auto;
+      margin-left: 10px;
+      margin-right: 10px;
+
+      > img {
+        border: none;
+      }
+
+      .flag-background {
+        width: 100px;
+      }
+    }
+
+    // Name
+    .name {
+      flex: 0 auto;
+      border: none;
+    }
+
+    // Description
+    .description {
+
+      // Apply a faint border on hover
+      &:hover {
+          border: 1px dotted rgba(65, 65, 65, 0.7);
+      }
+    }
+  }
+}

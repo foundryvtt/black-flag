@@ -3,12 +3,12 @@ import ItemDocumentSheet from "./item-config.mjs";
 import TraitDataModel from "../../dataModels/trait.mjs";
 import TraitForm from "../../apps/forms/trait-form.mjs";
 
-export default class RaceConfig extends ItemDocumentSheet {
+export default class LineageConfig extends ItemDocumentSheet {
 
     /** @override */
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
-            classes: [SYSTEM_ID, "sheet", "item", "race"],
+            classes: [SYSTEM_ID, "sheet", "item", "lineage"],
             width: 725,
             height: 900,
         });

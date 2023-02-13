@@ -4,11 +4,11 @@
     "pc": {}
   },
   "Item": {
-    "types": ["background", "equipment", "heritage", "race", "talent"],
+    "types": ["background", "equipment", "heritage", "lineage", "talent"],
     "background": {},
     "equipment": {},
     "heritage": {},
-    "race": {},
+    "lineage": {},
     "talent": {}
   }
 }

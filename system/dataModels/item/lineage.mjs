@@ -1,6 +1,6 @@
 import TraitDataModel from "../trait.mjs";
 
-export default class RaceTypeDataModel extends foundry.abstract.TypeDataModel {
+export default class LineageTypeDataModel extends foundry.abstract.TypeDataModel {
 
     /** @inheritDoc */
     static defineSchema() {

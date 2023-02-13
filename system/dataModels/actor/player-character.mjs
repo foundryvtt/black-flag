@@ -1,5 +1,5 @@
 import HeritageTypeDataModel from "../item/heritage.mjs";
-import RaceTypeDataModel from "../item/race.mjs";
+import LineageTypeDataModel from "../item/lineage.mjs";
 import BackgroundTypeDataModel from "../item/background.mjs";
 import TalentTypeDataModel from "../item/talent.mjs";
 import EquipmentTypeDataModel from "../item/equipment.mjs";
@@ -43,7 +43,7 @@ export default class PlayerCharacterTypeDataModel extends foundry.abstract.TypeD
                 charisma: new fields.NumberField({min: 0, default: 0, integer: true})
             }),
             class: new fields.ForeignDocumentField(BlackFlagItem, {required: true, type: "class", idOnly: true}),
-            race: new fields.ForeignDocumentField(BlackFlagItem, {required: true, type: "race", idOnly: true}),
+            lineage: new fields.ForeignDocumentField(BlackFlagItem, {required: true, type: "lineage", idOnly: true}),
             heritage: new fields.ForeignDocumentField(BlackFlagItem, {required: true, type: "heritage", idOnly: true}),
             backgrounds: new fields.SetField(new fields.ForeignDocumentField(BlackFlagItem, {required: true, type: "background", idOnly: true})),
             talents: new fields.SetField(new fields.ForeignDocumentField(BlackFlagItem, {required: true, type: "talent", idOnly: true})),

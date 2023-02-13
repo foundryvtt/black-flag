@@ -1,9 +1,12 @@
 export const SYSTEM_ID = "black-flag";
 export const SYSTEM_NAME = "Black Flag 🏴";
 
+function isDebugging() {
+    return game.modules.get('_dev-mode')?.api?.getPackageDebugValue(SYSTEM_ID);
+}
+
 function log(...args) {
-    const isDebugging = game.modules.get('_dev-mode')?.api?.getPackageDebugValue(SYSTEM_ID);
-    if ( isDebugging ) console.log(`${SYSTEM_NAME} |`, ...args);
+    if ( isDebugging() ) console.log(`${SYSTEM_NAME} |`, ...args);
 }
 
 /**
@@ -143,6 +146,7 @@ export const SYSTEM = {
     id: SYSTEM_ID,
     name: SYSTEM_NAME,
     log,
+    isDebugging,
     PROFICIENCY_TYPES,
     DAMAGE_TYPES,
     LANGUAGE_TYPES,

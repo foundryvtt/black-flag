@@ -3,14 +3,16 @@ import PlayerCharacterTypeDataModel from "../datamodels/actor/player-character.m
 import BackgroundTypeDataModel from "../datamodels/item/background.mjs";
 import EquipmentTypeDataModel from "../datamodels/item/equipment.mjs";
 import HeritageTypeDataModel from "../datamodels/item/heritage.mjs";
-import RaceTypeDataModel from "../datamodels/item/race.mjs";
+import LineageTypeDataModel from "../dataModels/item/lineage.mjs";
 import TalentTypeDataModel from "../datamodels/item/talent.mjs";
 import BlackFlagActor from "../documents/actor.mjs";
 import Item from "../documents/item.mjs";
 import TalentConfig from "../sheets/items/talent-config.mjs";
 import BackgroundConfig from "../sheets/items/background-config.mjs";
 import HeritageConfig from "../sheets/items/heritage-config.mjs";
-import RaceConfig from "../sheets/items/race-config.mjs";
+import LineageConfig from "../sheets/items/lineage-config.mjs";
+import PcConfig from "../sheets/actors/pc-config.mjs";
+import BlackFlagItem from "../documents/item.mjs";
 
 
 export function init() {
@@ -35,7 +37,7 @@ function registerDataModels() {
         background: BackgroundTypeDataModel,
         equipment: EquipmentTypeDataModel,
         heritage: HeritageTypeDataModel,
-        race: RaceTypeDataModel,
+        lineage: LineageTypeDataModel,
         talent: TalentTypeDataModel
     }
 }
@@ -44,17 +46,25 @@ function registerDataModels() {
 
 function registerDocumentClasses() {
     CONFIG.Actor.documentClass = BlackFlagActor;
-    CONFIG.Item.documentClass = Item;
+    CONFIG.Item.documentClass = BlackFlagItem;
 }
 
 /* -------------------------------------------- */
 
 function registerDocumentSheets() {
-    //Items.unregisterSheet("core", ItemSheet);
+    if ( !CONFIG.SYSTEM.isDebugging() ){
+        Actors.unregisterSheet("core", ActorSheet);
+        Items.unregisterSheet("core", ItemSheet);
+    }
+
+    // Actors
+    Actors.registerSheet(SYSTEM_ID, PcConfig, {types: ["pc"], makeDefault: true});
+
+    // Items
     Items.registerSheet(SYSTEM_ID, TalentConfig, {types: ["talent"], makeDefault: true});
     Items.registerSheet(SYSTEM_ID, BackgroundConfig, {types: ["background"], makeDefault: true});
     Items.registerSheet(SYSTEM_ID, HeritageConfig, {types: ["heritage"], makeDefault: true});
-    Items.registerSheet(SYSTEM_ID, RaceConfig, {types: ["race"], makeDefault: true});
+    Items.registerSheet(SYSTEM_ID, LineageConfig, {types: ["lineage"], makeDefault: true});
 }
 
 /* -------------------------------------------- */
