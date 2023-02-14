@@ -2,7 +2,11 @@
   "Actor": {
     "types": ["pc"],
     "pc": {
-      "hp": {},
+      "hp": {
+        "current": 10,
+        "max": 10,
+        "temp": 0
+      },
       "languages": [],
       "proficiencies": [],
       "resistances": [],
@@ -10,7 +14,9 @@
       "abilities": {},
       "backgrounds": [],
       "talents": [],
-      "equipment": []
+      "equipment": [],
+      "level": 1,
+      "experience": 0
     }
   },
   "Item": {

@@ -61,6 +61,24 @@ export default class BlackFlagSheet extends DocumentSheet {
 
     /* -------------------------------------------- */
 
+    getForeignDocumentOptions(type, subtype, allowNone=true) {
+        return this.constructor.getForeignDocumentOptions(type, subtype, allowNone);
+    }
+
+    /* -------------------------------------------- */
+
+    static getForeignDocumentOptions(type, subtype, allowNone=true) {
+        const options = {};
+        if ( allowNone ) options[""] = "None";
+        const docs = game.collections.get(type).filter(d => d.type === subtype);
+        for ( let d of docs ) {
+            options[d.id] = d.name;
+        }
+        return options;
+    }
+
+    /* -------------------------------------------- */
+
     /** Provides a slightly cleaner way of calling this for extending classes */
     getOptionsList(choices) {
         return this.constructor.getOptionsList(choices);

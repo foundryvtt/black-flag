@@ -16,20 +16,11 @@ export default class PcConfig extends ActorDocumentSheet {
         const context = await super.getData();
         context.SIZE_TYPES = this.getOptionsList(CONFIG.SYSTEM.RACE_SIZE_TYPES);
         context.ALIGNMENT_TYPES = this.getOptionsList(CONFIG.SYSTEM.ALIGNMENT_TYPES);
-        context.LINEAGE_TYPES = game.items.filter(i => i.type === "lineage").reduce((obj, i) => {
-            obj[i.id] = i.name;
-            return obj;
-        }, {});
+        context.LINEAGE_TYPES = this.getForeignDocumentOptions("Item", "lineage");
         context.lineageInfo = game.items.get(this.object.system.lineage);
-        context.HERITAGE_TYPES = game.items.filter(i => i.type === "heritage").reduce((obj, i) => {
-            obj[i.id] = i.name;
-            return obj;
-        }, {});
+        context.HERITAGE_TYPES = this.getForeignDocumentOptions("Item", "heritage");
         context.heritageInfo = game.items.get(this.object.system.heritage);
-        context.BACKGROUND_TYPES = game.items.filter(i => i.type === "background").reduce((obj, i) => {
-            obj[i.id] = i.name;
-            return obj;
-        }, {});
+        context.BACKGROUND_TYPES = this.getForeignDocumentOptions("Item", "background");
         context.backgroundInfo = game.items.get(this.object.system.background);
         context.PROFICIENCY_TYPES = this.getDatalistOptions(CONFIG.SYSTEM.PROFICIENCY_TYPES, this.object.system.proficiencies);
         context.LANGUAGE_TYPES = this.getDatalistOptions(CONFIG.SYSTEM.LANGUAGE_TYPES, this.object.system.languages);
