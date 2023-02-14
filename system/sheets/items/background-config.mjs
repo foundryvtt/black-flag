@@ -16,7 +16,7 @@ export default class BackgroundConfig extends ItemDocumentSheet {
     /** @override */
     async getData() {
         const context = await super.getData();
-        context.document.system.talents = context.document.system.talents.map(talent => game.items.get(talent));
+        context.document.system.talents = context.document._source.system.talents.map(talent => game.items.get(talent));
         context.allTalents = this._searchTalents("");
         return context;
     }
@@ -29,7 +29,7 @@ export default class BackgroundConfig extends ItemDocumentSheet {
 
         // Get the list of a.talent-link and add them to the update
         const talentLinks = this.element.find("a.talent-link");
-        update["system.talents"] = talentLinks.map((i, link) => link.dataset.id);
+        update["system.talents"] = Array.from(talentLinks.map((i, link) => link.dataset.id));
 
         return update;
     }
@@ -41,7 +41,7 @@ export default class BackgroundConfig extends ItemDocumentSheet {
         super.activateListeners(html);
         html.find("a.content-link").click(this._onClickContentLink.bind(this));
         html.find("input[name='system.talents']").on('input', this._onTalentInputChange.bind(this));
-        html.find(`[data-action="delete"]`).click(this._onDeleteItem.bind(this));
+        html.find(`[data-action="delete"]`).click(this._onDeleteDatasetItem.bind(this));
     }
 
     /* -------------------------------------------- */
@@ -67,7 +67,8 @@ export default class BackgroundConfig extends ItemDocumentSheet {
      * @private
      */
     _searchTalents(search) {
-        return Object.values(game.documentIndex.lookup(search.toLowerCase(), {documentTypes: ['Item']}))
+        return Object.values(game.documentIndex.lookup(search.toLowerCase(),
+            {documentTypes: ['Item'], limit: 100}))
             .flatMap(_ => _).filter(t => t.entry.type === "talent");
     }
 
@@ -114,6 +115,7 @@ export default class BackgroundConfig extends ItemDocumentSheet {
         talentLink.addEventListener("click", this._onClickContentLink.bind(this));
 
         const talentRow = document.createElement("div");
+        talentRow.classList.add("foreign-document");
         talentRow.classList.add("talent");
         talentRow.classList.add("flexrow");
         talentRow.appendChild(talentLink);

@@ -18,6 +18,8 @@ const SKILL_TYPES = {
     history: {label: "History"},
     nature: {label: "Nature"},
     religion: {label: "Religion"},
+    survival: {label: "Survival"},
+    perception: {label: "Perception"},
 }
 
 /**
@@ -36,10 +38,22 @@ const TOOL_TYPES = {
  * @type {{label: string}}
  */
 const WEAPON_TYPES = {
+
+    // Axes
     battleaxe: {label: "Battleaxe"},
     handaxe: {label: "Handaxe"},
+
+    // Hammers
     lightHammer: {label: "Light Hammer"},
     warhammer: {label: "Warhammer"},
+
+    // Swords
+    longsword: {label: "Longsword"},
+    shortsword: {label: "Shortsword"},
+
+    // Bows
+    longbow: {label: "Longbow"},
+    shortbow: {label: "Shortbow"},
 }
 
 /**
@@ -83,6 +97,15 @@ const DAMAGE_TYPES = {
 }
 
 /**
+ * The supported save types.
+ * @type {{label: string}}
+ */
+const SAVE_TYPES = {
+    ...DAMAGE_TYPES,
+    charm: {label: "Charm"},
+}
+
+/**
  * The supported language types.
  * @enum {{label: string}}
  */
@@ -91,6 +114,8 @@ const LANGUAGE_TYPES = {
     trade: {label: "Trade"},
     ignan: {label: "Ignan"},
     dwarvish: {label: "Dwarvish"},
+    elvish: {label: "Elvish"},
+    draconic: {label: "Draconic"},
 }
 
 /**
@@ -154,4 +179,5 @@ export const SYSTEM = {
     ALIGNMENT_TYPES,
     EQUIPMENT_SIZES,
     TALENT_CATEGORIES,
+    SAVE_TYPES,
 };

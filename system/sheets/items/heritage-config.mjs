@@ -42,7 +42,11 @@ export default class HeritageConfig extends ItemDocumentSheet {
             description: "New Trait Description"
         });
         this.object.system.traits.push(trait);
-        await this.object.update({"system.traits": this.object.system.traits});
+
+        // Grab any other pending updates
+        const update = this._getSubmitData();
+        update["system.traits"] = this.object.system.traits;
+        await this.object.update(update);
     }
 
     /* -------------------------------------------- */
@@ -61,6 +65,10 @@ export default class HeritageConfig extends ItemDocumentSheet {
         event.preventDefault();
         const traitId = event.currentTarget.closest(".trait").dataset.traitId;
         this.object.system.traits = this.object.system.traits.filter(t => t.id !== traitId);
-        await this.object.update({"system.traits": this.object.system.traits});
+
+        // Grab any other pending updates
+        const update = this._getSubmitData();
+        update["system.traits"] = this.object.system.traits;
+        await this.object.update(update);
     }
 }

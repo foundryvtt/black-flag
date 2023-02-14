@@ -1,25 +1,145 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header flexrow">
+        <img class="profile" src="{{document.img}}" title="{{document.name}}" data-edit="img"/>
+        <h1 class="title">
+            <input name="name" type="text" value="{{document.name}}" placeholder="Player Name"/>
+        </h1>
+    </header>
+
     {{!-- Body --}}
     <section class="sheet-body">
 
         {{!-- Bio --}}
-        <div class="bio flexrow">
+        <fieldset>
+            <legend>{{localize "Bio"}}</legend>
 
-            {{!-- Flag --}}
-            <div class="flag">
-                <img class="flag-background" src="/systems/black-flag/system/sheets/assets/black-flag-double-banner.webp" />
+            {{!-- Lineage --}}
+            <div class="form-group" data-name="system.lineage">
+                <label>{{ localize "Lineage" }}</label>
+                <select name="system.lineage">
+                    {{selectOptions LINEAGE_TYPES selected=document.system.lineage}}
+                </select>
             </div>
 
-            <div class="flexcol">
-                {{!-- Name --}}
-                <h1 class="name"><input name="name" type="text" value="{{document.name}}" placeholder="PC Name"/></h1>
+            {{!-- Heritage --}}
+            <div class="form-group" data-name="system.heritage">
+                <label>{{ localize "Heritage" }}</label>
+                <select name="system.heritage">
+                    {{selectOptions HERITAGE_TYPES selected=document.system.heritage}}
+                </select>
+            </div>
 
-                {{!-- Description --}}
-                <div class="description" data-name="system.description">
-                    {{editor descriptionHTML target="system.description" button=true editable=editable engine="prosemirror" collaborate=false}}
+            {{!-- Background --}}
+            <div class="form-group" data-name="system.background">
+                <label>{{ localize "Background" }}</label>
+                <select name="system.background">
+                    {{selectOptions BACKGROUND_TYPES selected=document.system.background}}
+                </select>
+            </div>
+
+            {{!-- Alignment --}}
+            <div class="form-group" data-name="system.alignment">
+                <label>{{ localize "Alignment" }}</label>
+                <select name="system.alignment">
+                    {{selectOptions ALIGNMENT_TYPES selected=document.system.alignment}}
+                </select>
+            </div>
+
+            {{!-- Description --}}
+            <div class="form-group stacked" data-name="system.description">
+                <label>{{ localize "Description" }}</label>
+                {{editor descriptionHTML target="system.description" button=false editable=editable engine="prosemirror" collaborate=false}}
+            </div>
+
+            {{!-- Age --}}
+            <div class="form-group stacked" data-name="system.age">
+                <label>{{ localize "Age" }}</label>
+                <input name="system.age" type="number" value="{{document.system.age}}" placeholder="Age"/>
+            </div>
+
+            {{!-- Size --}}
+            <div class="form-group stacked" data-name="system.size">
+                <label>{{ localize "Size" }}</label>
+                <select name="system.size">
+                    {{selectOptions SIZE_TYPES selected=document.system.size}}
+                </select>
+            </div>
+
+            {{!-- Languages --}}
+            <div class="form-group stacked" data-name="system.languages">
+                <label>{{ localize "Languages" }}</label>
+                {{!-- Render each existing Language as a .tag, with a button to remove --}}
+                <div class="languages flexcol">
+                    <div class="tag-list flexrow">
+                        {{#each document.system.languages}}
+                            <div class="language tag" data-value="{{this}}">
+                                {{typeLabel "LANGUAGE_TYPES" this}} <i class="fas fa-delete-left" data-action="delete"></i>
+                            </div>
+                        {{/each}}
+                    </div>
+                    {{!-- Render a text input with search ahead to add a new Language --}}
+                    <input name="system.languages" list="system-languages-list" type="text" value="" placeholder="Language"/>
+                    <datalist id="system-languages-list">
+                        {{#each LANGUAGE_TYPES}}
+                            <option value="{{this.value}}" label="{{this.label}}"></option>
+                        {{/each}}
+                    </datalist>
                 </div>
             </div>
-        </div>
 
-    </section>
+        </fieldset>
+
+        {{!-- Abilitity Scores --}}
+        <fieldset>
+            <legend>{{localize "Ability Scores"}}</legend>
+
+            {{!-- Strength --}}
+            <div class="form-group" data-name="system.abilities.strength">
+                <label>{{ localize "Strength" }}</label>
+                {{numberInput document.system.abilities.strength.value name="system.abilities.strength" step=1 min=0 max=20}}
+                <div class="mod">{{document.system.abilities.strength.mod}}</div>
+            </div>
+
+            {{!-- Dexterity --}}
+            <div class="form-group" data-name="system.abilities.dexterity">
+                <label>{{ localize "Dexterity" }}</label>
+                {{numberInput document.system.abilities.dexterity.value name="system.abilities.dexterity" step=1 min=0 max=20}}
+                <div class="mod">{{document.system.abilities.dexterity.mod}}</div>
+            </div>
+
+            {{!-- Constitution --}}
+            <div class="form-group" data-name="system.abilities.constitution">
+                <label>{{ localize "Constitution" }}</label>
+                {{numberInput document.system.abilities.constitution.value name="system.abilities.constitution" step=1 min=0 max=20}}
+                <div class="mod">{{document.system.abilities.constitution.mod}}</div>
+            </div>
+
+            {{!-- Intelligence --}}
+            <div class="form-group" data-name="system.abilities.intelligence">
+                <label>{{ localize "Intelligence" }}</label>
+                {{numberInput document.system.abilities.intelligence.value name="system.abilities.intelligence" step=1 min=0 max=20}}
+                <div class="mod">{{document.system.abilities.intelligence.mod}}</div>
+            </div>
+
+            {{!-- Wisdom --}}
+            <div class="form-group" data-name="system.abilities.wisdom">
+                <label>{{ localize "Wisdom" }}</label>
+                {{numberInput document.system.abilities.wisdom.value name="system.abilities.wisdom" step=1 min=0 max=20}}
+                <div class="mod">{{document.system.abilities.wisdom.mod}}</div>
+            </div>
+
+            {{!-- Charisma --}}
+            <div class="form-group" data-name="system.abilities.charisma">
+                <label>{{ localize "Charisma" }}</label>
+                {{numberInput document.system.abilities.charisma.value name="system.abilities.charisma" step=1 min=0 max=20}}
+                <div class="mod">{{document.system.abilities.charisma.mod}}</div>
+            </div>
+        </fieldset>
+   </section>
+
+    <footer>
+        <button type="submit">{{localize "Save"}}</button>
+    </footer>
 </form>

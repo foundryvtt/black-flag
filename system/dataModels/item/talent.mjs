@@ -1,4 +1,4 @@
-export default class TalentTypeDataModel extends foundry.abstract.TypeDataModel {
+export default class TalentTypeDataModel extends foundry.abstract.DataModel {
 
     /** @inheritDoc */
     static defineSchema() {

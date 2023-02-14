@@ -9,9 +9,6 @@ export default class ActorDocumentSheet extends BlackFlagSheet {
             classes: [SYSTEM_ID, "sheet", "actor"],
             width: 1000,
             height: 1000,
-            submitOnClose: true,
-            submitOnChange: true,
-            closeOnSubmit: false,
         });
     }
 

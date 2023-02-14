@@ -1,11 +1,6 @@
-import HeritageTypeDataModel from "../item/heritage.mjs";
-import LineageTypeDataModel from "../item/lineage.mjs";
-import BackgroundTypeDataModel from "../item/background.mjs";
-import TalentTypeDataModel from "../item/talent.mjs";
-import EquipmentTypeDataModel from "../item/equipment.mjs";
 import BlackFlagItem from "../../documents/item.mjs";
 
-export default class PlayerCharacterTypeDataModel extends foundry.abstract.TypeDataModel {
+export default class PlayerCharacterTypeDataModel extends foundry.abstract.DataModel {
 
     /** @inheritDoc */
     static defineSchema() {
@@ -34,6 +29,14 @@ export default class PlayerCharacterTypeDataModel extends foundry.abstract.TypeD
                 choices: CONFIG.SYSTEM.PROFICIENCY_TYPES,
             })),
             proficiencyBonus: new fields.NumberField({min: 0, default: 0, integer: true}), // TODO: Also figure out this
+            resistances: new fields.SetField(new fields.StringField({
+                required: true,
+                choices: CONFIG.SYSTEM.DAMAGE_TYPES,
+            })),
+            saveAdvantages: new fields.SetField(new fields.StringField({
+                required: true,
+                choices: CONFIG.SYSTEM.DAMAGE_TYPES,
+            })),
             abilities: new fields.SchemaField({
                 strength: new fields.NumberField({min: 0, default: 0, integer: true}),
                 dexterity: new fields.NumberField({min: 0, default: 0, integer: true}),

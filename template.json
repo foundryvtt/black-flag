@@ -1,14 +1,35 @@
 {
   "Actor": {
     "types": ["pc"],
-    "pc": {}
+    "pc": {
+      "hp": {},
+      "languages": [],
+      "proficiencies": [],
+      "resistances": [],
+      "saveAdvantages": [],
+      "abilities": {},
+      "backgrounds": [],
+      "talents": [],
+      "equipment": []
+    }
   },
   "Item": {
     "types": ["background", "equipment", "heritage", "lineage", "talent"],
-    "background": {},
+    "background": {
+      "languages": [],
+      "proficiencies": [],
+      "talents": [],
+      "equipment": []
+    },
     "equipment": {},
-    "heritage": {},
-    "lineage": {},
+    "heritage": {
+      "traits": []
+    },
+    "lineage": {
+      "size": {},
+      "sight": {},
+      "traits": []
+    },
     "talent": {}
   }
 }

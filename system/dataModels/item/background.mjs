@@ -1,6 +1,6 @@
 import BlackFlagItem from "../../documents/item.mjs";
 
-export default class BackgroundTypeDataModel extends foundry.abstract.TypeDataModel {
+export default class BackgroundTypeDataModel extends foundry.abstract.DataModel {
 
     /** @inheritDoc */
     static defineSchema() {

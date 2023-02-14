@@ -6,7 +6,6 @@ import HeritageTypeDataModel from "../datamodels/item/heritage.mjs";
 import LineageTypeDataModel from "../dataModels/item/lineage.mjs";
 import TalentTypeDataModel from "../datamodels/item/talent.mjs";
 import BlackFlagActor from "../documents/actor.mjs";
-import Item from "../documents/item.mjs";
 import TalentConfig from "../sheets/items/talent-config.mjs";
 import BackgroundConfig from "../sheets/items/background-config.mjs";
 import HeritageConfig from "../sheets/items/heritage-config.mjs";

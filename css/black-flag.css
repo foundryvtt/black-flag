@@ -1,31 +1,48 @@
-.black-flag.actor.pc .window-content {
-  padding: 0;
+.journal-sheet div,
+.journal-sheet p,
+.journal-sheet input,
+.journal-sheet textarea,
+.journal-sheet label,
+.journal-sheet span,
+.journal-sheet button,
+.journal-sheet select,
+.journal-sheet option {
+  font-family: "Verdigris MVP Pro Text, Verdana, Arial, sans-serif";
 }
-.black-flag.actor.pc .sheet-body {
-  display: grid;
-  grid-template-areas: "bio bio summary" "effects main inventory" "actions main inventory" "skills main inventory" "resistances abilities inventory";
-  grid-gap: 10px;
+.journal-sheet h1 {
+  font-family: "Modesto Condensed Bold";
 }
-.black-flag.actor.pc .bio {
-  grid-area: bio;
+.journal-sheet h2 {
+  font-family: "Modesto Condensed Bold";
+  font-variant: small-caps;
 }
-.black-flag.actor.pc .bio .flag {
-  flex: 0 auto;
-  margin-left: 10px;
-  margin-right: 10px;
+.journal-sheet .journal-entry-pages {
+  background-image: url("/systems/black-flag/system/sheets/assets/black-flag-mask-inverse.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
-.black-flag.actor.pc .bio .flag > img {
-  border: none;
+.journal-sheet .callout.informative {
+  background-color: #f5f5f5;
+  border-top: 1px solid #231f20;
+  border-bottom: 1px solid #231f20;
+  color: #231f20;
+  padding: 10px;
 }
-.black-flag.actor.pc .bio .flag .flag-background {
-  width: 100px;
+.journal-sheet .callout.informative h5 {
+  text-transform: uppercase;
+  margin: 10px 0;
 }
-.black-flag.actor.pc .bio .name {
-  flex: 0 auto;
-  border: none;
+.journal-sheet .callout.advice {
+  background-color: #FFF;
+  border: 1px solid #231f20;
+  padding: 10px;
 }
-.black-flag.actor.pc .bio .description:hover {
-  border: 1px dotted rgba(65, 65, 65, 0.7);
+.journal-sheet .align-right {
+  min-width: 25%;
+  float: right;
+  margin-left: 5px;
+  text-align: center;
 }
 .black-flag div,
 .black-flag p,
