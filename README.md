@@ -1,4 +1,6 @@
-Project Black Flag is the code name for an upcoming Kobold Press new core fantasy RPG system. An action-oriented roleplaying game that pits a group of heroic adventurers against the myriad of dangers found in fantasy worlds. Through collaborative storytelling, one player—called the Game Master (or GM)—and  a group of other players—called Player Characters (or PCs)—will  explore unique locations and embark upon adventurous quests within them.
+![image](https://user-images.githubusercontent.com/26660743/218602584-02b1af12-c8b4-4f06-ae25-0689bae5159b.png)
+
+Project Black Flag is the code name for an upcoming Kobold Press new core fantasy RPG system. An action-oriented roleplaying game that pits a group of heroic adventurers against the myriad of dangers found in fantasy worlds. Through collaborative storytelling, one player—called the Game Master (or GM)—and  a group of other players—called Player Characters (or PCs)—will  explore unique locations and embark upon adventurous quests within them.
 
 Black Flag is intended to be flexible, so it doesn’t assume a standard setting. These rules are compatible with any published setting or unique worlds designed for your table. However, these rules assume the setting you adopt is rooted in the fantasy genre. 
 
