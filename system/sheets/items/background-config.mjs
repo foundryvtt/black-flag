@@ -19,8 +19,8 @@ export default class BackgroundConfig extends ItemDocumentSheet {
     /** @override */
     async getData() {
         const context = await super.getData();
-        context.document.system.talents = Array.from(context.document._source.system.talents.map(talent => game.items.get(talent)));
-        context.allTalents = this._searchTalents("");
+        context.document.system.talents = Array.from(context.document._source.system.talents.map(talent => CONFIG.SYSTEM.TALENT_DOCUMENTS.get(talent)));
+        context.allTalents = Array.from(CONFIG.SYSTEM.TALENT_DOCUMENTS.values());
         return context;
     }
 
@@ -67,20 +67,6 @@ export default class BackgroundConfig extends ItemDocumentSheet {
     /* -------------------------------------------- */
 
     /**
-     * Returns a list of talents that match the search term using a prefix
-     * @param search
-     * @returns {unknown[]}
-     * @private
-     */
-    _searchTalents(search) {
-        return Object.values(game.documentIndex.lookup(search.toLowerCase(),
-            {documentTypes: ['Item'], limit: 100}))
-            .flatMap(_ => _).filter(t => t.entry.type === "talent");
-    }
-
-    /* -------------------------------------------- */
-
-    /**
      * Deletes an element's parent from the dom, readding the value to the dataset options
      * @param {Event} event
      * @private
@@ -103,7 +89,7 @@ export default class BackgroundConfig extends ItemDocumentSheet {
      * @private
      */
     _onTalentInputChange(event) {
-        const talent = game.items.get(event.currentTarget.value);
+        const talent = CONFIG.SYSTEM.TALENT_DOCUMENTS.get(event.currentTarget.value);
 
         // If the current value is not a talent ID, return
         if ( !talent ) return;

@@ -16,37 +16,39 @@ export default class PcConfig extends ActorDocumentSheet {
         const context = await super.getData();
         context.SIZE_TYPES = this.getOptionsList(CONFIG.SYSTEM.RACE_SIZE_TYPES);
         context.ALIGNMENT_TYPES = this.getOptionsList(CONFIG.SYSTEM.ALIGNMENT_TYPES);
-        context.LINEAGE_TYPES = this.getForeignDocumentOptions("Item", "lineage");
+        context.LINEAGE_TYPES = await this.getForeignDocumentOptions("Item", "lineage");
         context.lineageInfo = game.items.get(this.object.system.lineage);
-        context.HERITAGE_TYPES = this.getForeignDocumentOptions("Item", "heritage");
+        context.HERITAGE_TYPES = await this.getForeignDocumentOptions("Item", "heritage");
         context.heritageInfo = game.items.get(this.object.system.heritage);
-        context.BACKGROUND_TYPES = this.getForeignDocumentOptions("Item", "background");
+        context.BACKGROUND_TYPES = await this.getForeignDocumentOptions("Item", "background");
         context.backgroundInfo = game.items.get(this.object.system.background);
         context.PROFICIENCY_TYPES = this.getDatalistOptions(CONFIG.SYSTEM.PROFICIENCY_TYPES, this.object.system.proficiencies);
         context.LANGUAGE_TYPES = this.getDatalistOptions(CONFIG.SYSTEM.LANGUAGE_TYPES, this.object.system.languages);
         context.RESISTANCE_TYPES = this.getDatalistOptions(CONFIG.SYSTEM.DAMAGE_TYPES, this.object.system.resistances);
         context.SAVE_ADVANTAGE_TYPES = this.getDatalistOptions(CONFIG.SYSTEM.DAMAGE_TYPES, this.object.system.saveAdvantages);
         context.nextLevelXP = CONFIG.SYSTEM.XP_TABLE.get(this.object.system.level + 1);
-        context.document.system.talents = Array.from(context.document._source.system.talents.map(talent => game.items.get(talent)));
-        context.allTalents = this._searchTalents("");
+        context.document.system.talents = Array.from(context.document._source.system.talents.map(talent => CONFIG.SYSTEM.TALENT_DOCUMENTS.get(talent)));
+        context.allTalents = Array.from(CONFIG.SYSTEM.TALENT_DOCUMENTS.values());
 
         // Mark values as innate
         context.document.system.proficiencies.forEach(p => {
-            p.cssClass = p.source === "chosen" ? "chosen" : "innate";
-            p.canDelete = p.source === "chosen";
+            p.cssClass = p.source === "Chosen" ? "chosen" : "innate";
+            p.canDelete = p.source === "Chosen";
         });
         context.document.system.resistances.forEach(r => {
-            r.cssClass = r.source === "chosen" ? "chosen" : "innate";
-            r.canDelete = r.source === "chosen";
+            r.cssClass = r.source === "Chosen" ? "chosen" : "innate";
+            r.canDelete = r.source === "Chosen";
         });
         context.document.system.languages.forEach(l => {
-            l.cssClass = l.source === "chosen" ? "chosen" : "innate";
-            l.canDelete = l.source === "chosen";
+            l.cssClass = l.source === "Chosen" ? "chosen" : "innate";
+            l.canDelete = l.source === "Chosen";
         });
         context.document.system.saveAdvantages.forEach(s => {
-            s.cssClass = s.source === "chosen" ? "chosen" : "innate";
-            s.canDelete = s.source === "chosen";
+            s.cssClass = s.source === "Chosen" ? "chosen" : "innate";
+            s.canDelete = s.source === "Chosen";
         });
+
+        console.log("PC Config Data", context)
 
         return context;
     }
@@ -128,26 +130,12 @@ export default class PcConfig extends ActorDocumentSheet {
     /* -------------------------------------------- */
 
     /**
-     * Returns a list of talents that match the search term using a prefix
-     * @param search
-     * @returns {unknown[]}
-     * @private
-     */
-    _searchTalents(search) {
-        return Object.values(game.documentIndex.lookup(search.toLowerCase(),
-            {documentTypes: ['Item'], limit: 100}))
-            .flatMap(_ => _).filter(t => t.entry.type === "talent");
-    }
-
-    /* -------------------------------------------- */
-
-    /**
      * If the input changes to match a talent ID, add it to the list
      * @param {Event} event
      * @private
      */
     _onTalentInputChange(event) {
-        const talent = game.items.get(event.currentTarget.value);
+        const talent = CONFIG.SYSTEM.TALENT_DOCUMENTS.get(event.currentTarget.value);
 
         // If the current value is not a talent ID, return
         if ( !talent ) return;

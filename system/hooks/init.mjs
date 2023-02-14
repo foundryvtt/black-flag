@@ -1,4 +1,4 @@
-import {SYSTEM, SYSTEM_ID} from "../CONSTANTS.mjs";
+import {SYSTEM, SYSTEM_ID, SYSTEM_NAME} from "../CONSTANTS.mjs";
 import PlayerCharacterTypeDataModel from "../datamodels/actor/player-character.mjs";
 import BackgroundTypeDataModel from "../datamodels/item/background.mjs";
 import EquipmentTypeDataModel from "../datamodels/item/equipment.mjs";
@@ -13,9 +13,8 @@ import LineageConfig from "../sheets/items/lineage-config.mjs";
 import PcConfig from "../sheets/actors/pc-config.mjs";
 import BlackFlagItem from "../documents/item.mjs";
 
-
 export function init() {
-    console.log("Black Flag 🏴 | Initializing Black Flag System")
+    console.log(`${SYSTEM_NAME} | Initializing  System`)
 
     CONFIG.SYSTEM = SYSTEM;
 

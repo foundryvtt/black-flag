@@ -21,7 +21,50 @@
   "scripts": [],
   "esmodules": ["system/black-flag.mjs"],
   "styles": ["css/black-flag.css"],
-  "packs": [],
+  "packs": [
+    {
+      "name": "backgrounds",
+      "label": "Backgrounds",
+      "path": "packs/backgrounds.db",
+      "type": "Item",
+      "system": "black-flag"
+    },
+    {
+      "name": "heritages",
+      "label": "Heritages",
+      "path": "packs/heritages.db",
+      "type": "Item",
+      "system": "black-flag"
+    },
+    {
+      "name": "lineages",
+      "label": "lineages",
+      "path": "packs/lineages.db",
+      "type": "Item",
+      "system": "black-flag"
+    },
+    {
+      "name": "magic-talents",
+      "label": "magic-talents",
+      "path": "packs/magic-talents.db",
+      "type": "Item",
+      "system": "black-flag"
+    },
+    {
+      "name": "martial-talents",
+      "label": "martial-talents",
+      "path": "packs/martial-talents.db",
+      "type": "Item",
+      "system": "black-flag"
+    },
+    {
+      "name": "technical-talents",
+      "label": "technical-talents",
+      "path": "packs/technical-talents.db",
+      "type": "Item",
+      "system": "black-flag"
+    }
+  ],
   "license": "LICENSE",
   "readme": "README.md",
   "languages": [

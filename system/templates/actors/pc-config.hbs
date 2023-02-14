@@ -215,7 +215,7 @@
                     <input name="system.talents" list="system-talents-list" type="text" value="" placeholder="Talent"/>
                     <datalist id="system-talents-list">
                         {{#each allTalents}}
-                            <option value="{{this.entry.id}}" label="{{this.entry.name}}"></option>
+                            <option value="{{this._id}}" label="{{this.name}}"></option>
                         {{/each}}
                     </datalist>
                 </div>

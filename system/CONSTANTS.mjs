@@ -206,6 +206,9 @@ export const SYSTEM = {
     ALIGNMENT_TYPES,
     EQUIPMENT_SIZES,
     TALENT_CATEGORIES,
+    BACKGROUND_DOCUMENTS: new Collection(),
+    HERITAGE_DOCUMENTS: new Collection(),
+    LINEAGE_DOCUMENTS: new Collection(),
     SAVE_TYPES,
     XP_TABLE,
 };

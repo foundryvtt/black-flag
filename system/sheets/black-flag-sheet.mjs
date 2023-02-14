@@ -61,16 +61,30 @@ export default class BlackFlagSheet extends DocumentSheet {
 
     /* -------------------------------------------- */
 
-    getForeignDocumentOptions(type, subtype, allowNone=true) {
+    async getForeignDocumentOptions(type, subtype, allowNone=true) {
         return this.constructor.getForeignDocumentOptions(type, subtype, allowNone);
     }
 
     /* -------------------------------------------- */
 
-    static getForeignDocumentOptions(type, subtype, allowNone=true) {
+    static async getForeignDocumentOptions(type, subtype, allowNone=true) {
         const options = {};
         if ( allowNone ) options[""] = "None";
-        const docs = game.collections.get(type).filter(d => d.type === subtype);
+        let docs = game.collections.get(type).filter(d => d.type === subtype);
+
+        /// Iterate through the Packs, adding them to the list
+        for ( let pack of game.packs ) {
+            if ( pack.metadata.type !== type ) continue;
+            const ids = pack.index.filter(d => d.type === subtype).map(d => d._id);
+            for ( const id of ids ) {
+                const doc = await pack.getDocument(id);
+                if ( doc ) docs.push(doc);
+            }
+        }
+
+        // Dedupe and sort the list alphabetically
+        docs = Array.from(new Set(docs)).sort((a, b) => a.name.localeCompare(b.name));
+
         for ( let d of docs ) {
             options[d.id] = d.name;
         }
