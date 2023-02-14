@@ -22,7 +22,7 @@ Once the Open Content is defined by Kobold Press in accordance with the Open RPG
 
 ## Contributing to `foundryvtt/black-flag`
 
-Code and content contributions are not being accepted at this time. Once the system has been further developed, contributions will be opened up.
+Code and content contributions are not being accepted at this time. Once the system has been further developed, contributions will be allowed.
 
 Please feel free to submit issues to the issue tracker in the interim. 
 
