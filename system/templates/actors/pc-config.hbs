@@ -11,6 +11,62 @@
     {{!-- Body --}}
     <section class="sheet-body">
 
+        {{!-- Resources --}}
+        <fieldset>
+            <legend>{{localize "Resources"}}</legend>
+
+            {{!-- Health --}}
+            <fieldset>
+                <legend>{{localize "Health"}}</legend>
+
+                {{!-- Current --}}
+                <div class="form-group" data-name="system.hp.current">
+                    <label>{{ localize "Health" }}</label>
+                    {{numberInput document.system.hp.current name="system.hp.current" min=0 max=document.system.hp.max step=1}}
+                </div>
+
+                {{!-- Max --}}
+                <div class="form-group" data-name="system.hp.max">
+                    <label>{{ localize "Max" }}</label>
+                    {{numberInput document.system.hp.max name="system.hp.max" min=0 max=100 step=1}}
+                </div>
+
+                {{!-- Progress Bar --}}
+                <div class="form-group">
+                    <progress class="health" value="{{document.system.hp.current}}" max="{{document.system.hp.max}}"></progress>
+                </div>
+            </fieldset>
+
+            {{!-- Level --}}
+            <fieldset>
+                <legend>{{localize "Level"}}</legend>
+
+                {{!-- Current --}}
+                <div class="form-group" data-name="system.level">
+                    <label>{{ localize "Level" }}</label>
+                    {{numberInput document.system.level name="system.level" min=0 max=20 step=1}}
+                </div>
+
+                {{!-- Experience --}}
+                <div class="form-group" data-name="system.experience">
+                    <label>{{ localize "Experience" }}</label>
+                    {{numberInput document.system.experience name="system.experience" min=0 max=nextLevelXP step=1}}
+                </div>
+
+                {{!-- Progress Bar --}}
+                <div class="form-group">
+                    <progress class="level" value="{{document.system.experience}}" max="{{nextLevelXP}}"></progress>
+                </div>
+            </fieldset>
+
+            {{!-- Luck --}}
+            <div class="form-group" data-name="system.luck">
+                <label>{{ localize "Luck" }}</label>
+                {{numberInput document.system.luck name="system.luck" min=0 step=1}}
+            </div>
+
+        </fieldset>
+
         {{!-- Bio --}}
         <fieldset>
             <legend>{{localize "Bio"}}</legend>
@@ -98,43 +154,93 @@
             {{!-- Strength --}}
             <div class="form-group" data-name="system.abilities.strength">
                 <label>{{ localize "Strength" }}</label>
+                <div class="mod">({{document.system.abilities.strength.mod}})</div>
                 {{numberInput document.system.abilities.strength.value name="system.abilities.strength" step=1 min=0 max=20}}
-                <div class="mod">{{document.system.abilities.strength.mod}}</div>
             </div>
 
             {{!-- Dexterity --}}
             <div class="form-group" data-name="system.abilities.dexterity">
                 <label>{{ localize "Dexterity" }}</label>
+                <div class="mod">({{document.system.abilities.dexterity.mod}})</div>
                 {{numberInput document.system.abilities.dexterity.value name="system.abilities.dexterity" step=1 min=0 max=20}}
-                <div class="mod">{{document.system.abilities.dexterity.mod}}</div>
             </div>
 
             {{!-- Constitution --}}
             <div class="form-group" data-name="system.abilities.constitution">
                 <label>{{ localize "Constitution" }}</label>
+                <div class="mod">({{document.system.abilities.constitution.mod}})</div>
                 {{numberInput document.system.abilities.constitution.value name="system.abilities.constitution" step=1 min=0 max=20}}
-                <div class="mod">{{document.system.abilities.constitution.mod}}</div>
             </div>
 
             {{!-- Intelligence --}}
             <div class="form-group" data-name="system.abilities.intelligence">
                 <label>{{ localize "Intelligence" }}</label>
+                <div class="mod">({{document.system.abilities.intelligence.mod}})</div>
                 {{numberInput document.system.abilities.intelligence.value name="system.abilities.intelligence" step=1 min=0 max=20}}
-                <div class="mod">{{document.system.abilities.intelligence.mod}}</div>
             </div>
 
             {{!-- Wisdom --}}
             <div class="form-group" data-name="system.abilities.wisdom">
                 <label>{{ localize "Wisdom" }}</label>
+                <div class="mod">({{document.system.abilities.wisdom.mod}})</div>
                 {{numberInput document.system.abilities.wisdom.value name="system.abilities.wisdom" step=1 min=0 max=20}}
-                <div class="mod">{{document.system.abilities.wisdom.mod}}</div>
             </div>
 
             {{!-- Charisma --}}
             <div class="form-group" data-name="system.abilities.charisma">
                 <label>{{ localize "Charisma" }}</label>
+                <div class="mod">({{document.system.abilities.charisma.mod}})</div>
                 {{numberInput document.system.abilities.charisma.value name="system.abilities.charisma" step=1 min=0 max=20}}
-                <div class="mod">{{document.system.abilities.charisma.mod}}</div>
+            </div>
+        </fieldset>
+
+        {{!-- Build --}}
+        <fieldset>
+            <legend>{{localize "Build"}}</legend>
+
+            {{!-- Talents --}}
+            <div class="form-group stacked" data-name="system.talents">
+                <label>{{ localize "Chosen Talents" }}</label>
+                {{!-- Render each existing Talent as a document link, with a button to remove --}}
+                <div class="foreign-documents talents flexcol">
+                    {{#each document.system.talents}}
+                        <div class="foreign-document talent flexrow">
+                            <a class="content-link talent-link" draggable="true" data-uuid="{{this.uuid}}" data-id="{{this.id}}" data-type="Item" data-tooltip="Item">
+                                <i class="fas fa-suitcase"></i> {{this.name}}
+                            </a>
+                            <i class="fas fa-delete-left" data-action="delete"></i>
+                        </div>
+                    {{/each}}
+                    {{!-- Render a text input with search ahead to add a new Talent --}}
+                    <input name="system.talents" list="system-talents-list" type="text" value="" placeholder="Talent"/>
+                    <datalist id="system-talents-list">
+                        {{#each allTalents}}
+                            <option value="{{this.entry.id}}" label="{{this.entry.name}}"></option>
+                        {{/each}}
+                    </datalist>
+                </div>
+            </div>
+
+            {{!-- Proficiencies --}}
+            <div class="form-group stacked" data-name="system.proficiencies">
+                <label>{{ localize "Proficiencies" }}</label>
+                {{!-- Render each existing Proficiency as a .tag, with a button to remove --}}
+                <div class="proficiencies flexcol">
+                    <div class="tag-list flexrow">
+                        {{#each document.system.proficiencies}}
+                            <div class="proficiency tag" data-value="{{this}}">
+                                {{typeLabel "PROFICIENCY_TYPES" this}} <i class="fas fa-delete-left" data-action="delete"></i>
+                            </div>
+                        {{/each}}
+                    </div>
+                    {{!-- Render a text input with search ahead to add a new Proficiency --}}
+                    <input name="system.proficiencies" list="system-proficiencies-list" type="text" value="" placeholder="Proficiency"/>
+                    <datalist id="system-proficiencies-list">
+                        {{#each PROFICIENCY_TYPES}}
+                            <option value="{{this.value}}" label="{{this.label}}"></option>
+                        {{/each}}
+                    </datalist>
+                </div>
             </div>
         </fieldset>
    </section>

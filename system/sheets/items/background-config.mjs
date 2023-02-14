@@ -1,5 +1,7 @@
 import {SYSTEM_ID} from "../../CONSTANTS.mjs";
 import ItemDocumentSheet from "./item-config.mjs";
+import TraitDataModel from "../../dataModels/trait.mjs";
+import TraitForm from "../../apps/forms/trait-form.mjs";
 
 export default class BackgroundConfig extends ItemDocumentSheet {
 
@@ -7,7 +9,8 @@ export default class BackgroundConfig extends ItemDocumentSheet {
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
             classes: [SYSTEM_ID, "sheet", "item", "background"],
-            height: 570,
+            width: 600,
+            height: 700,
         });
     }
 
@@ -16,7 +19,7 @@ export default class BackgroundConfig extends ItemDocumentSheet {
     /** @override */
     async getData() {
         const context = await super.getData();
-        context.document.system.talents = context.document._source.system.talents.map(talent => game.items.get(talent));
+        context.document.system.talents = Array.from(context.document._source.system.talents.map(talent => game.items.get(talent)));
         context.allTalents = this._searchTalents("");
         return context;
     }
@@ -42,6 +45,9 @@ export default class BackgroundConfig extends ItemDocumentSheet {
         html.find("a.content-link").click(this._onClickContentLink.bind(this));
         html.find("input[name='system.talents']").on('input', this._onTalentInputChange.bind(this));
         html.find(`[data-action="delete"]`).click(this._onDeleteDatasetItem.bind(this));
+        html.find(".trait-create").click(this._onTraitCreate.bind(this));
+        html.find(".trait-edit").click(this._onTraitEdit.bind(this));
+        html.find(".trait-delete").click(this._onTraitDelete.bind(this));
     }
 
     /* -------------------------------------------- */
@@ -124,10 +130,50 @@ export default class BackgroundConfig extends ItemDocumentSheet {
         deleteIcon.classList.add("fas");
         deleteIcon.classList.add("fa-delete-left");
         deleteIcon.dataset.action = "delete";
-        deleteIcon.addEventListener("click", this._onDeleteItem.bind(this));
+        deleteIcon.addEventListener("click", this._onDeleteDatasetItem.bind(this));
         talentRow.appendChild(deleteIcon);
 
         event.currentTarget.parentElement.insertBefore(talentRow, event.currentTarget);
         event.currentTarget.value = "";
+    }
+
+    /* -------------------------------------------- */
+
+    async _onTraitCreate(event) {
+        event.preventDefault();
+        const trait = new TraitDataModel({
+            id: foundry.utils.randomID(),
+            name: "New Trait",
+            description: "New Trait Description"
+        });
+        this.object.system.traits.push(trait);
+
+        // Grab any other pending updates
+        const update = this._getSubmitData();
+        update["system.traits"] = this.object.system.traits;
+        await this.object.update(update);
+    }
+
+    /* -------------------------------------------- */
+
+    async _onTraitEdit(event) {
+        event.preventDefault();
+        const traitId = event.currentTarget.closest(".trait").dataset.traitId;
+        const trait = this.object.system.traits.find(t => t.id === traitId);
+        const traitForm = new TraitForm(this, trait, {});
+        traitForm.render(true);
+    }
+
+    /* -------------------------------------------- */
+
+    async _onTraitDelete(event) {
+        event.preventDefault();
+        const traitId = event.currentTarget.closest(".trait").dataset.traitId;
+        this.object.system.traits = this.object.system.traits.filter(t => t.id !== traitId);
+
+        // Grab any other pending updates
+        const update = this._getSubmitData();
+        update["system.traits"] = this.object.system.traits;
+        await this.object.update(update);
     }
 }

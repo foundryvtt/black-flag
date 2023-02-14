@@ -1,4 +1,5 @@
 import BlackFlagItem from "../../documents/item.mjs";
+import TraitDataModel from "../trait.mjs";
 
 export default class BackgroundTypeDataModel extends foundry.abstract.DataModel {
 
@@ -21,6 +22,7 @@ export default class BackgroundTypeDataModel extends foundry.abstract.DataModel 
                 required: true,
                 default: ""
             }),
+            traits: new fields.ArrayField(new fields.EmbeddedDataField(TraitDataModel), {default: []}),
         }
     }
 }

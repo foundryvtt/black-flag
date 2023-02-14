@@ -164,6 +164,33 @@ const TALENT_CATEGORIES = {
 }
 
 /**
+ * Given a level, return the XP required to the level.
+ * @type {Map<int, int>}
+ */
+const XP_TABLE = new Map([
+    [1, 0],
+    [2, 300],
+    [3, 2700],
+    [4, 6500],
+    [5, 6500],
+    [6, 14000],
+    [7, 23000],
+    [8, 34000],
+    [9, 48000],
+    [10, 64000],
+    [11, 85000],
+    [12, 100000],
+    [13, 120000],
+    [14, 140000],
+    [15, 165000],
+    [16, 195000],
+    [17, 225000],
+    [18, 265000],
+    [19, 305000],
+    [20, 355000]
+]);
+
+/**
  * Include all constant definitions within the SYSTEM global export
  * @type {Object}
  */
@@ -180,4 +207,5 @@ export const SYSTEM = {
     EQUIPMENT_SIZES,
     TALENT_CATEGORIES,
     SAVE_TYPES,
+    XP_TABLE,
 };

@@ -44,6 +44,12 @@
   margin-left: 5px;
   text-align: center;
 }
+.black-flag.actor.pc .health::-moz-progress-bar {
+  background: darkolivegreen;
+}
+.black-flag.actor.pc .health::-webkit-progress-value {
+  background: darkolivegreen;
+}
 .black-flag div,
 .black-flag p,
 .black-flag input,
