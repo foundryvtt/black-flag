@@ -50,6 +50,9 @@
 .black-flag.actor.pc .health::-webkit-progress-value {
   background: darkolivegreen;
 }
+.black-flag.actor.pc .tag.innate {
+  background: #702500;
+}
 .black-flag div,
 .black-flag p,
 .black-flag input,

@@ -1,4 +1,5 @@
 import BlackFlagItem from "../../documents/item.mjs";
+import TraitDataModel from "../trait.mjs";
 
 export default class PlayerCharacterTypeDataModel extends foundry.abstract.DataModel {
 
@@ -50,7 +51,8 @@ export default class PlayerCharacterTypeDataModel extends foundry.abstract.DataM
             heritage: new fields.ForeignDocumentField(BlackFlagItem, {required: true, type: "heritage", idOnly: true}),
             backgrounds: new fields.SetField(new fields.ForeignDocumentField(BlackFlagItem, {required: true, type: "background", idOnly: true})),
             talents: new fields.SetField(new fields.ForeignDocumentField(BlackFlagItem, {required: true, type: "talent", idOnly: true})),
-            equipment: new fields.SetField(new fields.ForeignDocumentField(BlackFlagItem, {required: true, type: "equipment", idOnly: true}))
+            equipment: new fields.SetField(new fields.ForeignDocumentField(BlackFlagItem, {required: true, type: "equipment", idOnly: true})),
+            traits: new fields.SetField(TraitDataModel.defineSchema(), {default: []}),
         }
     }
 }

@@ -75,7 +75,7 @@
             <div class="form-group" data-name="system.lineage">
                 <label>{{ localize "Lineage" }}</label>
                 <select name="system.lineage">
-                    {{selectOptions LINEAGE_TYPES selected=document.system.lineage}}
+                    {{selectOptions LINEAGE_TYPES selected=document.system.lineageId}}
                 </select>
             </div>
 
@@ -83,7 +83,7 @@
             <div class="form-group" data-name="system.heritage">
                 <label>{{ localize "Heritage" }}</label>
                 <select name="system.heritage">
-                    {{selectOptions HERITAGE_TYPES selected=document.system.heritage}}
+                    {{selectOptions HERITAGE_TYPES selected=document.system.heritageId}}
                 </select>
             </div>
 
@@ -91,7 +91,7 @@
             <div class="form-group" data-name="system.background">
                 <label>{{ localize "Background" }}</label>
                 <select name="system.background">
-                    {{selectOptions BACKGROUND_TYPES selected=document.system.background}}
+                    {{selectOptions BACKGROUND_TYPES selected=document.system.backgroundId}}
                 </select>
             </div>
 
@@ -130,8 +130,8 @@
                 <div class="languages flexcol">
                     <div class="tag-list flexrow">
                         {{#each document.system.languages}}
-                            <div class="language tag" data-value="{{this}}">
-                                {{typeLabel "LANGUAGE_TYPES" this}} <i class="fas fa-delete-left" data-action="delete"></i>
+                            <div class="language tag {{this.cssClass}}" data-value="{{this.value}}" data-source="{{this.source}}" data-tooltip="{{this.source}}">
+                                {{this.label}}{{#if this.canDelete}} <i class="fas fa-delete-left" data-action="delete"></i>{{/if}}
                             </div>
                         {{/each}}
                     </div>
@@ -228,8 +228,8 @@
                 <div class="proficiencies flexcol">
                     <div class="tag-list flexrow">
                         {{#each document.system.proficiencies}}
-                            <div class="proficiency tag" data-value="{{this}}">
-                                {{typeLabel "PROFICIENCY_TYPES" this}} <i class="fas fa-delete-left" data-action="delete"></i>
+                            <div class="proficiency tag {{this.cssClass}}" data-value="{{this.value}}" data-source="{{this.source}} data-tooltip="{{this.source}}">
+                                {{this.label}}{{#if this.canDelete}} <i class="fas fa-delete-left" data-action="delete"></i>{{/if}}
                             </div>
                         {{/each}}
                     </div>

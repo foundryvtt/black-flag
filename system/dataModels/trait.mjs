@@ -6,6 +6,8 @@ export default class TraitDataModel extends foundry.abstract.DataModel {
         return {
             id: new fields.StringField({required: true}),
             name: new fields.StringField({required: true}),
+            source: new fields.StringField(),
+            sourceId: new fields.StringField(),
             img: new fields.FilePathField({categories: ["IMAGE"], initial: () => "icons/skills/social/trading-justice-scale-gold.webp"}),
             description: new fields.HTMLField(),
             builderInfo: new fields.ObjectField(),
