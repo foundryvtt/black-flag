@@ -13,6 +13,8 @@ This system is being developed concurrently with the Black Flag playtest packets
 - Backgrounds
 - Talents
 
+**If you have feedback on the content of Black Flag, please use the official feedback form from Kobold Press:** koboldpress.com/project-black-flag-playtest-packet-1-feedback
+
 ## License
 The Black Flag Game System for Foundry VTT is supported by a partnership between Kobold Press and Foundry Gaming LLC. For now, you may not: redistribute, edit, modify, update, change, or in any other way use the data or code of this repository. It is intended solely to allow users to install as a game system in Foundry VTT for the purposes of participating in the Black Flag playtest.
 
