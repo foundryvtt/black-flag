@@ -9,18 +9,105 @@
 .journal-sheet option {
   font-family: "Verdigris MVP Pro Text, Verdana, Arial, sans-serif";
 }
-.journal-sheet h1 {
-  font-family: "Modesto Condensed Bold";
+.journal-sheet .journal-entry-content h1 {
+  border-bottom: 2px solid #000;
 }
-.journal-sheet h2 {
-  font-family: "Modesto Condensed Bold";
-  font-variant: small-caps;
+.journal-sheet .journal-entry-content h1,
+.journal-sheet .journal-entry-content h2,
+.journal-sheet .journal-entry-content h3,
+.journal-sheet .journal-entry-content h4,
+.journal-sheet .journal-entry-content h5,
+.journal-sheet .journal-entry-content h6,
+.journal-sheet .journal-entry-content .journal-header input {
+  font-family: "Modesto Condensed";
+  font-weight: bold;
+}
+.journal-sheet .journal-entry-content h2,
+.journal-sheet .journal-entry-content h3,
+.journal-sheet .journal-entry-content h4,
+.journal-sheet .journal-entry-content h5,
+.journal-sheet .journal-entry-content h6 {
+  border: none;
+  text-transform: uppercase;
+}
+.journal-sheet h1.border,
+.journal-sheet h2.border,
+.journal-sheet h3.border,
+.journal-sheet h4.border,
+.journal-sheet h5.border,
+.journal-sheet h6.border {
+  border-bottom: 1px solid #000;
+}
+.journal-sheet p.subheading {
+  font-family: "Helvetica";
+  font-size: var(--font-size-14);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.journal-sheet p.bar {
+  font-family: "Helvetica";
+  font-size: var(--font-size-14);
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #FFF;
+  background: #000;
+  padding: 5px;
+}
+.journal-sheet p.bar a.content-link {
+  background: transparent;
+  color: #FFF;
+  border: none;
+  font-size: var(--font-size-14);
+}
+.journal-sheet .journal-header input.title {
+  font-size: var(--font-size-48);
+  background: #fff;
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid #000;
+}
+.journal-sheet .window-content {
+  background: #FFF;
+}
+.journal-sheet .editor-menu {
+  background: #f5f5f5;
+}
+.journal-sheet .prosemirror menu .pm-dropdown {
+  background: #FFF;
+}
+.journal-sheet .prosemirror menu button:hover,
+.journal-sheet .prosemirror menu button.active {
+  background: #e5e5e5;
+}
+.journal-sheet .prosemirror menu .pm-dropdown ul {
+  background: #e5e5e5;
+}
+.journal-sheet .prosemirror menu .pm-dropdown li:hover {
+  background: #FFF;
+}
+.journal-sheet .journal-sheet-container .journal-entry-content {
+  background: #fff;
 }
 .journal-sheet .journal-entry-pages {
-  background-image: url("/systems/black-flag/system/sheets/assets/black-flag-mask-inverse.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+.journal-sheet table {
+  font-family: "Helvetica";
+}
+.journal-sheet table th {
+  background: #000;
+  color: #FFF;
+}
+.journal-sheet a.content-link,
+.journal-sheet a.inline-roll {
+  background: #000;
+  color: #FFF;
+}
+.journal-sheet a.content-link i,
+.journal-sheet a.inline-roll i {
+  color: #FFF;
 }
 .journal-sheet .callout.informative {
   background-color: #f5f5f5;
@@ -30,6 +117,7 @@
   padding: 10px;
 }
 .journal-sheet .callout.informative h5 {
+  font-size: var(--font-size-18);
   text-transform: uppercase;
   margin: 10px 0;
 }
@@ -38,11 +126,20 @@
   border: 1px solid #231f20;
   padding: 10px;
 }
+.journal-sheet .callout.advice p {
+  font-family: "Helvetica";
+}
 .journal-sheet .align-right {
   min-width: 25%;
   float: right;
-  margin-left: 5px;
+  margin: 0 15px 15px 25px;
   text-align: center;
+}
+.journal-sheet .clear {
+  clear: both;
+}
+.journal-sheet img {
+  border: none;
 }
 .black-flag.actor.pc .health::-moz-progress-bar {
   background: darkolivegreen;

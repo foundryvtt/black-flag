@@ -3,22 +3,110 @@
 
   div, p, input, textarea, label, span, button, select, option {
     font-family: "Verdigris MVP Pro Text, Verdana, Arial, sans-serif";
+    // font-family: "Times New Roman";
   }
 
-  h1 {
-    font-family: "Modesto Condensed Bold";
+  .journal-entry-content {
+    h1 {
+      border-bottom: 2px solid #000;
+    }
+    h1, h2, h3, h4, h5, h6, .journal-header input {
+      font-family: "Modesto Condensed";
+      font-weight: bold;
+    }
+    h2, h3, h4, h5, h6 {
+      border: none;
+      text-transform: uppercase;
+    }
   }
 
-  h2 {
-    font-family: "Modesto Condensed Bold";
-    font-variant: small-caps;
+  h1.border, h2.border, h3.border, h4.border, h5.border, h6.border {
+    border-bottom: 1px solid #000;
+  }
+
+  p.subheading {
+    font-family: "Helvetica";
+    font-size: var(--font-size-14);
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  p.bar {
+    font-family: "Helvetica";
+    font-size: var(--font-size-14);
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #FFF;
+    background: #000;
+    padding: 5px;
+  }
+  p.bar a.content-link {
+    background: transparent;
+    color: #FFF;
+    border: none;
+    font-size: var(--font-size-14);
+  }
+
+  // Journal Editor
+  .journal-header input.title {
+    font-size: var(--font-size-48);
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    border-bottom: 2px solid #000;
+  }
+
+  .window-content {
+    background: #FFF;
+  }
+
+  .editor-menu {
+    background: #f5f5f5;
+  }
+
+  .prosemirror menu .pm-dropdown {
+    background: #FFF;
+  }
+  .prosemirror menu button:hover, .prosemirror menu button.active {
+    background: #e5e5e5;
+  }
+
+  .prosemirror menu .pm-dropdown ul {
+    background: #e5e5e5;
+  }
+  .prosemirror menu .pm-dropdown li:hover {
+    background: #FFF;
+  }
+
+  // Normal Journal View
+  .journal-sheet-container .journal-entry-content {
+    background: #fff;
   }
 
   .journal-entry-pages {
-    background-image: url("/systems/black-flag/system/sheets/assets/black-flag-mask-inverse.png");
+    // background-image: url("/systems/black-flag/system/sheets/assets/black-flag-mask-inverse.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+  }
+
+  // Tables
+  table {
+    font-family: "Helvetica";
+  }
+
+  table th {
+    background: #000;
+    color: #FFF;
+  }
+
+  // Content Links
+  a.content-link, a.inline-roll {
+    background: #000;
+    color: #FFF;
+  }
+  a.content-link i, a.inline-roll i {
+    color: #FFF;
   }
 
   .callout.informative {
@@ -29,6 +117,7 @@
     padding: 10px;
   }
   .callout.informative h5 {
+    font-size: var(--font-size-18);
     text-transform: uppercase;
     margin: 10px 0;
   }
@@ -37,10 +126,21 @@
     border: 1px solid #231f20;
     padding: 10px;
   }
+  .callout.advice p {
+    font-family: "Helvetica";
+  }
   .align-right {
     min-width: 25%;
     float: right;
-    margin-left: 5px;
+    margin: 0 15px 15px 25px;
     text-align: center;
+  }
+  .clear {
+    clear: both;
+  }
+
+  // Media
+  img {
+    border: none;
   }
 }
