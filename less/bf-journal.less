@@ -1,15 +1,14 @@
 .journal-sheet {
-  // Font Styles
 
+  // Font Styles
   div, p, input, textarea, label, span, button, select, option {
     font-family: "Verdigris MVP Pro Text, Verdana, Arial, sans-serif";
-    // font-family: "Times New Roman";
   }
 
   .journal-entry-content {
-    h1 {
-      border-bottom: 2px solid #000;
-    }
+
+    position: relative;
+
     h1, h2, h3, h4, h5, h6, .journal-header input {
       font-family: "Modesto Condensed";
       font-weight: bold;
@@ -18,10 +17,36 @@
       border: none;
       text-transform: uppercase;
     }
+    h1 {
+      border-bottom: 2px solid #000;
+    }
+    h2 {
+      border-bottom: 1px solid #000;
+    }
+
+    &::after {
+      display: block;
+      content: "";
+      width: 100%;
+      height: 52px;
+      position: relative;
+      bottom: 0;
+      background: url("/systems/black-flag/media/border.png") no-repeat right bottom;
+      background-repeat: no-repeat;
+      background-size: auto;
+      background-size: contain;
+      background-repeat: no-repeat;
+      transform: scaleX(-1);
+    }
   }
 
-  h1.border, h2.border, h3.border, h4.border, h5.border, h6.border {
-    border-bottom: 1px solid #000;
+  h1, h2, h3, h4, h5, h6 {
+    &.no-border {
+      border-bottom: none;
+    }
+    &.border {
+      border-bottom: 1px solid #000;
+    }
   }
 
   p.subheading {
@@ -53,7 +78,7 @@
     background: #fff;
     border: none;
     border-radius: 0;
-    border-bottom: 2px solid #000;
+    border-bottom: 2px solid #7f7f7f;
   }
 
   .window-content {
@@ -84,7 +109,7 @@
   }
 
   .journal-entry-pages {
-    // background-image: url("/systems/black-flag/system/sheets/assets/black-flag-mask-inverse.png");
+    background-image: url("/systems/black-flag/system/sheets/assets/black-flag-mask-inverse.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;

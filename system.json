@@ -38,31 +38,37 @@
     },
     {
       "name": "lineages",
-      "label": "lineages",
+      "label": "Lineages",
       "path": "packs/lineages.db",
       "type": "Item",
       "system": "black-flag"
     },
     {
       "name": "magic-talents",
-      "label": "magic-talents",
+      "label": "Magic Talents",
       "path": "packs/magic-talents.db",
       "type": "Item",
       "system": "black-flag"
     },
     {
       "name": "martial-talents",
-      "label": "martial-talents",
+      "label": "Martial Talents",
       "path": "packs/martial-talents.db",
       "type": "Item",
       "system": "black-flag"
     },
     {
       "name": "technical-talents",
-      "label": "technical-talents",
+      "label": "Technical Talents",
       "path": "packs/technical-talents.db",
       "type": "Item",
       "system": "black-flag"
+    },
+    {
+      "name": "playtest-1-packet",
+      "label": "Playtest 1 Packet",
+      "path": "packs/playtest-1-packet.db",
+      "type": "JournalEntry"
     }
   ],
   "license": "LICENSE",

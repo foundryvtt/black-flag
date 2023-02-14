@@ -9,8 +9,8 @@
 .journal-sheet option {
   font-family: "Verdigris MVP Pro Text, Verdana, Arial, sans-serif";
 }
-.journal-sheet .journal-entry-content h1 {
-  border-bottom: 2px solid #000;
+.journal-sheet .journal-entry-content {
+  position: relative;
 }
 .journal-sheet .journal-entry-content h1,
 .journal-sheet .journal-entry-content h2,
@@ -29,6 +29,33 @@
 .journal-sheet .journal-entry-content h6 {
   border: none;
   text-transform: uppercase;
+}
+.journal-sheet .journal-entry-content h1 {
+  border-bottom: 2px solid #000;
+}
+.journal-sheet .journal-entry-content h2 {
+  border-bottom: 1px solid #000;
+}
+.journal-sheet .journal-entry-content::after {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 52px;
+  position: relative;
+  bottom: 0;
+  background: url("/systems/black-flag/media/border.png") no-repeat right bottom;
+  background-size: auto;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: scaleX(-1);
+}
+.journal-sheet h1.no-border,
+.journal-sheet h2.no-border,
+.journal-sheet h3.no-border,
+.journal-sheet h4.no-border,
+.journal-sheet h5.no-border,
+.journal-sheet h6.no-border {
+  border-bottom: none;
 }
 .journal-sheet h1.border,
 .journal-sheet h2.border,
@@ -64,7 +91,7 @@
   background: #fff;
   border: none;
   border-radius: 0;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid #7f7f7f;
 }
 .journal-sheet .window-content {
   background: #FFF;
@@ -89,6 +116,7 @@
   background: #fff;
 }
 .journal-sheet .journal-entry-pages {
+  background-image: url("/systems/black-flag/system/sheets/assets/black-flag-mask-inverse.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
