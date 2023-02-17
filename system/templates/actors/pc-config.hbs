@@ -1,27 +1,65 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
-
+    <div class="important-info">
+        <a data-action="important-info"><i class="fa-solid fa-circle-exclamation"></i> Important Notes <i class="fa-solid fa-angle-down"></i></a>
+        <div class="collapsible collapsed">
+            <p>The Playtest does not currently have data for classes or items yet. The focus is on the character-building experience. Check out the <a class="content-link" draggable="true" data-uuid="Compendium.black-flag.playtest-1-packet.bHbtZZkt9UyEMu2r" data-id="bHbtZZkt9UyEMu2r" data-type="JournalEntry" data-pack="black-flag.playtest-1-packet" data-tooltip="Journal Entry"><i class="fas fa-book-open"></i>Character Creation Rules</a>.</p>
+        </div>
+    </div>
     {{!-- Sheet Header --}}
     <header class="sheet-header flexrow">
         <img class="profile" src="{{document.img}}" title="{{document.name}}" data-edit="img"/>
-        <h1 class="title">
+        <h1 class="title flex3">
             <input name="name" type="text" value="{{document.name}}" placeholder="Player Name"/>
         </h1>
+
+        {{!-- Level --}}
+        <fieldset>
+            <legend>{{localize "Level"}}</legend>
+
+            {{!-- Current --}}
+            <div class="form-group" data-name="system.level">
+                <label>{{ localize "Level" }}</label>
+                {{numberInput document.system.level name="system.level" min=0 max=20 step=1}}
+            </div>
+
+            {{!-- Experience --}}
+            <div class="form-group" data-name="system.experience">
+                <label>{{ localize "XP" }}</label>
+                {{numberInput document.system.experience name="system.experience" min=0 max=nextLevelXP step=1}}
+            </div>
+        </fieldset>
+
+        {{!-- Resources --}}
+        <fieldset>
+            <legend>{{localize "Details"}}</legend>
+
+             {{!-- Age --}}
+            <div class="form-group" data-name="system.age">
+                <label>{{ localize "Age" }}</label>
+                <input name="system.age" type="number" value="{{document.system.age}}" placeholder="Age"/>
+            </div>
+
+            {{!-- Size --}}
+            <div class="form-group" data-name="system.size">
+                <label>{{ localize "Size" }}</label>
+                <select name="system.size">
+                    {{selectOptions SIZE_TYPES selected=document.system.size}}
+                </select>
+            </div>
+        </fieldset>
     </header>
 
     {{!-- Body --}}
     <section class="sheet-body">
 
-        {{!-- Resources --}}
-        <fieldset>
-            <legend>{{localize "Resources"}}</legend>
-
+        <div class="flexrow">
             {{!-- Health --}}
-            <fieldset>
-                <legend>{{localize "Health"}}</legend>
+            <fieldset class="flex1">
+                <legend>{{localize "HP & Luck"}}</legend>
 
                 {{!-- Current --}}
                 <div class="form-group" data-name="system.hp.current">
-                    <label>{{ localize "Health" }}</label>
+                    <label>{{ localize "Current" }}</label>
                     {{numberInput document.system.hp.current name="system.hp.current" min=0 max=document.system.hp.max step=1}}
                 </div>
 
@@ -35,44 +73,69 @@
                 <div class="form-group">
                     <progress class="health" value="{{document.system.hp.current}}" max="{{document.system.hp.max}}"></progress>
                 </div>
-            </fieldset>
 
-            {{!-- Level --}}
-            <fieldset>
-                <legend>{{localize "Level"}}</legend>
+                <hr />
 
-                {{!-- Current --}}
-                <div class="form-group" data-name="system.level">
-                    <label>{{ localize "Level" }}</label>
-                    {{numberInput document.system.level name="system.level" min=0 max=20 step=1}}
-                </div>
-
-                {{!-- Experience --}}
-                <div class="form-group" data-name="system.experience">
-                    <label>{{ localize "Experience" }}</label>
-                    {{numberInput document.system.experience name="system.experience" min=0 max=nextLevelXP step=1}}
-                </div>
-
-                {{!-- Progress Bar --}}
-                <div class="form-group">
-                    <progress class="level" value="{{document.system.experience}}" max="{{nextLevelXP}}"></progress>
+                {{!-- Luck --}}
+                <div class="form-group" data-name="system.luck">
+                    <label>{{ localize "Luck" }}</label>
+                    {{numberInput document.system.luck name="system.luck" min=0 step=1}}
                 </div>
             </fieldset>
 
-            {{!-- Luck --}}
-            <div class="form-group" data-name="system.luck">
-                <label>{{ localize "Luck" }}</label>
-                {{numberInput document.system.luck name="system.luck" min=0 step=1}}
-            </div>
+            {{!-- Abilitity Scores --}}
+            <fieldset class="flexrow abilities flex3">
+                <legend>{{localize "Ability Scores"}} <a data-action="roll-ability" data-tooltip="{{localize "Click to roll for your ability scores."}}"><i class="fa-solid fa-dice"></i></a></legend>
 
-        </fieldset>
+                {{!-- Strength --}}
+                <div class="form-group ability" data-name="system.abilities.strength">
+                    <label>{{ localize "Strength" }}</label>
+                    <div class="mod">{{document.system.abilities.strength.mod}}</div>
+                    {{numberInput document.system.abilities.strength.value name="system.abilities.strength" step=1 min=0 max=20}}
+                </div>
 
-        {{!-- Bio --}}
-        <fieldset>
-            <legend>{{localize "Bio"}}</legend>
+                {{!-- Dexterity --}}
+                <div class="form-group ability flexcol" data-name="system.abilities.dexterity">
+                    <label>{{ localize "Dexterity" }}</label>
+                    <div class="mod">{{document.system.abilities.dexterity.mod}}</div>
+                    {{numberInput document.system.abilities.dexterity.value name="system.abilities.dexterity" step=1 min=0 max=20}}
+                </div>
 
+                {{!-- Constitution --}}
+                <div class="form-group ability flexcol" data-name="system.abilities.constitution">
+                    <label>{{ localize "Constitution" }}</label>
+                    <div class="mod">{{document.system.abilities.constitution.mod}}</div>
+                    {{numberInput document.system.abilities.constitution.value name="system.abilities.constitution" step=1 min=0 max=20}}
+                </div>
+
+                {{!-- Intelligence --}}
+                <div class="form-group ability flexcol" data-name="system.abilities.intelligence">
+                    <label>{{ localize "Intelligence" }}</label>
+                    <div class="mod">{{document.system.abilities.intelligence.mod}}</div>
+                    {{numberInput document.system.abilities.intelligence.value name="system.abilities.intelligence" step=1 min=0 max=20}}
+                </div>
+
+                {{!-- Wisdom --}}
+                <div class="form-group ability flexcol" data-name="system.abilities.wisdom">
+                    <label>{{ localize "Wisdom" }}</label>
+                    <div class="mod">{{document.system.abilities.wisdom.mod}}</div>
+                    {{numberInput document.system.abilities.wisdom.value name="system.abilities.wisdom" step=1 min=0 max=20}}
+                </div>
+
+                {{!-- Charisma --}}
+                <div class="form-group ability flexcol" data-name="system.abilities.charisma">
+                    <label>{{ localize "Charisma" }}</label>
+                    <div class="mod">{{document.system.abilities.charisma.mod}}</div>
+                    {{numberInput document.system.abilities.charisma.value name="system.abilities.charisma" step=1 min=0 max=20}}
+                </div>
+            </fieldset>
+        </div>
+
+        {{!-- Core Details --}}
+        <fieldset class="flexrow lineage-heritage">
+            <legend>{{localize "Lineage & Heritage"}}</legend>
             {{!-- Lineage --}}
-            <div class="form-group" data-name="system.lineage">
+            <div class="form-group stacked" data-name="system.lineage">
                 <label>{{ localize "Lineage" }}</label>
                 <select name="system.lineage">
                     {{selectOptions LINEAGE_TYPES selected=document.system.lineageId}}
@@ -80,7 +143,7 @@
             </div>
 
             {{!-- Heritage --}}
-            <div class="form-group" data-name="system.heritage">
+            <div class="form-group stacked" data-name="system.heritage">
                 <label>{{ localize "Heritage" }}</label>
                 <select name="system.heritage">
                     {{selectOptions HERITAGE_TYPES selected=document.system.heritageId}}
@@ -88,7 +151,7 @@
             </div>
 
             {{!-- Background --}}
-            <div class="form-group" data-name="system.background">
+            <div class="form-group stacked" data-name="system.background">
                 <label>{{ localize "Background" }}</label>
                 <select name="system.background">
                     {{selectOptions BACKGROUND_TYPES selected=document.system.backgroundId}}
@@ -96,153 +159,104 @@
             </div>
 
             {{!-- Alignment --}}
-            <div class="form-group" data-name="system.alignment">
+            <div class="form-group stacked" data-name="system.alignment">
                 <label>{{ localize "Alignment" }}</label>
                 <select name="system.alignment">
                     {{selectOptions ALIGNMENT_TYPES selected=document.system.alignment}}
                 </select>
             </div>
-
-            {{!-- Description --}}
-            <div class="form-group stacked" data-name="system.description">
-                <label>{{ localize "Description" }}</label>
-                {{editor descriptionHTML target="system.description" button=false editable=editable engine="prosemirror" collaborate=false}}
-            </div>
-
-            {{!-- Age --}}
-            <div class="form-group stacked" data-name="system.age">
-                <label>{{ localize "Age" }}</label>
-                <input name="system.age" type="number" value="{{document.system.age}}" placeholder="Age"/>
-            </div>
-
-            {{!-- Size --}}
-            <div class="form-group stacked" data-name="system.size">
-                <label>{{ localize "Size" }}</label>
-                <select name="system.size">
-                    {{selectOptions SIZE_TYPES selected=document.system.size}}
-                </select>
-            </div>
-
-            {{!-- Languages --}}
-            <div class="form-group stacked" data-name="system.languages">
-                <label>{{ localize "Languages" }}</label>
-                {{!-- Render each existing Language as a .tag, with a button to remove --}}
-                <div class="languages flexcol">
-                    <div class="tag-list flexrow">
-                        {{#each document.system.languages}}
-                            <div class="language tag {{this.cssClass}}" data-value="{{this.value}}" data-source="{{this.source}}" data-tooltip="{{this.source}}">
-                                {{this.label}}{{#if this.canDelete}} <i class="fas fa-delete-left" data-action="delete"></i>{{/if}}
-                            </div>
-                        {{/each}}
-                    </div>
-                    {{!-- Render a text input with search ahead to add a new Language --}}
-                    <input name="system.languages" list="system-languages-list" type="text" value="" placeholder="Language"/>
-                    <datalist id="system-languages-list">
-                        {{#each LANGUAGE_TYPES}}
-                            <option value="{{this.value}}" label="{{this.label}}"></option>
-                        {{/each}}
-                    </datalist>
-                </div>
-            </div>
-
         </fieldset>
 
-        {{!-- Abilitity Scores --}}
-        <fieldset>
-            <legend>{{localize "Ability Scores"}}</legend>
-
-            {{!-- Strength --}}
-            <div class="form-group" data-name="system.abilities.strength">
-                <label>{{ localize "Strength" }}</label>
-                <div class="mod">({{document.system.abilities.strength.mod}})</div>
-                {{numberInput document.system.abilities.strength.value name="system.abilities.strength" step=1 min=0 max=20}}
-            </div>
-
-            {{!-- Dexterity --}}
-            <div class="form-group" data-name="system.abilities.dexterity">
-                <label>{{ localize "Dexterity" }}</label>
-                <div class="mod">({{document.system.abilities.dexterity.mod}})</div>
-                {{numberInput document.system.abilities.dexterity.value name="system.abilities.dexterity" step=1 min=0 max=20}}
-            </div>
-
-            {{!-- Constitution --}}
-            <div class="form-group" data-name="system.abilities.constitution">
-                <label>{{ localize "Constitution" }}</label>
-                <div class="mod">({{document.system.abilities.constitution.mod}})</div>
-                {{numberInput document.system.abilities.constitution.value name="system.abilities.constitution" step=1 min=0 max=20}}
-            </div>
-
-            {{!-- Intelligence --}}
-            <div class="form-group" data-name="system.abilities.intelligence">
-                <label>{{ localize "Intelligence" }}</label>
-                <div class="mod">({{document.system.abilities.intelligence.mod}})</div>
-                {{numberInput document.system.abilities.intelligence.value name="system.abilities.intelligence" step=1 min=0 max=20}}
-            </div>
-
-            {{!-- Wisdom --}}
-            <div class="form-group" data-name="system.abilities.wisdom">
-                <label>{{ localize "Wisdom" }}</label>
-                <div class="mod">({{document.system.abilities.wisdom.mod}})</div>
-                {{numberInput document.system.abilities.wisdom.value name="system.abilities.wisdom" step=1 min=0 max=20}}
-            </div>
-
-            {{!-- Charisma --}}
-            <div class="form-group" data-name="system.abilities.charisma">
-                <label>{{ localize "Charisma" }}</label>
-                <div class="mod">({{document.system.abilities.charisma.mod}})</div>
-                {{numberInput document.system.abilities.charisma.value name="system.abilities.charisma" step=1 min=0 max=20}}
-            </div>
-        </fieldset>
-
-        {{!-- Build --}}
-        <fieldset>
-            <legend>{{localize "Build"}}</legend>
-
-            {{!-- Talents --}}
-            <div class="form-group stacked" data-name="system.talents">
-                <label>{{ localize "Chosen Talents" }}</label>
-                {{!-- Render each existing Talent as a document link, with a button to remove --}}
-                <div class="foreign-documents talents flexcol">
-                    {{#each document.system.talents}}
-                        <div class="foreign-document talent flexrow">
-                            <a class="content-link talent-link" draggable="true" data-uuid="{{this.uuid}}" data-id="{{this.id}}" data-type="Item" data-tooltip="Item">
-                                <i class="fas fa-suitcase"></i> {{this.name}}
-                            </a>
-                            <i class="fas fa-delete-left" data-action="delete"></i>
+        {{!-- Character Sheet Navigation --}}
+        <nav class="sheet-navigation tabs" data-group="primary">
+            <a class="item active" data-tab="character">{{ localize "Character" }}</a>
+            <a class="item" data-tab="biography">{{ localize "Biography" }}</a>
+        </nav>
+        
+        <section class="tabs-container">
+            <div class="tab character flexrow" data-group="primary" data-tab="character">
+                {{!-- Build --}}
+                <fieldset>
+                    {{!-- Talents --}}
+                    <div class="form-group stacked" data-name="system.talents">
+                        <label>{{ localize "Chosen Talents" }}</label>
+                        {{!-- Render each existing Talent as a document link, with a button to remove --}}
+                        <div class="foreign-documents talents flexrow">
+                            {{#each document.system.talents}}
+                                <div class="foreign-document talent flexrow">
+                                    <a class="content-link talent-link" draggable="true" data-uuid="{{this.uuid}}" data-id="{{this.id}}" data-type="Item" data-tooltip="Item">
+                                        <i class="fas fa-suitcase"></i> {{this.name}}
+                                    </a>
+                                    <i class="fas fa-delete-left" data-action="delete"></i>
+                                </div>
+                            {{/each}}
                         </div>
-                    {{/each}}
-                    {{!-- Render a text input with search ahead to add a new Talent --}}
-                    <input name="system.talents" list="system-talents-list" type="text" value="" placeholder="Talent"/>
-                    <datalist id="system-talents-list">
-                        {{#each allTalents}}
-                            <option value="{{this._id}}" label="{{this.name}}"></option>
-                        {{/each}}
-                    </datalist>
-                </div>
+                        {{!-- Render a text input with search ahead to add a new Talent --}}
+                        <input name="system.talents" list="system-talents-list" type="text" value="" placeholder="Talent"/>
+                        <datalist id="system-talents-list">
+                            {{#each allTalents}}
+                                <option value="{{this._id}}" label="{{this.name}}"></option>
+                            {{/each}}
+                        </datalist>
+                    </div>
+
+                    {{!-- Proficiencies --}}
+                    <div class="form-group stacked" data-name="system.proficiencies">
+                        <label>{{ localize "Proficiencies" }}</label>
+                        {{!-- Render each existing Proficiency as a .tag, with a button to remove --}}
+                        <div class="proficiencies flexcol">
+                            <div class="tag-list flexrow">
+                                {{#each document.system.proficiencies}}
+                                    <div class="proficiency tag {{this.cssClass}}" data-value="{{this.value}}" data-source="{{this.source}}" data-tooltip="{{this.source}}">
+                                        {{this.label}}{{#if this.canDelete}} <i class="fas fa-delete-left" data-action="delete"></i>{{/if}}
+                                    </div>
+                                {{/each}}
+                            </div>
+                            {{!-- Render a text input with search ahead to add a new Proficiency --}}
+                            <input name="system.proficiencies" list="system-proficiencies-list" type="text" value="" placeholder="Proficiency"/>
+                            <datalist id="system-proficiencies-list">
+                                {{#each PROFICIENCY_TYPES}}
+                                    <option value="{{this.value}}" label="{{this.label}}"></option>
+                                {{/each}}
+                            </datalist>
+                        </div>
+                    </div>
+
+                    {{!-- Languages --}}
+                    <div class="form-group stacked" data-name="system.languages">
+                        <label>{{ localize "Languages" }}</label>
+                        {{!-- Render each existing Language as a .tag, with a button to remove --}}
+                        <div class="languages flexcol">
+                            <div class="tag-list flexrow">
+                                {{#each document.system.languages}}
+                                    <div class="language tag {{this.cssClass}}" data-value="{{this.value}}" data-source="{{this.source}}" data-tooltip="{{this.source}}">
+                                        {{this.label}}{{#if this.canDelete}} <i class="fas fa-delete-left" data-action="delete"></i>{{/if}}
+                                    </div>
+                                {{/each}}
+                            </div>
+                            {{!-- Render a text input with search ahead to add a new Language --}}
+                            <input name="system.languages" list="system-languages-list" type="text" value="" placeholder="Language"/>
+                            <datalist id="system-languages-list">
+                                {{#each LANGUAGE_TYPES}}
+                                    <option value="{{this.value}}" label="{{this.label}}"></option>
+                                {{/each}}
+                            </datalist>
+                        </div>
+                    </div>
+                </fieldset>
             </div>
 
-            {{!-- Proficiencies --}}
-            <div class="form-group stacked" data-name="system.proficiencies">
-                <label>{{ localize "Proficiencies" }}</label>
-                {{!-- Render each existing Proficiency as a .tag, with a button to remove --}}
-                <div class="proficiencies flexcol">
-                    <div class="tag-list flexrow">
-                        {{#each document.system.proficiencies}}
-                            <div class="proficiency tag {{this.cssClass}}" data-value="{{this.value}}" data-source="{{this.source}} data-tooltip="{{this.source}}">
-                                {{this.label}}{{#if this.canDelete}} <i class="fas fa-delete-left" data-action="delete"></i>{{/if}}
-                            </div>
-                        {{/each}}
+            <div class="tab biography" data-group="primary" data-tab="biography">
+                {{!-- Bio --}}
+                <fieldset>
+                    {{!-- Description --}}
+                    <div class="form-group stacked" data-name="system.description">
+                        <label>{{ localize "Description" }}</label>
+                        {{editor descriptionHTML target="system.description" button=false editable=editable engine="prosemirror" collaborate=false}}
                     </div>
-                    {{!-- Render a text input with search ahead to add a new Proficiency --}}
-                    <input name="system.proficiencies" list="system-proficiencies-list" type="text" value="" placeholder="Proficiency"/>
-                    <datalist id="system-proficiencies-list">
-                        {{#each PROFICIENCY_TYPES}}
-                            <option value="{{this.value}}" label="{{this.label}}"></option>
-                        {{/each}}
-                    </datalist>
-                </div>
+                </fieldset>
             </div>
-        </fieldset>
+        </section>
    </section>
 
     <footer>
