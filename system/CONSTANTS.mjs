@@ -191,6 +191,16 @@ const XP_TABLE = new Map([
 ]);
 
 /**
+ * The supported character builder modes.
+ * @type {{label: string}}
+ */
+const CHARACTER_BUILDER_MODES = {
+    all: {label: "All"},
+    any: {label: "Any"},
+    chooseOne: {label: "Choose One"},
+}
+
+/**
  * Include all constant definitions within the SYSTEM global export
  * @type {Object}
  */
@@ -211,4 +221,5 @@ export const SYSTEM = {
     LINEAGE_DOCUMENTS: new Collection(),
     SAVE_TYPES,
     XP_TABLE,
+    CHARACTER_BUILDER_MODES,
 };

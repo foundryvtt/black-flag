@@ -222,6 +222,12 @@
   margin: 5px auto;
   transition: all 0.25s ease-in-out;
 }
+.black-flag.actor.pc .health::-moz-progress-bar {
+  background: darkolivegreen;
+}
+.black-flag.actor.pc .health::-webkit-progress-value {
+  background: darkolivegreen;
+}
 .black-flag.actor.pc .window-content {
   background: #FFF;
 }
@@ -287,6 +293,25 @@
 .black-flag.actor.pc .talents .talent i {
   color: var(--color-text-light-highlight);
   padding-top: 0px;
+}
+.black-flag.actor.pc .traits .trait {
+  margin-bottom: 5px;
+}
+.black-flag.actor.pc .traits .trait .trait-img {
+  flex: 0 auto;
+  margin: 0px 5px 0px 5px;
+}
+.black-flag.actor.pc .traits .trait .choices-icon {
+  flex: 0 auto;
+  margin-left: 5px;
+  font-size: 26px;
+  height: 26px;
+}
+.black-flag.actor.pc .traits .trait .choices-icon.fulfilled {
+  color: green;
+}
+.black-flag.actor.pc .traits .trait .choices-icon.unfulfilled {
+  color: #ff0000;
 }
 .black-flag.actor.pc label {
   background: #333;

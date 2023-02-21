@@ -33,20 +33,25 @@ export default class PcConfig extends ActorDocumentSheet {
 
         // Mark values as innate
         context.document.system.proficiencies.forEach(p => {
-            p.cssClass = p.source === "Chosen" ? "chosen" : "innate";
-            p.canDelete = p.source === "Chosen";
+            p.cssClass = p.source === "Manual" ? "chosen" : "innate";
+            p.canDelete = p.source === "Manual";
         });
         context.document.system.resistances.forEach(r => {
-            r.cssClass = r.source === "Chosen" ? "chosen" : "innate";
-            r.canDelete = r.source === "Chosen";
+            r.cssClass = r.source === "Manual" ? "chosen" : "innate";
+            r.canDelete = r.source === "Manual";
         });
         context.document.system.languages.forEach(l => {
-            l.cssClass = l.source === "Chosen" ? "chosen" : "innate";
-            l.canDelete = l.source === "Chosen";
+            l.cssClass = l.source === "Manual" ? "chosen" : "innate";
+            l.canDelete = l.source === "Manual";
         });
         context.document.system.saveAdvantages.forEach(s => {
-            s.cssClass = s.source === "Chosen" ? "chosen" : "innate";
-            s.canDelete = s.source === "Chosen";
+            s.cssClass = s.source === "Manual" ? "chosen" : "innate";
+            s.canDelete = s.source === "Manual";
+        });
+
+        // Mark traits that have missingChoices as unfulfilled
+        context.document.system.traits.forEach(t => {
+            t.choicesUnfulfilled = t.missingChoices?.length > 0;
         });
 
         console.log("PC Config Data", context)

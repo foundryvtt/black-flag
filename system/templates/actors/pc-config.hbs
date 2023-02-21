@@ -169,8 +169,10 @@
 
         {{!-- Character Sheet Navigation --}}
         <nav class="sheet-navigation tabs" data-group="primary">
-            <a class="item active" data-tab="character">{{ localize "Character" }}</a>
-            <a class="item" data-tab="biography">{{ localize "Biography" }}</a>
+            <a class="item active" data-tab="character"><i class="fa-solid fa-head-side"></i> {{ localize "Character" }}</a>
+            <a class="item" data-tab="biography"><i class="fa-solid fa-book"></i> {{ localize "Biography" }}</a>
+            <a class="item" data-tab="traits"><i class="fa-solid fa-image-portrait"></i> {{ localize "Traits" }}</a>
+<!--            <a class="item" data-tab="inventory">{{ localize "Inventory" }}</a>-->
         </nav>
         
         <section class="tabs-container">
@@ -254,6 +256,30 @@
                         <label>{{ localize "Description" }}</label>
                         {{editor descriptionHTML target="system.description" button=false editable=editable engine="prosemirror" collaborate=false}}
                     </div>
+                </fieldset>
+            </div>
+
+            <div class="tab traits" data-group="primary" data-tab="traits">
+                {{!-- Traits --}}
+                <fieldset>
+                    {{!-- Traits --}}
+                    {{#each document.system.traits}}
+                        <div class="form-group stacked trait" data-id="{{this.id}}">
+                            <div class="flexrow">
+                                <img class="trait-img" src="{{this.img}}" alt="{{this.name}}" data-tooltip="{{this.name}}" width="80" height="80"/>
+                                <div class="flexcol">
+                                    <label>{{this.name}}</label>
+                                    <p>{{{this.description}}}</p>
+                                    <p class="notes">{{localize "Source"}}: {{this.source}}</p>
+                                </div>
+                                {{#if this.choicesFulfilled}}
+                                    <i class="fas fa-square-check choices-icon fulfilled" data-tooltip="{{localize "Choices Fulfilled"}}"></i>
+                                {{else if this.choicesUnfulfilled}}
+                                    <i class="fas fa-square-xmark choices-icon unfulfilled" data-tooltip="{{localize "Choices Unfulfilled"}}"></i>
+                                {{/if}}
+                            </div>
+                        </div>
+                    {{/each}}
                 </fieldset>
             </div>
         </section>

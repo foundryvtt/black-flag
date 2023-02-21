@@ -28,7 +28,16 @@ export default class TraitDataModel extends foundry.abstract.DataModel {
                     required: true,
                     choices: CONFIG.SYSTEM.DAMAGE_TYPES,
                 })),
-            })
+            }),
+            choices: new fields.SetField(new fields.SchemaField({
+                key: new fields.StringField({required: true}),
+                values: new fields.SetField(new fields.ObjectField(), {required: true}),
+            })),
+            missingChoices: new fields.SetField(new fields.SchemaField({
+                key: new fields.StringField({required: true}),
+                values: new fields.SetField(new fields.ObjectField(), {required: true}),
+            })),
+            choicesFulfilled: new fields.BooleanField({default: false}),
         }
     }
 }
