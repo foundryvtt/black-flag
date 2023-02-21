@@ -5,7 +5,8 @@ export default class PcConfig extends ActorDocumentSheet {
     /** @override */
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
-            classes: ["black-flag", "sheet", "actor", "pc"]
+            classes: ["black-flag", "sheet", "actor", "pc"],
+            tabs: [{navSelector: ".tabs", contentSelector: ".tabs-container", initial: "description"}],
         });
     }
 
@@ -32,20 +33,25 @@ export default class PcConfig extends ActorDocumentSheet {
 
         // Mark values as innate
         context.document.system.proficiencies.forEach(p => {
-            p.cssClass = p.source === "Chosen" ? "chosen" : "innate";
-            p.canDelete = p.source === "Chosen";
+            p.cssClass = p.source === "Manual" ? "chosen" : "innate";
+            p.canDelete = p.source === "Manual";
         });
         context.document.system.resistances.forEach(r => {
-            r.cssClass = r.source === "Chosen" ? "chosen" : "innate";
-            r.canDelete = r.source === "Chosen";
+            r.cssClass = r.source === "Manual" ? "chosen" : "innate";
+            r.canDelete = r.source === "Manual";
         });
         context.document.system.languages.forEach(l => {
-            l.cssClass = l.source === "Chosen" ? "chosen" : "innate";
-            l.canDelete = l.source === "Chosen";
+            l.cssClass = l.source === "Manual" ? "chosen" : "innate";
+            l.canDelete = l.source === "Manual";
         });
         context.document.system.saveAdvantages.forEach(s => {
-            s.cssClass = s.source === "Chosen" ? "chosen" : "innate";
-            s.canDelete = s.source === "Chosen";
+            s.cssClass = s.source === "Manual" ? "chosen" : "innate";
+            s.canDelete = s.source === "Manual";
+        });
+
+        // Mark traits that have missingChoices as unfulfilled
+        context.document.system.traits.forEach(t => {
+            t.choicesUnfulfilled = t.missingChoices?.length > 0;
         });
 
         console.log("PC Config Data", context)
@@ -96,6 +102,8 @@ export default class PcConfig extends ActorDocumentSheet {
         html.find(`input[name="system.experience"]`).on('input', (event) => this._onProgressValueInputChange(event));
         html.find("a.content-link").click(this._onClickContentLink.bind(this));
         html.find("input[name='system.talents']").on('input', this._onTalentInputChange.bind(this));
+        html.find("a[data-action='roll-ability']").on('click', this._onRollAbility.bind(this));
+        html.find("a[data-action='important-info']").on('click', this._onImportantInfo.bind(this));
     }
 
     /* -------------------------------------------- */
@@ -165,7 +173,62 @@ export default class PcConfig extends ActorDocumentSheet {
         deleteIcon.addEventListener("click", this._onDeleteDatasetItem.bind(this));
         talentRow.appendChild(deleteIcon);
 
-        event.currentTarget.parentElement.insertBefore(talentRow, event.currentTarget);
+        event.currentTarget.parentNode.querySelector(".talents").insertBefore(talentRow, null);
         event.currentTarget.value = "";
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Roll ability scores for the character and send results to a chat message.
+     * @param {Event} event
+     * @private
+     */
+    _onRollAbility(event) {
+        const expandRoll = foundry.utils.debounce((result) => {
+            const message = document.querySelector(`[data-message-id="${result.id}"] .dice-tooltip`);
+            message.classList.add("expanded");
+            message.scrollIntoView();
+        }, 50);
+
+        new Dialog({
+            title: "How do you want to do this?",
+            content: ``,
+            buttons: {
+                roll: {
+                    label: "Roll",
+                    callback: async () => { 
+                        const result = await new Roll("{4d6kh3,4d6kh3,4d6kh3,4d6kh3,4d6kh3,4d6kh3}").toMessage({flavor: "Your ability score rolls:"});
+                        expandRoll(result);        
+                    },
+                    icon: '<i class="fa-solid fa-dice"></i>'
+                },
+                pointBuy: {
+                    label: "Point Buy",
+                    callback: async () => { 
+                        const j = await fromUuid("Compendium.black-flag.playtest-1-packet.bHbtZZkt9UyEMu2r");
+                        j.sheet.render(true, {pageId: "goMWEmijPIYdsdTt", anchor: "point-buy"});
+                    },
+                    icon: `<i class="fa-solid fa-cart-shopping"></i>`
+                },
+                standard: {
+                    label: "Standard Array",
+                    callback: () => {return new Dialog({title: "Standard Array", content: "<p>Assign one of the following numbers to each ability score: 16, 15, 13, 12, 10, and 8.</p>", buttons: {}}).render(true)},
+                    icon: `<i class="fa-solid fa-standard-definition"></i>`
+                }
+            }
+        }, {width: 450}).render(true);
+    }
+    
+    /* -------------------------------------------- */
+
+    /**
+     * Alert users to basic information about the playtest in their character sheet.
+     * @param {Event} event
+     * @private
+     */
+    _onImportantInfo(event) {
+        event.currentTarget.nextElementSibling.classList.toggle("collapsed");
+        event.currentTarget.nextElementSibling.classList.toggle("expanded");
     }
 }
