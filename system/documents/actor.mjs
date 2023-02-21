@@ -263,8 +263,8 @@ export default class BlackFlagActor extends Actor {
                 // Build the list of choices
                 let values = option.values ?? [];
 
-                // If a category is specified, add all the values from that category
-                if ( option.category ) {
+                // If a category is specified and values is empty, add all the values from that category
+                if ( option.category && (values.length === 0) ) {
                     const category = CONFIG.SYSTEM[option.category];
                     if ( !category ) continue;
                     values = values.concat(Object.keys(category));
@@ -274,7 +274,10 @@ export default class BlackFlagActor extends Actor {
                 if ( trait.missingChoices.find(c => c.key === key) ) continue;
                 trait.missingChoices.push({
                     key: key,
+                    label: option.label ?? key,
                     values: values,
+                    amount: amount,
+                    category: option.category
                 });
             }
 

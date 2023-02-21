@@ -27,7 +27,7 @@ export default class TraitForm extends FormApplication {
     /** @override */
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
-            classes: [SYSTEM_ID, "sheet", "item", "heritage"],
+            classes: [SYSTEM_ID, "sheet", "item", "trait"],
             title: "Trait Form",
             height: 600,
             width: 500,

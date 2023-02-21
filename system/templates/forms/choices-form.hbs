@@ -1,0 +1,38 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header flexrow">
+        <img class="profile" src="{{document.img}}" title="{{document.name}}" data-edit="img"/>
+        <h1 class="title">
+            <input name="name" type="text" value="{{document.name}}" placeholder="Talent Name"/>
+        </h1>
+    </header>
+
+
+    {{!-- Main Content --}}
+    <section class="sheet-body flexcol">
+        {{!-- Description --}}
+        <p class="description" name="description">{{{document.description}}}</p>
+
+        {{!-- Missing Choices --}}
+        {{#each this.document.missingChoices}}
+            <fieldset>
+                <legend>{{this.label}}</legend>
+                <p class="hint">Pick {{this.amount}} from the following choices.</p>
+
+                {{!-- Choices --}}
+                {{#each this.values }}
+                    <div class="form-group stacked">
+                        <label>{{typeLabel ../category this}}</label>
+                        <input type="checkbox" name="{{this}}"/>
+                    </div>
+                {{/each}}
+            </fieldset>
+        {{/each}}
+
+        {{!-- Save Changes --}}
+        <footer>
+            <button type="submit">Save Choices</button>
+        </footer>
+    </section>
+</form>

@@ -1,4 +1,5 @@
 import ActorDocumentSheet from "./actor-config.mjs";
+import ChoicesForm from "../../apps/forms/choices-form.mjs";
 
 export default class PcConfig extends ActorDocumentSheet {
 
@@ -104,6 +105,7 @@ export default class PcConfig extends ActorDocumentSheet {
         html.find("input[name='system.talents']").on('input', this._onTalentInputChange.bind(this));
         html.find("a[data-action='roll-ability']").on('click', this._onRollAbility.bind(this));
         html.find("a[data-action='important-info']").on('click', this._onImportantInfo.bind(this));
+        html.find(".choices-icon").on('click', this._onChoicesIconClick.bind(this));
     }
 
     /* -------------------------------------------- */
@@ -230,5 +232,14 @@ export default class PcConfig extends ActorDocumentSheet {
     _onImportantInfo(event) {
         event.currentTarget.nextElementSibling.classList.toggle("collapsed");
         event.currentTarget.nextElementSibling.classList.toggle("expanded");
+    }
+
+    /* -------------------------------------------- */
+
+    _onChoicesIconClick(event) {
+        event.preventDefault();
+        const traitId = event.currentTarget.closest(".trait");
+        const trait = this.object.system.traits.find(t => t.id === traitId.dataset.id);
+        new ChoicesForm(this, trait).render(true);
     }
 }

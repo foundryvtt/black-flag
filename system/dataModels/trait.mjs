@@ -36,6 +36,7 @@ export default class TraitDataModel extends foundry.abstract.DataModel {
             missingChoices: new fields.SetField(new fields.SchemaField({
                 key: new fields.StringField({required: true}),
                 values: new fields.SetField(new fields.ObjectField(), {required: true}),
+                amount: new fields.NumberField({min: 0, default: 0, integer: true}),
             })),
             choicesFulfilled: new fields.BooleanField({default: false}),
         }
