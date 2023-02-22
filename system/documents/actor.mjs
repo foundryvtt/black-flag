@@ -250,13 +250,13 @@ export default class BlackFlagActor extends Actor {
      */
     prepareCharacterBuilderData() {
 
-        const currentChoices = this.system.traitChoices.map(t => t.choices).filter(c => c);
+        const currentChoices = this.system.traitChoices.map(t => t.choices).filter(c => c).flat();
 
         // For each trait, parse the character builder data
         for ( const trait of this.system.traitChoices ) {
             if ( foundry.utils.isEmpty(trait.choices) ) trait.choices = [];
             if ( !trait.builderInfo?.options ) {
-                trait.choicesFulfilled = null;
+                trait.choicesFulfilled = true;
                 continue;
             };
 
@@ -268,14 +268,6 @@ export default class BlackFlagActor extends Actor {
             for ( const [key, option] of Object.entries(trait.builderInfo.options) ) {
                 const amount = option.amount ?? 1;
 
-                // If the choice has already been made, skip it
-                const currentChoice = currentChoices.find(c => c.key === key);
-                if ( currentChoice ) currentChoice.category = option.category;
-                if ( currentChoice?.values.length === amount ) {
-                    choicesMade++;
-                    continue;
-                }
-
                 // Build the list of choices
                 let values = option.values ?? [];
 
@@ -286,12 +278,14 @@ export default class BlackFlagActor extends Actor {
                     values = values.concat(Object.keys(category));
                 }
 
-                const currentTraitChoice = trait.choices.find(c => c.key === key);
-                if ( currentTraitChoice ) {
-                    currentTraitChoice.label = option.label ?? key;
-                    currentTraitChoice.category = option.category;
-                    currentTraitChoice.options = values;
-                    currentTraitChoice.amount = amount;
+                const currentChoice = trait.choices.find(c => c.key === key);
+                if ( currentChoice ) {
+                    currentChoice.category = option.category;
+                    currentChoice.label = option.label ?? key;
+                    currentChoice.category = option.category;
+                    currentChoice.options = values;
+                    currentChoice.amount = amount;
+                    if ( currentChoice.chosenValues.length === amount ) choicesMade++;
                 }
                 else {
                     trait.choices.push({

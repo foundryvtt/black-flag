@@ -57,7 +57,8 @@ export default class PcConfig extends ActorDocumentSheet {
                 choice.values = choice.options.map(v => {
                    return {
                       value: v,
-                      selected: choice.chosenValues.includes(v)
+                      selected: choice.chosenValues.includes(v),
+                      disabled: (!choice.chosenValues.includes(v)) && t.choicesFulfilled
                    }
                 });
             }

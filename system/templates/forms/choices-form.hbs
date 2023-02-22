@@ -17,38 +17,23 @@
 
         {{!-- Choices --}}
         {{#each this.document.choices}}
-            <fieldset>
+            <fieldset data-key="{{this.key}}" data-amount="{{this.amount}}">
                 <legend>{{this.label}}</legend>
+                <p class="hint">Pick {{this.amount}} from the following choices.</p>
 
                 {{!-- Choices --}}
                 {{#each this.values }}
                     <div class="form-group">
                         <label>{{typeLabel ../category this.value}}</label>
-                        <input type="checkbox" name="{{../key}}.{{this.value}}" {{checked this.selected}} />
+                        <input type="checkbox" name="{{../key}}.{{this.value}}" {{checked this.selected}} {{#if this.disabled}}disabled{{/if}} />
                     </div>
                 {{/each}}
             </fieldset>
         {{/each}}
 
-        {{!-- Missing Choices --}}
-<!--        {{#each this.document.missingChoices}}-->
-<!--            <fieldset>-->
-<!--                <legend>{{this.label}}</legend>-->
-<!--                <p class="hint">Pick {{this.amount}} from the following choices.</p>-->
-
-<!--                {{!-- Choices --}}-->
-<!--                {{#each this.values }}-->
-<!--                    <div class="form-group">-->
-<!--                        <label>{{typeLabel ../category this}}</label>-->
-<!--                        <input type="checkbox" name="{{../key}}.{{this}}"/>-->
-<!--                    </div>-->
-<!--                {{/each}}-->
-<!--            </fieldset>-->
-<!--        {{/each}}-->
-
         {{!-- Save Changes --}}
         <footer>
-            <button type="submit">Save Choices</button>
+            <button type="submit">{{localize "Save"}} {{localize "Choices"}}</button>
         </footer>
     </section>
 </form>
