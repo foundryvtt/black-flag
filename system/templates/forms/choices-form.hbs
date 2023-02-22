@@ -13,22 +13,38 @@
     <section class="sheet-body flexcol">
         {{!-- Description --}}
         <p class="description" name="description">{{{document.description}}}</p>
+        <p class="description hint">{{document.mode}}</p>
 
-        {{!-- Missing Choices --}}
-        {{#each this.document.missingChoices}}
+        {{!-- Choices --}}
+        {{#each this.document.choices}}
             <fieldset>
                 <legend>{{this.label}}</legend>
-                <p class="hint">Pick {{this.amount}} from the following choices.</p>
 
                 {{!-- Choices --}}
                 {{#each this.values }}
-                    <div class="form-group stacked">
-                        <label>{{typeLabel ../category this}}</label>
-                        <input type="checkbox" name="{{this}}"/>
+                    <div class="form-group">
+                        <label>{{typeLabel ../category this.value}}</label>
+                        <input type="checkbox" name="{{../key}}.{{this.value}}" {{checked this.selected}} />
                     </div>
                 {{/each}}
             </fieldset>
         {{/each}}
+
+        {{!-- Missing Choices --}}
+<!--        {{#each this.document.missingChoices}}-->
+<!--            <fieldset>-->
+<!--                <legend>{{this.label}}</legend>-->
+<!--                <p class="hint">Pick {{this.amount}} from the following choices.</p>-->
+
+<!--                {{!-- Choices --}}-->
+<!--                {{#each this.values }}-->
+<!--                    <div class="form-group">-->
+<!--                        <label>{{typeLabel ../category this}}</label>-->
+<!--                        <input type="checkbox" name="{{../key}}.{{this}}"/>-->
+<!--                    </div>-->
+<!--                {{/each}}-->
+<!--            </fieldset>-->
+<!--        {{/each}}-->
 
         {{!-- Save Changes --}}
         <footer>

@@ -7,7 +7,7 @@ export default class PcConfig extends ActorDocumentSheet {
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["black-flag", "sheet", "actor", "pc"],
-            tabs: [{navSelector: ".tabs", contentSelector: ".tabs-container", initial: "description"}],
+            tabs: [{navSelector: ".tabs", contentSelector: ".tabs-container", initial: "traits"}],
         });
     }
 
@@ -51,8 +51,16 @@ export default class PcConfig extends ActorDocumentSheet {
         });
 
         // Mark traits that have missingChoices as unfulfilled
-        context.document.system.traits.forEach(t => {
-            t.choicesUnfulfilled = t.missingChoices?.length > 0;
+        context.document.system.traitChoices.forEach(t => {
+            t.hasChoices = t.choices.length > 0;
+            for ( const choice of t.choices ) {
+                choice.values = choice.options.map(v => {
+                   return {
+                      value: v,
+                      selected: choice.chosenValues.includes(v)
+                   }
+                });
+            }
         });
 
         console.log("PC Config Data", context)
@@ -198,7 +206,7 @@ export default class PcConfig extends ActorDocumentSheet {
             content: ``,
             buttons: {
                 roll: {
-                    label: "Roll",
+                    label: game.i18n.localize("Roll"),
                     callback: async () => { 
                         const result = await new Roll("{4d6kh3,4d6kh3,4d6kh3,4d6kh3,4d6kh3,4d6kh3}").toMessage({flavor: "Your ability score rolls:"});
                         expandRoll(result);        
@@ -206,7 +214,7 @@ export default class PcConfig extends ActorDocumentSheet {
                     icon: '<i class="fa-solid fa-dice"></i>'
                 },
                 pointBuy: {
-                    label: "Point Buy",
+                    label: game.i18n.localize("Point Buy"),
                     callback: async () => { 
                         const j = await fromUuid("Compendium.black-flag.playtest-1-packet.bHbtZZkt9UyEMu2r");
                         j.sheet.render(true, {pageId: "goMWEmijPIYdsdTt", anchor: "point-buy"});
@@ -214,7 +222,7 @@ export default class PcConfig extends ActorDocumentSheet {
                     icon: `<i class="fa-solid fa-cart-shopping"></i>`
                 },
                 standard: {
-                    label: "Standard Array",
+                    label: game.i18n.localize("Standard Array"),
                     callback: () => {return new Dialog({title: "Standard Array", content: "<p>Assign one of the following numbers to each ability score: 16, 15, 13, 12, 10, and 8.</p>", buttons: {}}).render(true)},
                     icon: `<i class="fa-solid fa-standard-definition"></i>`
                 }
@@ -239,7 +247,7 @@ export default class PcConfig extends ActorDocumentSheet {
     _onChoicesIconClick(event) {
         event.preventDefault();
         const traitId = event.currentTarget.closest(".trait");
-        const trait = this.object.system.traits.find(t => t.id === traitId.dataset.id);
+        const trait = this.object.system.traitChoices.find(t => t.id === traitId.dataset.id);
         new ChoicesForm(this, trait).render(true);
     }
 }

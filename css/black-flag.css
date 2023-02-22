@@ -374,6 +374,10 @@
 }
 .black-flag .ace_editor {
   height: 375px;
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", "Droid Sans Mono", "Consolas", monospace !important;
+}
+.black-flag .ace_editor * {
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", "Droid Sans Mono", "Consolas", monospace !important;
 }
 .black-flag form {
   background-image: url("/systems/black-flag/system/sheets/assets/black-flag-mask-inverse.png");

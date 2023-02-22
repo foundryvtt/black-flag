@@ -195,9 +195,9 @@ const XP_TABLE = new Map([
  * @type {{label: string}}
  */
 const CHARACTER_BUILDER_MODES = {
-    all: {label: "All"},
-    any: {label: "Any"},
-    chooseOne: {label: "Choose One"},
+    ALL: {label: "All"},
+    ANY: {label: "Any"},
+    CHOOSE_ONE: {label: "Choose One"},
 }
 
 /**

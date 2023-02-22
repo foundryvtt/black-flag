@@ -108,23 +108,38 @@ export default class BlackFlagActor extends Actor {
         this.system.traits = [];
         if (this.system.background) {
             for (const trait of this.system.background.system.traits) {
-                trait.source = this.system.background.name;
-                trait.sourceId = this.system.background._id;
-                this.system.traits.push(trait);
+                const data = foundry.utils.duplicate(trait);
+                data.source = this.system.background.name;
+                data.sourceId = this.system.background._id;
+                this.system.traits.push(data);
             }
         }
         if (this.system.heritage) {
             for (const trait of this.system.heritage.system.traits) {
-                trait.source = this.system.heritage.name;
-                trait.sourceId = this.system.heritage._id;
-                this.system.traits.push(trait);
+                const data = foundry.utils.duplicate(trait);
+                data.source = this.system.heritage.name;
+                data.sourceId = this.system.heritage._id;
+                this.system.traits.push(data);
             }
         }
         if (this.system.lineage) {
             for (const trait of this.system.lineage.system.traits) {
-                trait.source = this.system.lineage.name;
-                trait.sourceId = this.system.lineage._id;
+                const data = foundry.utils.duplicate(trait);
+                data.source = this.system.lineage.name;
+                data.sourceId = this.system.lineage._id;
                 this.system.traits.push(trait);
+            }
+        }
+
+        // If the actor doesn't have traitChoices for some traits, add them
+        if ( foundry.utils.isEmpty(this.system.traitChoices) ) this.system.traitChoices = [];
+        for ( const trait of this.system.traits ) {
+            if ( !trait.id ) continue;
+            if ( !this.system.traitChoices.find(t => t.id === trait.id) ) {
+                this.system.traitChoices.push(foundry.utils.mergeObject(foundry.utils.duplicate(trait), {
+                    choices: [],
+                    choicesFulfilled: false
+                }));
             }
         }
 
@@ -235,10 +250,11 @@ export default class BlackFlagActor extends Actor {
      */
     prepareCharacterBuilderData() {
 
-        const currentChoices = this.system.traits.map(t => t.choices).filter(c => c).flat();
+        const currentChoices = this.system.traitChoices.map(t => t.choices).filter(c => c);
 
         // For each trait, parse the character builder data
-        for ( const trait of this.system.traits ) {
+        for ( const trait of this.system.traitChoices ) {
+            if ( foundry.utils.isEmpty(trait.choices) ) trait.choices = [];
             if ( !trait.builderInfo?.options ) {
                 trait.choicesFulfilled = null;
                 continue;
@@ -250,11 +266,11 @@ export default class BlackFlagActor extends Actor {
 
             // Determine what, if any, choices are missing
             for ( const [key, option] of Object.entries(trait.builderInfo.options) ) {
-
                 const amount = option.amount ?? 1;
 
                 // If the choice has already been made, skip it
                 const currentChoice = currentChoices.find(c => c.key === key);
+                if ( currentChoice ) currentChoice.category = option.category;
                 if ( currentChoice?.values.length === amount ) {
                     choicesMade++;
                     continue;
@@ -270,28 +286,36 @@ export default class BlackFlagActor extends Actor {
                     values = values.concat(Object.keys(category));
                 }
 
-                if ( !trait.missingChoices ) trait.missingChoices = [];
-                if ( trait.missingChoices.find(c => c.key === key) ) continue;
-                trait.missingChoices.push({
-                    key: key,
-                    label: option.label ?? key,
-                    values: values,
-                    amount: amount,
-                    category: option.category
-                });
+                const currentTraitChoice = trait.choices.find(c => c.key === key);
+                if ( currentTraitChoice ) {
+                    currentTraitChoice.label = option.label ?? key;
+                    currentTraitChoice.category = option.category;
+                    currentTraitChoice.options = values;
+                    currentTraitChoice.amount = amount;
+                }
+                else {
+                    trait.choices.push({
+                        key: key,
+                        label: option.label ?? key,
+                        category: option.category,
+                        options: values,
+                        chosenValues: [],
+                        amount: amount
+                    });
+                }
             }
 
             // Determine if all choices have been made
             switch ( mode ) {
-                case "all": {
+                case "ALL": {
                     trait.choicesFulfilled = (choicesMade === Object.keys(trait.builderInfo.options).length);
                     break;
                 }
-                case "any": {
+                case "ANY": {
                     trait.choicesFulfilled = (choicesMade > 0);
                     break;
                 }
-                case "chooseOne": {
+                case "CHOOSE_ONE": {
                     trait.choicesFulfilled = (choicesMade === 1);
                     break;
                 }
