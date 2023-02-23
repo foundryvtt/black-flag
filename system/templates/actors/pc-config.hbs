@@ -209,7 +209,7 @@
                         <div class="proficiencies flexcol">
                             <div class="tag-list flexrow">
                                 {{#each document.system.proficiencies}}
-                                    <div class="proficiency tag {{this.cssClass}}" data-value="{{this.value}}" data-source="{{this.source}}" data-tooltip="{{this.source}}">
+                                    <div class="proficiency tag {{this.sourceType}}" data-value="{{this.value}}" data-source="{{this.source}}" data-tooltip="{{this.source}}">
                                         {{this.label}}{{#if this.canDelete}} <i class="fas fa-delete-left" data-action="delete"></i>{{/if}}
                                     </div>
                                 {{/each}}
@@ -231,7 +231,7 @@
                         <div class="languages flexcol">
                             <div class="tag-list flexrow">
                                 {{#each document.system.languages}}
-                                    <div class="language tag {{this.cssClass}}" data-value="{{this.value}}" data-source="{{this.source}}" data-tooltip="{{this.source}}">
+                                    <div class="language tag {{this.sourceType}}" data-value="{{this.value}}" data-source="{{this.source}}" data-tooltip="{{this.source}}">
                                         {{this.label}}{{#if this.canDelete}} <i class="fas fa-delete-left" data-action="delete"></i>{{/if}}
                                     </div>
                                 {{/each}}

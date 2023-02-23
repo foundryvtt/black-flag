@@ -168,6 +168,7 @@ export default class BlackFlagSheet extends DocumentSheet {
         const proficiency = document.createElement("div");
         proficiency.classList.add(tagClass);
         proficiency.classList.add("tag");
+        proficiency.classList.add("manual");
         proficiency.dataset.value = value;
         proficiency.innerText = game.i18n.localize(configList[value].label);
 

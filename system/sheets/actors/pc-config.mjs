@@ -34,20 +34,16 @@ export default class PcConfig extends ActorDocumentSheet {
 
         // Mark values as innate
         context.document.system.proficiencies.forEach(p => {
-            p.cssClass = p.source === "Manual" ? "chosen" : "innate";
-            p.canDelete = p.source === "Manual";
+            p.canDelete = ["manual"].includes(p.sourceType);
         });
         context.document.system.resistances.forEach(r => {
-            r.cssClass = r.source === "Manual" ? "chosen" : "innate";
-            r.canDelete = r.source === "Manual";
+            r.canDelete = ["manual"].includes(r.sourceType);
         });
         context.document.system.languages.forEach(l => {
-            l.cssClass = l.source === "Manual" ? "chosen" : "innate";
-            l.canDelete = l.source === "Manual";
+            l.canDelete = ["manual"].includes(l.sourceType);
         });
         context.document.system.saveAdvantages.forEach(s => {
-            s.cssClass = s.source === "Manual" ? "chosen" : "innate";
-            s.canDelete = s.source === "Manual";
+            s.canDelete = ["manual"].includes(s.sourceType);
         });
 
         // Mark traits that have missingChoices as unfulfilled
@@ -76,19 +72,19 @@ export default class PcConfig extends ActorDocumentSheet {
         const update = super._getSubmitData(updateData);
 
         // Get the list of div.proficiency and add them to the update
-        const proficiencies = this.element.find("div.proficiency:not(.innate)");
+        const proficiencies = this.element.find("div.proficiency.manual");
         update["system.proficiencies"] = Array.from(proficiencies.map((i, proficiency) => proficiency.dataset.value));
 
         // Get the list of div.language and add them to the update
-        const languages = this.element.find("div.language:not(.innate)");
+        const languages = this.element.find("div.language.manual");
         update["system.languages"] = Array.from(languages.map((i, language) => language.dataset.value));
 
         // Get the list of div.resistance and add them to the update
-        const resistances = this.element.find("div.resistance:not(.innate)");
+        const resistances = this.element.find("div.resistance.manual");
         update["system.resistances"] = Array.from(resistances.map((i, resistance) => resistance.dataset.value));
 
         // Get the list of div.saveAdvantage and add them to the update
-        const saveAdvantages = this.element.find("div.saveAdvantage:not(.innate)");
+        const saveAdvantages = this.element.find("div.saveAdvantage.manual");
         update["system.saveAdvantages"] = Array.from(saveAdvantages.map((i, saveAdvantage) => saveAdvantage.dataset.value));
 
         // Get the list of a.talent-link and add them to the update

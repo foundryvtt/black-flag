@@ -245,7 +245,10 @@
   padding: 0px 5px;
 }
 .black-flag.actor.pc .tag.innate {
-  background: #702500;
+  background: #2f5388;
+}
+.black-flag.actor.pc .tag.manual {
+  background: #7f5b0d;
 }
 .black-flag.actor.pc .ability input {
   text-align: center;

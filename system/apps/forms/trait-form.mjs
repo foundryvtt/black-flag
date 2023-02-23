@@ -130,9 +130,6 @@ export default class TraitForm extends FormApplication {
             this.editor.setTheme("ace/theme/monokai");
             this.editor.session.setMode("ace/mode/json");
             this.editor.setOptions({
-                enableBasicAutocompletion: false,
-                enableLiveAutocompletion: false,
-                enableSnippets: false,
                 showLineNumbers: true,
                 tabSize: 2,
             });

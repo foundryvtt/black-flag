@@ -63,6 +63,7 @@ export default class BlackFlagActor extends Actor {
         this.prepareAbilityScoreMods();
         await this.prepareForeignDocumentData();
         this.prepareCharacterBuilderData();
+        this.prepareAdvantages();
     }
 
     /* -------------------------------------------- */
@@ -142,94 +143,6 @@ export default class BlackFlagActor extends Actor {
                 }));
             }
         }
-
-        // Setup current values with a source of "Manual"
-        this.system.proficiencies = this.system.proficiencies.map(p => {
-            let result = {};
-            result.source = "Manual";
-            result.value = p;
-            result.label = CONFIG.SYSTEM.PROFICIENCY_TYPES[p].label;
-            return result;
-        });
-        this.system.resistances = this.system.resistances.map(r => {
-            let result = {};
-            result.source = "Manual";
-            result.value = r;
-            result.label = CONFIG.SYSTEM.DAMAGE_TYPES[r].label;
-            return result;
-        });
-        this.system.languages = this.system.languages.map(l => {
-            let result = {};
-            result.source = "Manual";
-            result.value = l;
-            result.label = CONFIG.SYSTEM.LANGUAGE_TYPES[l].label;
-            return result;
-        });
-        this.system.saveAdvantages = this.system.saveAdvantages.map(s => {
-            let result = {};
-            result.source = "Manual";
-            result.value = s;
-            result.label = CONFIG.SYSTEM.SAVE_TYPES[s].label;
-            return result;
-        });
-
-        // Add innate values
-        for (const trait of this.system.traits) {
-            this.system.proficiencies = this.system.proficiencies.concat(trait.innate.proficiencies.map(p => {
-                const config = CONFIG.SYSTEM.PROFICIENCY_TYPES[p];
-                if (!config) {
-                    CONFIG.SYSTEM.log(`Unknown proficiency type ${p} in ${trait.source} (${trait.name})`);
-                    return;
-                }
-                let result = {};
-                result.source = trait.source + " (" + trait.name + ")";
-                result.value = p;
-                result.label = config.label;
-                return result;
-            }));
-            this.system.resistances = this.system.resistances.concat(trait.innate.resistances.map(r => {
-                const config = CONFIG.SYSTEM.DAMAGE_TYPES[r];
-                if (!config) {
-                    CONFIG.SYSTEM.log(`Unknown proficiency type ${r} in ${trait.source} (${trait.name})`);
-                    return;
-                }
-                let result = {};
-                result.source = trait.source + " (" + trait.name + ")";
-                result.value = r;
-                result.label = config.label;
-                return result;
-            }));
-            this.system.languages = this.system.languages.concat(trait.innate.languages.map(l => {
-                const config = CONFIG.SYSTEM.LANGUAGE_TYPES[l];
-                if (!config) {
-                    CONFIG.SYSTEM.log(`Unknown proficiency type ${l} in ${trait.source} (${trait.name})`);
-                    return;
-                }
-                let result = {};
-                result.source = trait.source + " (" + trait.name + ")";
-                result.value = l;
-                result.label = config.label;
-                return result;
-            }));
-            this.system.saveAdvantages = this.system.saveAdvantages.concat(trait.innate.saveAdvantages.map(s => {
-                const config = CONFIG.SYSTEM.SAVE_TYPES[s];
-                if (!config) {
-                    CONFIG.SYSTEM.log(`Unknown proficiency type ${s} in ${trait.source} (${trait.name})`);
-                    return;
-                }
-                let result = {};
-                result.source = trait.source + " (" + trait.name + ")";
-                result.value = s;
-                result.label = config.label;
-                return result;
-            }));
-        }
-
-        // Dedupe and sort the lists alphabetically
-        this.system.proficiencies = Array.from(new Set(this.system.proficiencies)).sort((a, b) => a.label.localeCompare(b.label));
-        this.system.resistances = Array.from(new Set(this.system.resistances)).sort((a, b) => a.label.localeCompare(b.label));
-        this.system.languages = Array.from(new Set(this.system.languages)).sort((a, b) => a.label.localeCompare(b.label));
-        this.system.saveAdvantages = Array.from(new Set(this.system.saveAdvantages)).sort((a, b) => a.label.localeCompare(b.label));
     }
 
     /* -------------------------------------------- */
@@ -238,7 +151,7 @@ export default class BlackFlagActor extends Actor {
      * Character Builder JSON is of the form:
      * ```json
      * {
-     *     "mode": "all",  // Default is "all"
+     *     "mode": "ALL",  // Default is "ALL"
      *     "options": {
      *       "additionalLanguage": {
      *         "amount": 1,   // Default is 1
@@ -250,15 +163,13 @@ export default class BlackFlagActor extends Actor {
      */
     prepareCharacterBuilderData() {
 
-        const currentChoices = this.system.traitChoices.map(t => t.choices).filter(c => c).flat();
-
         // For each trait, parse the character builder data
         for ( const trait of this.system.traitChoices ) {
             if ( foundry.utils.isEmpty(trait.choices) ) trait.choices = [];
             if ( !trait.builderInfo?.options ) {
                 trait.choicesFulfilled = true;
                 continue;
-            };
+            }
 
             const mode = trait.builderInfo.mode || "all";
             trait.builderInfo.mode = mode;
@@ -315,5 +226,88 @@ export default class BlackFlagActor extends Actor {
                 }
             }
         }
+    }
+
+    /* -------------------------------------------- */
+
+    prepareAdvantages() {
+
+        // Setup current values with a source of "Manual"
+        function mapManualData(types, value) {
+            let result = {};
+            result.source = "Manual";
+            result.sourceType = "manual";
+            result.value = value;
+            result.label = types[value].label;
+            return result;
+        }
+        this.system.proficiencies = this.system.proficiencies.map(p => mapManualData(CONFIG.SYSTEM.PROFICIENCY_TYPES, p));
+        this.system.resistances = this.system.resistances.map(r => mapManualData(CONFIG.SYSTEM.DAMAGE_TYPES, r));
+        this.system.languages = this.system.languages.map(l => mapManualData(CONFIG.SYSTEM.LANGUAGE_TYPES, l));
+        this.system.saveAdvantages = this.system.saveAdvantages.map(s => mapManualData(CONFIG.SYSTEM.SAVE_TYPES, s));
+
+        // Add innate values
+        function mapInnate(trait, types, innate) {
+            const config = types[innate];
+            if (!config) {
+                CONFIG.SYSTEM.log(`Unknown type ${innate} in ${trait.source} (${trait.name})`);
+                return;
+            }
+            let result = {};
+            result.source = trait.source + " (" + trait.name + ")";
+            result.sourceType = "innate";
+            result.value = innate;
+            result.label = config.label;
+            return result;
+        }
+        for (const trait of this.system.traits) {
+            this.system.proficiencies = this.system.proficiencies.concat(trait.innate.proficiencies
+                .map(p => mapInnate(trait, CONFIG.SYSTEM.PROFICIENCY_TYPES, p)));
+
+            this.system.resistances = this.system.resistances.concat(trait.innate.resistances
+                .map(r => mapInnate(trait, CONFIG.SYSTEM.DAMAGE_TYPES, r)));
+
+            this.system.languages = this.system.languages.concat(trait.innate.languages
+                .map(l => mapInnate(trait, CONFIG.SYSTEM.LANGUAGE_TYPES, l)));
+
+            this.system.saveAdvantages = this.system.saveAdvantages.concat(trait.innate.saveAdvantages
+                .map(s => mapInnate(trait, CONFIG.SYSTEM.SAVE_TYPES, s)));
+        }
+
+        // Add trait choices
+        function reduceTraitChoice(trait, category, choice, advantages) {
+            if ( choice.category !== category) return advantages;
+            for ( const value of choice.chosenValues ) {
+                const config = CONFIG.SYSTEM[category][value];
+                if (!config) {
+                    CONFIG.SYSTEM.log(`Unknown type ${value} in ${trait.source} (${trait.name})`);
+                    continue;
+                }
+                let result = {};
+                result.source = trait.source + " (" + trait.name + ")";
+                result.sourceType = "choice";
+                result.value = value;
+                result.label = config.label;
+                advantages.push(result);
+            }
+            return advantages;
+        }
+        for (const trait of this.system.traitChoices) {
+            this.system.proficiencies = this.system.proficiencies.concat(trait.choices
+                .reduce( (advantages, p) => reduceTraitChoice(trait, "PROFICIENCY_TYPES", p, advantages), []));
+            this.system.resistances = this.system.resistances.concat(trait.choices
+                .reduce( (advantages, r) => reduceTraitChoice(trait, "DAMAGE_TYPES", r, advantages), []));
+            this.system.languages = this.system.languages.concat(trait.choices
+                .reduce( (advantages, l) => reduceTraitChoice(trait, "LANGUAGE_TYPES", l, advantages), []));
+            this.system.saveAdvantages = this.system.saveAdvantages.concat(trait.choices
+                .reduce( (advantages, s) => reduceTraitChoice(trait, "SAVE_TYPES", s, advantages), []));
+        }
+
+        // Dedupe and sort the lists alphabetically
+        this.system.proficiencies = Array.from(new Set(this.system.proficiencies)).sort((a, b) => a.label.localeCompare(b.label));
+        this.system.resistances = Array.from(new Set(this.system.resistances)).sort((a, b) => a.label.localeCompare(b.label));
+        this.system.languages = Array.from(new Set(this.system.languages)).sort((a, b) => a.label.localeCompare(b.label));
+        this.system.saveAdvantages = Array.from(new Set(this.system.saveAdvantages)).sort((a, b) => a.label.localeCompare(b.label));
+
     }
 }
