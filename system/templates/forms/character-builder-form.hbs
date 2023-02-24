@@ -2,9 +2,8 @@
 
     {{!-- Main Content --}}
     <section class="main flexcol">
-        <img class="cover" src="/systems/black-flag/system/sheets/assets/bf-banner-mask-wip1.webp"/>
+        <img class="cover" src="/systems/black-flag/system/sheets/assets/bf-banner-mask-wip3.webp"/>
         <div class="info">
-            <h1>{{localize "Character Builder"}}</h1>
             <ul class="steps flexcol">
                 {{!-- Lineage --}}
                 <li class="step flexrow lineages {{#if this.lineageCompleted}}completed{{/if}}">
@@ -14,11 +13,8 @@
                         <img class="icon" src="/systems/black-flag/system/sheets/assets/lineages-icon.png"/>
                     {{/if}}
                     <div class="step-info flexcol">
-                        <h2>{{localize "Lineage"}}</h2>
+                        <h2>{{localize "Lineage"}}{{#if this.lineageCompleted}}: {{this.document.system.lineage.name}}{{/if}}</h2>
                         <p>{{localize "Your lineage dictates certain fantastical lineage traits your character has because of their ancestry."}}</p>
-                        {{#if this.lineageCompleted}}
-                            <p>{{localize "You have chosen the"}} {{this.document.system.lineage.name}} {{localize "Lineage"}}.</p>
-                        {{/if}}
                     </div>
                 </li>
 
@@ -30,11 +26,8 @@
                         <img class="icon" src="/systems/black-flag/system/sheets/assets/heritages-icon.png"/>
                     {{/if}}
                     <div class="step-info flexcol">
-                        <h2>{{localize "Heritage"}}</h2>
+                        <h2>{{localize "Heritage"}}{{#if this.heritageCompleted}}: {{this.document.system.heritage.name}}{{/if}}</h2>
                         <p>{{localize "Your heritage dictates certain abilities you have because of your connection to a particular group or society."}}</p>
-                        {{#if this.heritageCompleted}}
-                            <p>{{localize "You have chosen the"}} {{this.document.system.heritage.name}} {{localize "Heritage"}}.</p>
-                        {{/if}}
                     </div>
                 </li>
 
@@ -46,11 +39,8 @@
                         <img class="icon" src="/systems/black-flag/system/sheets/assets/backgrounds-icon.png"/>
                     {{/if}}
                     <div class="step-info flexcol">
-                        <h2>{{localize "Background"}}</h2>
+                        <h2>{{localize "Background"}}{{#if this.backgroundCompleted}}: {{this.document.system.background.name}}{{/if}}</h2>
                         <p>{{localize "Your choice of background helps define your character’s personal history  prior to taking up the mantle of an adventurer."}}</p>
-                        {{#if this.backgroundCompleted}}
-                            <p>{{localize "You have chosen the"}} {{this.document.system.background.name}} {{localize "Background"}}.</p>
-                        {{/if}}
                     </div>
                 </li>
             </ul>

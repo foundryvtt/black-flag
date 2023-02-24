@@ -1,8 +1,8 @@
 {{#each this.options}}
 <section class="option flexcol">
-    <img class="cover" src="/systems/black-flag/system/sheets/assets/bf-banner-mask-wip1.webp" style="background-image: url('{{this.img}}')" />
+    <img class="cover" src="/systems/black-flag/system/sheets/assets/bf-banner-mask-wip3.webp" style="background-image: url('{{this.img}}')" />
+    <h1 class="name">{{this.name}}</h1>
     <div class="info">
-        <h1 class="name">{{this.name}}</h1>
         <div class="description">{{{this.system.description}}}</div>
 
         {{!-- Alignment --}}
@@ -23,7 +23,7 @@
             {{#each this.system.traits}}
                 <div class="form-group stacked trait" data-id="{{this.id}}">
                     <div class="flexrow">
-                        <img class="trait-img" src="{{this.img}}" alt="{{this.name}}" data-tooltip="{{this.name}}" width="80" height="80"/>
+                        <img class="trait-img" src="{{this.img}}" alt="{{this.name}}" data-tooltip="{{this.name}}" width="70" height="70"/>
                         <div class="flexcol">
                             <label>{{this.name}}</label>
                             <p>{{{this.description}}}</p>

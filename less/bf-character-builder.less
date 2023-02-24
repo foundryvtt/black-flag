@@ -10,21 +10,28 @@
 
   h1 {
     text-align: center;
+    font-weight: bold;
   }
 
   .cover {
     background-size: cover;
     width: 400px;
-    height: 400px;
+    height: 512px;
     flex: 0 auto;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
   }
 
   .info {
     padding: 10px;
-    border: 3px var(--character-builder-dark-font-color) solid;
     height: 100%;
-    border-top: none;
     overflow-y: scroll;
+  }
+
+  .name {
+    margin: -5px 10px 5px 10px;
   }
 
   .main {
@@ -33,6 +40,9 @@
     height: 955px;
     background: linear-gradient(180deg, #190a11 0%, #634368 100%);
     color: var(--character-builder-light-font-color);
+
+    border: 3px var(--character-builder-dark-font-color) solid;
+    border-top: none;
 
     .cover {
       background-image: url("/systems/black-flag/system/sheets/assets/character-builder-cover.png");
@@ -43,8 +53,10 @@
     }
 
     .done {
-      background: linear-gradient(90deg, #C6B8A5 0%, #D1C2AE 100%);
-      color: var(--character-builder-dark-font-color);
+      background-color: #1D0B1F;
+      border: 1px solid #3B2031;
+      color: var(--character-builder-light-font-color);
+      font-weight: bolder;
     }
 
     .steps {
@@ -56,6 +68,10 @@
         border-radius: 5px;
         padding: 5px;
         cursor: pointer;
+
+        p {
+          margin: 0;
+        }
 
         &:hover, &.active {
           background-color: #2f182a;
@@ -73,8 +89,8 @@
 
         .icon {
           flex: 0 auto;
-          width: 75px;
-          height: 75px;
+          width: 85px;
+          height: 85px;
           margin-right: 10px;
           align-self: center;
         }
@@ -97,6 +113,8 @@
       background: linear-gradient(90deg, #C6B8A5 0%, #D1C2AE 100%);
       color: var(--character-builder-dark-font-color);
       margin-left: 20px;
+      border: 3px var(--character-builder-dark-font-color) solid;
+      border-top: none;
 
       >* {
         flex: 0 auto;
