@@ -115,13 +115,13 @@ export default class ChoicesForm extends FormApplication {
         }
 
         if ( disableOtherFieldsets ) {
-            Array.from(fieldsets).filter(f => !fieldsetsWithChoicesMade.includes(f)).forEach(f => {
+            Array.from(fieldsets).filter(f => !fieldsetsWithChoicesMade.includes(f) && (f !== fieldset)).forEach(f => {
                 const checkboxes = f.querySelectorAll("input[type=checkbox]");
                 Array.from(checkboxes).filter(c => !c.checked).forEach(c => c.disabled = true);
             });
         }
         else {
-            Array.from(fieldsets).forEach(f => {
+            Array.from(fieldsets).filter(f => f !== fieldset).forEach(f => {
                 const checkboxes = f.querySelectorAll("input[type=checkbox]");
                 Array.from(checkboxes).filter(c => c.disabled).forEach(c => c.disabled = false);
             });

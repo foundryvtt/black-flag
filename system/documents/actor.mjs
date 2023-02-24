@@ -143,6 +143,9 @@ export default class BlackFlagActor extends Actor {
                 }));
             }
         }
+
+        // Filter out any trait choices that are no in system.traits
+        this.system.traitChoices = this.system.traitChoices.filter(t => this.system.traits.find(t2 => t2.id === t.id));
     }
 
     /* -------------------------------------------- */
@@ -182,9 +185,9 @@ export default class BlackFlagActor extends Actor {
                 // Build the list of choices
                 let values = option.values ?? [];
 
-                // If a category is specified and values is empty, add all the values from that category
-                if ( option.category && (values.length === 0) ) {
-                    const category = CONFIG.SYSTEM[option.category];
+                // If a valuesType is specified and values is empty, add all the values from that category
+                if ( option.valuesType && (values.length === 0) ) {
+                    const category = CONFIG.SYSTEM[option.valuesType];
                     if ( !category ) continue;
                     values = values.concat(Object.keys(category));
                 }

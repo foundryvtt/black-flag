@@ -20,6 +20,9 @@ const SKILL_TYPES = {
     religion: {label: "Religion"},
     survival: {label: "Survival"},
     perception: {label: "Perception"},
+    animalHandling: {label: "Animal Handling"},
+    athletics: {label: "Athletics"},
+    medicine: {label: "Medicine"},
 }
 
 /**
@@ -61,7 +64,8 @@ const WEAPON_TYPES = {
  * @type {{label: string}}
  */
 const VEHICLE_TYPES = {
-    boat: {label: "[EXAMPLE] Boat"},
+    water: {label: "Water Vehicles"},
+    land: {label: "Land Vehicles"},
 }
 
 /**
