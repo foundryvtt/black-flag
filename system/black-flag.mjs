@@ -8,6 +8,7 @@ Hooks.on('devModeReady', ({registerPackageDebugFlag}) => registerPackageDebugFla
 Hooks.on("renderSettings", renderSettings);
 
 Hooks.on("ready", () => {
+    return;
     if ( !CONFIG.SYSTEM.isDebugging() ) return;
     CONFIG.SYSTEM.log("Opening Character Builder Form");
     const actor = game.actors.get("fPh04RmCw7dWhGgq");
