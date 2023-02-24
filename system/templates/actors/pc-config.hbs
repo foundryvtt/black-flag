@@ -165,6 +165,10 @@
                     {{selectOptions ALIGNMENT_TYPES selected=document.system.alignment}}
                 </select>
             </div>
+
+            <button class="character-builder" data-action="character-builder" data-tooltip="{{localize "Character Builder"}}">
+                <i class="fa-duotone fa-hammer-crash"></i>
+            </button>
         </fieldset>
 
         {{!-- Character Sheet Navigation --}}
@@ -286,8 +290,4 @@
             </div>
         </section>
    </section>
-
-    <footer>
-        <button type="submit">{{localize "Save"}}</button>
-    </footer>
 </form>

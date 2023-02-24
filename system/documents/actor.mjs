@@ -128,7 +128,7 @@ export default class BlackFlagActor extends Actor {
                 const data = foundry.utils.duplicate(trait);
                 data.source = this.system.lineage.name;
                 data.sourceId = this.system.lineage._id;
-                this.system.traits.push(trait);
+                this.system.traits.push(data);
             }
         }
 
@@ -144,7 +144,7 @@ export default class BlackFlagActor extends Actor {
             }
         }
 
-        // Filter out any trait choices that are no in system.traits
+        // Filter out any trait choices that are not in system.traits
         this.system.traitChoices = this.system.traitChoices.filter(t => this.system.traits.find(t2 => t2.id === t.id));
     }
 

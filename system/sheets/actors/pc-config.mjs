@@ -1,5 +1,6 @@
 import ActorDocumentSheet from "./actor-config.mjs";
 import ChoicesForm from "../../apps/forms/choices-form.mjs";
+import CharacterBuilderForm from "../../apps/forms/character-builder.mjs";
 
 export default class PcConfig extends ActorDocumentSheet {
 
@@ -8,6 +9,9 @@ export default class PcConfig extends ActorDocumentSheet {
         return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["black-flag", "sheet", "actor", "pc"],
             tabs: [{navSelector: ".tabs", contentSelector: ".tabs-container", initial: "traits"}],
+            closeOnSubmit: false,
+            submitOnChange: true,
+            submitOnClose: true,
         });
     }
 
@@ -111,6 +115,7 @@ export default class PcConfig extends ActorDocumentSheet {
         html.find("a[data-action='roll-ability']").on('click', this._onRollAbility.bind(this));
         html.find("a[data-action='important-info']").on('click', this._onImportantInfo.bind(this));
         html.find(".choices-icon").on('click', this._onChoicesIconClick.bind(this));
+        html.find(".character-builder").on('click', this._onCharacterBuilderClick.bind(this));
     }
 
     /* -------------------------------------------- */
@@ -246,5 +251,13 @@ export default class PcConfig extends ActorDocumentSheet {
         const traitId = event.currentTarget.closest(".trait");
         const trait = this.object.system.traitChoices.find(t => t.id === traitId.dataset.id);
         new ChoicesForm(this, trait).render(true);
+    }
+
+    /* -------------------------------------------- */
+
+    _onCharacterBuilderClick(event) {
+        event.preventDefault();
+        const builder = new CharacterBuilderForm(this.object);
+        builder.render(true);
     }
 }

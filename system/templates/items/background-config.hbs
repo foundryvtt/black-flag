@@ -16,6 +16,12 @@
             {{editor descriptionHTML target="system.description" button=false editable=editable engine="prosemirror" collaborate=false}}
         </div>
 
+        {{!-- Talent Description --}}
+        <div class="form-group stacked" data-name="system.talentDescription">
+            <label>{{ localize "Talent Description" }}</label>
+            <textarea name="system.talentDescription" rows="4" placeholder="Talent Description">{{document.system.talentDescription}}</textarea>
+        </div>
+
         {{!-- Talents --}}
         <div class="form-group stacked" data-name="system.talents">
             <label>{{ localize "Talent Options" }}</label>

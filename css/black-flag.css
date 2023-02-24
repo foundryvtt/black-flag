@@ -274,6 +274,12 @@
   padding: 0 10px;
   margin: 5px 0;
 }
+.black-flag.actor.pc .character-builder {
+  flex: 0;
+  height: 38px;
+  align-self: center;
+  font-size: large;
+}
 .black-flag.actor.pc .talents .talent {
   flex: 0 0 auto;
   text-align: center;
@@ -353,6 +359,130 @@
 .black-flag.actor.pc .tabs-container fieldset {
   background: #FFF;
   border-top: 0;
+}
+.black-flag.actor.characterBuilder {
+  --character-builder-light-font-color: #ECD9DA;
+  --character-builder-dark-font-color: #3B2031;
+}
+.black-flag.actor.characterBuilder .window-content {
+  background: url(../ui/denim075.png) repeat !important;
+  overflow: hidden;
+}
+.black-flag.actor.characterBuilder h1 {
+  text-align: center;
+  font-weight: bold;
+}
+.black-flag.actor.characterBuilder .cover {
+  background-size: cover;
+  width: 400px;
+  height: 512px;
+  flex: 0 auto;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: none;
+}
+.black-flag.actor.characterBuilder .info {
+  padding: 10px;
+  height: 100%;
+  overflow-y: scroll;
+}
+.black-flag.actor.characterBuilder .name {
+  margin: -5px 10px 5px 10px;
+}
+.black-flag.actor.characterBuilder .main {
+  flex: 0 auto;
+  width: 400px;
+  height: 955px;
+  background: linear-gradient(180deg, #190a11 0%, #634368 100%);
+  color: var(--character-builder-light-font-color);
+  border: 3px var(--character-builder-dark-font-color) solid;
+  border-top: none;
+}
+.black-flag.actor.characterBuilder .main .cover {
+  background-image: url("/systems/black-flag/system/sheets/assets/character-builder-cover.webp");
+}
+.black-flag.actor.characterBuilder .main > * {
+  flex: 0 auto;
+}
+.black-flag.actor.characterBuilder .main .done {
+  background-color: #1D0B1F;
+  border: 1px solid #3B2031;
+  color: var(--character-builder-light-font-color);
+  font-weight: bolder;
+}
+.black-flag.actor.characterBuilder .main .steps {
+  padding: 0;
+}
+.black-flag.actor.characterBuilder .main .steps .step {
+  background-color: #1D0B1F;
+  border: 1px solid #3B2031;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+.black-flag.actor.characterBuilder .main .steps .step p {
+  margin: 0;
+}
+.black-flag.actor.characterBuilder .main .steps .step:hover,
+.black-flag.actor.characterBuilder .main .steps .step.active {
+  background-color: #2f182a;
+  border: 1px solid #5e3a4d;
+}
+.black-flag.actor.characterBuilder .main .steps .step:not(:last-child) {
+  margin-bottom: 5px;
+}
+.black-flag.actor.characterBuilder .main .steps .step .icon {
+  flex: 0 auto;
+  width: 85px;
+  height: 85px;
+  margin-right: 10px;
+  align-self: center;
+}
+.black-flag.actor.characterBuilder .options {
+  flex: 3;
+  overflow-x: scroll;
+  max-width: 1260px;
+  flex-wrap: nowrap;
+  height: 955px;
+}
+.black-flag.actor.characterBuilder .options .option {
+  flex: 0 auto;
+  flex-shrink: 0;
+  width: 400px;
+  height: 955px;
+  background: linear-gradient(90deg, #C6B8A5 0%, #D1C2AE 100%);
+  color: var(--character-builder-dark-font-color);
+  margin-left: 20px;
+  border: 3px var(--character-builder-dark-font-color) solid;
+  border-top: none;
+}
+.black-flag.actor.characterBuilder .options .option > * {
+  flex: 0 auto;
+}
+.black-flag.actor.characterBuilder .options .option fieldset {
+  border-color: var(--character-builder-dark-font-color);
+}
+.black-flag.actor.characterBuilder .options .option fieldset legend {
+  font-weight: bold;
+}
+.black-flag.actor.characterBuilder .options .option .traits {
+  margin-top: 15px;
+}
+.black-flag.actor.characterBuilder .options .option .traits .trait {
+  margin-bottom: 10px;
+}
+.black-flag.actor.characterBuilder .options .option .traits .trait .trait-img {
+  flex: 0 auto;
+  margin: 0px 5px 0px 5px;
+}
+.black-flag.actor.characterBuilder .options .option .traits .trait label {
+  font-weight: bold;
+}
+.black-flag.actor.characterBuilder .options .option .choose {
+  color: var(--character-builder-light-font-color);
+  background-color: #1D0B1F;
+  border: 1px solid #3B2031;
 }
 .black-flag div,
 .black-flag p,

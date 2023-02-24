@@ -1,0 +1,155 @@
+.black-flag.actor.characterBuilder {
+
+  --character-builder-light-font-color: #ECD9DA;
+  --character-builder-dark-font-color: #3B2031;
+
+  .window-content {
+    background: url(../ui/denim075.png) repeat !important;
+    overflow: hidden;
+  }
+
+  h1 {
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .cover {
+    background-size: cover;
+    width: 400px;
+    height: 512px;
+    flex: 0 auto;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+  }
+
+  .info {
+    padding: 10px;
+    height: 100%;
+    overflow-y: scroll;
+  }
+
+  .name {
+    margin: -5px 10px 5px 10px;
+  }
+
+  .main {
+    flex: 0 auto;
+    width: 400px;
+    height: 955px;
+    background: linear-gradient(180deg, #190a11 0%, #634368 100%);
+    color: var(--character-builder-light-font-color);
+
+    border: 3px var(--character-builder-dark-font-color) solid;
+    border-top: none;
+
+    .cover {
+      background-image: url("/systems/black-flag/system/sheets/assets/character-builder-cover.webp");
+    }
+
+    >* {
+      flex: 0 auto;
+    }
+
+    .done {
+      background-color: #1D0B1F;
+      border: 1px solid #3B2031;
+      color: var(--character-builder-light-font-color);
+      font-weight: bolder;
+    }
+
+    .steps {
+      padding: 0;
+
+      .step {
+        background-color: #1D0B1F;
+        border: 1px solid #3B2031;
+        border-radius: 5px;
+        padding: 5px;
+        cursor: pointer;
+
+        p {
+          margin: 0;
+        }
+
+        &:hover, &.active {
+          background-color: #2f182a;
+          border: 1px solid #5e3a4d;
+        }
+
+        //&.completed {
+        //  background-color: #563849;
+        //  border: 1px solid #342626;
+        //}
+
+        &:not(:last-child) {
+          margin-bottom: 5px;
+        }
+
+        .icon {
+          flex: 0 auto;
+          width: 85px;
+          height: 85px;
+          margin-right: 10px;
+          align-self: center;
+        }
+      }
+    }
+  }
+
+  .options {
+    flex: 3;
+    overflow-x: scroll;
+    max-width: 1260px;
+    flex-wrap: nowrap;
+    height: 955px;
+
+    .option {
+      flex: 0 auto;
+      flex-shrink: 0;
+      width: 400px;
+      height: 955px;
+      background: linear-gradient(90deg, #C6B8A5 0%, #D1C2AE 100%);
+      color: var(--character-builder-dark-font-color);
+      margin-left: 20px;
+      border: 3px var(--character-builder-dark-font-color) solid;
+      border-top: none;
+
+      >* {
+        flex: 0 auto;
+      }
+
+      fieldset {
+        border-color: var(--character-builder-dark-font-color);
+
+        legend {
+          font-weight: bold;
+        }
+      }
+
+      .traits {
+        margin-top: 15px;
+
+        .trait {
+          margin-bottom: 10px;
+
+          .trait-img {
+            flex: 0 auto;
+            margin: 0px 5px 0px 5px;
+          }
+
+          label {
+            font-weight: bold;
+          }
+        }
+      }
+
+      .choose {
+        color: var(--character-builder-light-font-color);
+        background-color: #1D0B1F;
+        border: 1px solid #3B2031;
+      }
+    }
+  }
+}
