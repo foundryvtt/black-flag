@@ -9,6 +9,9 @@ export default class PcConfig extends ActorDocumentSheet {
         return foundry.utils.mergeObject(super.defaultOptions, {
             classes: ["black-flag", "sheet", "actor", "pc"],
             tabs: [{navSelector: ".tabs", contentSelector: ".tabs-container", initial: "traits"}],
+            closeOnSubmit: false,
+            submitOnChange: true,
+            submitOnClose: true,
         });
     }
 
