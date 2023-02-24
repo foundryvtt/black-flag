@@ -38,4 +38,44 @@ export default class CharacterBuilderForm extends FormApplication {
         context.TALENTS = CONFIG.SYSTEM.TALENT_DOCUMENTS;
         return context;
     }
+
+    /* -------------------------------------------- */
+
+    /** @override */
+    activateListeners(html) {
+        super.activateListeners(html);
+        html.find(".lineages").click(async (event) => await this._onStepChange(event, "lineage"));
+        html.find(".heritages").click(async (event) => await this._onStepChange(event, "heritage"));
+        html.find(".backgrounds").click(async (event) => await this._onStepChange(event, "background"));
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * When the current Character Builder step changes, replace all the section.options with the new step's options
+     * @param {Event} event     The originating click event
+     * @param {string} step     The new step to change to
+     * @private
+     */
+    async _onStepChange(event, step) {
+        event.preventDefault();
+
+        // Build the new step's options
+        const stepOptions = CONFIG.SYSTEM[`${step.toUpperCase()}_DOCUMENTS`];
+        // Use the template to build the new options
+        const template = `systems/black-flag/system/templates/forms/character-builder-option.hbs`;
+        const html = await renderTemplate(template, {options: stepOptions});
+
+        // Replace the current step's options with the new ones
+        const stepOptionsContainer = this.element.find(`.options`);
+        stepOptionsContainer.empty();
+        stepOptionsContainer.append(html);
+
+        // Update the form's width to 'auto' to allow the new options to be displayed
+        this.element.css("width", "auto");
+
+        // Set this step as the active step
+        this.element.find(".step").removeClass("active");
+        event.currentTarget.classList.add("active");
+    }
 }

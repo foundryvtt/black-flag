@@ -7,6 +7,10 @@
     background: url(../ui/denim075.png) repeat !important;
   }
 
+  h1 {
+    text-align: center;
+  }
+
   .cover {
     background-image: url("/systems/black-flag/system/sheets/assets/character-builder-cover.png");
     background-size: cover;
@@ -23,10 +27,6 @@
 
     .cover {
       background-image: url("/systems/black-flag/system/sheets/assets/character-builder-cover.png");
-    }
-
-    h1 {
-      text-align: center;
     }
 
     >* {
@@ -66,13 +66,21 @@
 
   .options {
     flex: 3;
+    overflow-x: scroll;
+    max-width: 1200px;
+    flex-wrap: nowrap;
 
     .option {
       flex: 0 auto;
+      flex-shrink: 0;
       width: 400px;
       background: linear-gradient(90deg, #C6B8A5 0%, #D1C2AE 100%);
       color: var(--character-builder-dark-font-color);
       margin-left: 20px;
+
+      >* {
+        flex: 0 auto;
+      }
     }
   }
 }

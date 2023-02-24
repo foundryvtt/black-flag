@@ -367,6 +367,9 @@
 .black-flag.actor.characterBuilder .window-content {
   background: url(../ui/denim075.png) repeat !important;
 }
+.black-flag.actor.characterBuilder h1 {
+  text-align: center;
+}
 .black-flag.actor.characterBuilder .cover {
   background-image: url("/systems/black-flag/system/sheets/assets/character-builder-cover.png");
   background-size: cover;
@@ -382,9 +385,6 @@
 }
 .black-flag.actor.characterBuilder .main .cover {
   background-image: url("/systems/black-flag/system/sheets/assets/character-builder-cover.png");
-}
-.black-flag.actor.characterBuilder .main h1 {
-  text-align: center;
 }
 .black-flag.actor.characterBuilder .main > * {
   flex: 0 auto;
@@ -417,13 +417,20 @@
 }
 .black-flag.actor.characterBuilder .options {
   flex: 3;
+  overflow-x: scroll;
+  max-width: 1200px;
+  flex-wrap: nowrap;
 }
 .black-flag.actor.characterBuilder .options .option {
   flex: 0 auto;
+  flex-shrink: 0;
   width: 400px;
   background: linear-gradient(90deg, #C6B8A5 0%, #D1C2AE 100%);
   color: var(--character-builder-dark-font-color);
   margin-left: 20px;
+}
+.black-flag.actor.characterBuilder .options .option > * {
+  flex: 0 auto;
 }
 .black-flag div,
 .black-flag p,
