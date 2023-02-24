@@ -6,28 +6,57 @@
         <div class="info">
             <h1>{{localize "Character Builder"}}</h1>
             <ul class="steps flexcol">
-                <li class="step flexrow lineages">
-                    <img class="icon" src="/systems/black-flag/system/sheets/assets/lineages-icon.png"/>
+                {{!-- Lineage --}}
+                <li class="step flexrow lineages {{#if this.lineageCompleted}}completed{{/if}}">
+                    {{#if this.lineageCompleted}}
+                        <img class="icon" src="{{this.document.system.lineage.img}}"/>
+                    {{else}}
+                        <img class="icon" src="/systems/black-flag/system/sheets/assets/lineages-icon.png"/>
+                    {{/if}}
                     <div class="step-info flexcol">
                         <h2>{{localize "Lineage"}}</h2>
                         <p>{{localize "Your lineage dictates certain fantastical lineage traits your character has because of their ancestry."}}</p>
+                        {{#if this.lineageCompleted}}
+                            <p>{{localize "You have chosen the"}} {{this.document.system.lineage.name}} {{localize "Lineage"}}.</p>
+                        {{/if}}
                     </div>
                 </li>
-                <li class="step flexrow heritages">
-                    <img class="icon" src="/systems/black-flag/system/sheets/assets/heritages-icon.png"/>
+
+                {{!-- Heritage --}}
+                <li class="step flexrow heritages {{#if this.heritageCompleted}}completed{{/if}}">
+                    {{#if this.heritageCompleted}}
+                        <img class="icon" src="{{this.document.system.heritage.img}}"/>
+                    {{else}}
+                        <img class="icon" src="/systems/black-flag/system/sheets/assets/heritages-icon.png"/>
+                    {{/if}}
                     <div class="step-info flexcol">
                         <h2>{{localize "Heritage"}}</h2>
                         <p>{{localize "Your heritage dictates certain abilities you have because of your connection to a particular group or society."}}</p>
+                        {{#if this.heritageCompleted}}
+                            <p>{{localize "You have chosen the"}} {{this.document.system.heritage.name}} {{localize "Heritage"}}.</p>
+                        {{/if}}
                     </div>
                 </li>
-                <li class="step flexrow backgrounds">
-                    <img class="icon" src="/systems/black-flag/system/sheets/assets/backgrounds-icon.png"/>
+
+                {{!-- Background --}}
+                <li class="step flexrow backgrounds {{#if this.backgroundCompleted}}completed{{/if}}">
+                    {{#if this.backgroundCompleted}}
+                        <img class="icon" src="{{this.document.system.background.img}}"/>
+                    {{else}}
+                        <img class="icon" src="/systems/black-flag/system/sheets/assets/backgrounds-icon.png"/>
+                    {{/if}}
                     <div class="step-info flexcol">
                         <h2>{{localize "Background"}}</h2>
-                        <p>{{localize "Your choice of background helps define your character’s personal history prior to taking up the mantle of an adventurer."}}</p>
+                        <p>{{localize "Your choice of background helps define your character’s personal history  prior to taking up the mantle of an adventurer."}}</p>
+                        {{#if this.backgroundCompleted}}
+                            <p>{{localize "You have chosen the"}} {{this.document.system.background.name}} {{localize "Background"}}.</p>
+                        {{/if}}
                     </div>
                 </li>
             </ul>
+
+            {{!-- Done Button --}}
+            <button class="done" data-action="done">{{localize "Done"}}</button>
         </div>
     </section>
 

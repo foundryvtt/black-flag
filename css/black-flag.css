@@ -397,6 +397,10 @@
 .black-flag.actor.characterBuilder .main > * {
   flex: 0 auto;
 }
+.black-flag.actor.characterBuilder .main .done {
+  background: linear-gradient(90deg, #C6B8A5 0%, #D1C2AE 100%);
+  color: var(--character-builder-dark-font-color);
+}
 .black-flag.actor.characterBuilder .main .steps {
   padding: 0;
 }
@@ -459,6 +463,11 @@
 }
 .black-flag.actor.characterBuilder .options .option .traits .trait label {
   font-weight: bold;
+}
+.black-flag.actor.characterBuilder .options .option .choose {
+  color: var(--character-builder-light-font-color);
+  background-color: #1D0B1F;
+  border: 1px solid #3B2031;
 }
 .black-flag div,
 .black-flag p,

@@ -4,6 +4,9 @@
     <div class="info">
         <h1 class="name">{{this.name}}</h1>
         <div class="description">{{{this.system.description}}}</div>
+
+        {{!-- Choose Button --}}
+        <button class="choose" data-id="{{this._id}}" data-type="heritage" data-action="choose">{{localize "Choose"}}</button>
     </div>
 </section>
 {{/each}}

@@ -42,6 +42,11 @@
       flex: 0 auto;
     }
 
+    .done {
+      background: linear-gradient(90deg, #C6B8A5 0%, #D1C2AE 100%);
+      color: var(--character-builder-dark-font-color);
+    }
+
     .steps {
       padding: 0;
 
@@ -56,6 +61,11 @@
           background-color: #2f182a;
           border: 1px solid #5e3a4d;
         }
+
+        //&.completed {
+        //  background-color: #563849;
+        //  border: 1px solid #342626;
+        //}
 
         &:not(:last-child) {
           margin-bottom: 5px;
@@ -115,6 +125,12 @@
             font-weight: bold;
           }
         }
+      }
+
+      .choose {
+        color: var(--character-builder-light-font-color);
+        background-color: #1D0B1F;
+        border: 1px solid #3B2031;
       }
     }
   }

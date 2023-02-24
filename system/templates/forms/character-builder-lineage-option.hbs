@@ -38,17 +38,13 @@
                             <label>{{this.name}}</label>
                             <p>{{{this.description}}}</p>
                         </div>
-<!--                            {{#if this.hasChoices}}-->
-<!--                                {{#if this.choicesFulfilled}}-->
-<!--                                    <i class="fas fa-square-check choices-icon fulfilled" data-tooltip="{{localize "Choices Fulfilled"}}"></i>-->
-<!--                                {{else}}-->
-<!--                                    <i class="fas fa-square-xmark choices-icon unfulfilled" data-tooltip="{{localize "Choices Unfulfilled"}}"></i>-->
-<!--                                {{/if}}-->
-<!--                            {{/if}}-->
                     </div>
                 </div>
             {{/each}}
         </div>
+
+        {{!-- Choose Button --}}
+        <button class="choose" data-id="{{this._id}}" data-type="lineage" data-action="choose">{{localize "Choose"}}</button>
     </div>
 </section>
 {{/each}}

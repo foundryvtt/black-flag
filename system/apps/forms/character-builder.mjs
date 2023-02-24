@@ -24,20 +24,25 @@ export default class CharacterBuilderForm extends FormApplication {
         const context = await super.getData();
         context.document = this.object;
 
-        // Constants
-        context.SIZES = CONFIG.SYSTEM.RACE_SIZE_TYPES;
-        context.ALIGNMENTS = CONFIG.SYSTEM.ALIGNMENT_TYPES;
-        context.PROFICIENCIES = CONFIG.SYSTEM.PROFICIENCY_TYPES;
-        context.LANGUAGES = CONFIG.SYSTEM.LANGUAGE_TYPES;
-        context.RESISTANCES = CONFIG.SYSTEM.DAMAGE_TYPES;
-        context.SAVE_ADVANTAGES = CONFIG.SYSTEM.DAMAGE_TYPES;
+        // Determine what steps are already completed
+        if ( this.object.system.lineage ) {
+            context.lineageCompleted = true;
+        }
+        if ( this.object.system.heritage ) {
+            context.heritageCompleted = true;
+        }
+        if ( this.object.system.background ) {
+            context.backgroundCompleted = true;
+        }
 
-        // Documents
-        context.LINEAGES = CONFIG.SYSTEM.LINEAGE_DOCUMENTS;
-        context.HERITAGES = CONFIG.SYSTEM.HERITAGE_DOCUMENTS;
-        context.BACKGROUNDS = CONFIG.SYSTEM.BACKGROUND_DOCUMENTS;
-        context.TALENTS = CONFIG.SYSTEM.TALENT_DOCUMENTS;
         return context;
+    }
+
+    /* -------------------------------------------- */
+
+    /** @override */
+    async _updateObject(event, formData) {
+        console.dir(formData);
     }
 
     /* -------------------------------------------- */
@@ -48,6 +53,9 @@ export default class CharacterBuilderForm extends FormApplication {
         html.find(".lineages").click(async (event) => await this._onStepChange(event, "lineage"));
         html.find(".heritages").click(async (event) => await this._onStepChange(event, "heritage"));
         html.find(".backgrounds").click(async (event) => await this._onStepChange(event, "background"));
+
+        // Bind to any buttons that might be created later
+        html.on("click", "button", async (event) => await this._onButtonClick(event));
     }
 
     /* -------------------------------------------- */
@@ -102,6 +110,33 @@ export default class CharacterBuilderForm extends FormApplication {
         };
 
         return data;
+    }
+
+    /* -------------------------------------------- */
+
+    async _onButtonClick(event) {
+        event.preventDefault();
+        const button = event.currentTarget;
+        const action = button.dataset.action;
+        switch ( action ) {
+            case "done": await this.close(); break;
+            case "choose": await this._onChoose(event); break;
+        }
+    }
+
+    /* -------------------------------------------- */
+
+    async _onChoose(event) {
+        const button = event.currentTarget;
+        const type = button.dataset.type;
+        const id = button.dataset.id;
+
+        switch ( type ) {
+            case "lineage": await this.object.update({"system.lineage": id}); break;
+            case "heritage": await this.object.update({"system.heritage": id}); break;
+            case "background": await this.object.update({"system.background": id}); break;
+        }
+        this.render(true);
     }
 }
 
