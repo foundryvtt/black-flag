@@ -366,20 +366,28 @@
 }
 .black-flag.actor.characterBuilder .window-content {
   background: url(../ui/denim075.png) repeat !important;
+  overflow: hidden;
 }
 .black-flag.actor.characterBuilder h1 {
   text-align: center;
 }
 .black-flag.actor.characterBuilder .cover {
-  background-image: url("/systems/black-flag/system/sheets/assets/character-builder-cover.png");
   background-size: cover;
   width: 400px;
   height: 400px;
   flex: 0 auto;
 }
+.black-flag.actor.characterBuilder .info {
+  padding: 10px;
+  border: 3px var(--character-builder-dark-font-color) solid;
+  height: 100%;
+  border-top: none;
+  overflow-y: scroll;
+}
 .black-flag.actor.characterBuilder .main {
   flex: 0 auto;
   width: 400px;
+  height: 955px;
   background: linear-gradient(180deg, #190a11 0%, #634368 100%);
   color: var(--character-builder-light-font-color);
 }
@@ -390,7 +398,6 @@
   flex: 0 auto;
 }
 .black-flag.actor.characterBuilder .main .steps {
-  margin: 0 10px 0 10px;
   padding: 0;
 }
 .black-flag.actor.characterBuilder .main .steps .step {
@@ -418,19 +425,40 @@
 .black-flag.actor.characterBuilder .options {
   flex: 3;
   overflow-x: scroll;
-  max-width: 1200px;
+  max-width: 1260px;
   flex-wrap: nowrap;
+  height: 955px;
 }
 .black-flag.actor.characterBuilder .options .option {
   flex: 0 auto;
   flex-shrink: 0;
   width: 400px;
+  height: 955px;
   background: linear-gradient(90deg, #C6B8A5 0%, #D1C2AE 100%);
   color: var(--character-builder-dark-font-color);
   margin-left: 20px;
 }
 .black-flag.actor.characterBuilder .options .option > * {
   flex: 0 auto;
+}
+.black-flag.actor.characterBuilder .options .option fieldset {
+  border-color: var(--character-builder-dark-font-color);
+}
+.black-flag.actor.characterBuilder .options .option fieldset legend {
+  font-weight: bold;
+}
+.black-flag.actor.characterBuilder .options .option .traits {
+  margin-top: 15px;
+}
+.black-flag.actor.characterBuilder .options .option .traits .trait {
+  margin-bottom: 10px;
+}
+.black-flag.actor.characterBuilder .options .option .traits .trait .trait-img {
+  flex: 0 auto;
+  margin: 0px 5px 0px 5px;
+}
+.black-flag.actor.characterBuilder .options .option .traits .trait label {
+  font-weight: bold;
 }
 .black-flag div,
 .black-flag p,

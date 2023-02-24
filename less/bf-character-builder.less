@@ -5,6 +5,7 @@
 
   .window-content {
     background: url(../ui/denim075.png) repeat !important;
+    overflow: hidden;
   }
 
   h1 {
@@ -12,16 +13,24 @@
   }
 
   .cover {
-    background-image: url("/systems/black-flag/system/sheets/assets/character-builder-cover.png");
     background-size: cover;
     width: 400px;
     height: 400px;
     flex: 0 auto;
   }
 
+  .info {
+    padding: 10px;
+    border: 3px var(--character-builder-dark-font-color) solid;
+    height: 100%;
+    border-top: none;
+    overflow-y: scroll;
+  }
+
   .main {
     flex: 0 auto;
     width: 400px;
+    height: 955px;
     background: linear-gradient(180deg, #190a11 0%, #634368 100%);
     color: var(--character-builder-light-font-color);
 
@@ -34,7 +43,6 @@
     }
 
     .steps {
-      margin: 0 10px 0 10px;
       padding: 0;
 
       .step {
@@ -67,19 +75,46 @@
   .options {
     flex: 3;
     overflow-x: scroll;
-    max-width: 1200px;
+    max-width: 1260px;
     flex-wrap: nowrap;
+    height: 955px;
 
     .option {
       flex: 0 auto;
       flex-shrink: 0;
       width: 400px;
+      height: 955px;
       background: linear-gradient(90deg, #C6B8A5 0%, #D1C2AE 100%);
       color: var(--character-builder-dark-font-color);
       margin-left: 20px;
 
       >* {
         flex: 0 auto;
+      }
+
+      fieldset {
+        border-color: var(--character-builder-dark-font-color);
+
+        legend {
+          font-weight: bold;
+        }
+      }
+
+      .traits {
+        margin-top: 15px;
+
+        .trait {
+          margin-bottom: 10px;
+
+          .trait-img {
+            flex: 0 auto;
+            margin: 0px 5px 0px 5px;
+          }
+
+          label {
+            font-weight: bold;
+          }
+        }
       }
     }
   }

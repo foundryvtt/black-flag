@@ -1,4 +1,5 @@
 import {SYSTEM_ID} from "../../CONSTANTS.mjs";
+import BlackFlagSheet from "../../sheets/black-flag-sheet.mjs";
 
 export default class CharacterBuilderForm extends FormApplication {
 
@@ -62,9 +63,16 @@ export default class CharacterBuilderForm extends FormApplication {
 
         // Build the new step's options
         const stepOptions = CONFIG.SYSTEM[`${step.toUpperCase()}_DOCUMENTS`];
+
         // Use the template to build the new options
-        const template = `systems/black-flag/system/templates/forms/character-builder-option.hbs`;
-        const html = await renderTemplate(template, {options: stepOptions});
+        const template = `systems/black-flag/system/templates/forms/character-builder-${step}-option.hbs`;
+        let templateData;
+        switch ( step ) {
+            case "lineage": templateData = this._getLineageData(stepOptions); break;
+            default: templateData = {options: stepOptions}; break;
+        }
+        console.dir(templateData);
+        const html = await renderTemplate(template, templateData);
 
         // Replace the current step's options with the new ones
         const stepOptionsContainer = this.element.find(`.options`);
@@ -74,8 +82,26 @@ export default class CharacterBuilderForm extends FormApplication {
         // Update the form's width to 'auto' to allow the new options to be displayed
         this.element.css("width", "auto");
 
+        // Shift the form left to keep it centered
+        const formWidth = this.element.width();
+        const windowWidth = $(window).width();
+        const shift = (windowWidth - formWidth) / 2;
+        this.element.css("left", shift);
+
         // Set this step as the active step
         this.element.find(".step").removeClass("active");
         event.currentTarget.classList.add("active");
     }
+
+    /* -------------------------------------------- */
+
+    _getLineageData(lineages) {
+        const data = {
+            options: lineages,
+            sizeOptions: BlackFlagSheet.getOptionsList(CONFIG.SYSTEM.RACE_SIZE_TYPES)
+        };
+
+        return data;
+    }
 }
+

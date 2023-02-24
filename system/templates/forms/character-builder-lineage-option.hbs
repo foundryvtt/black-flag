@@ -1,0 +1,54 @@
+{{#each this.options}}
+<section class="option flexcol">
+    <img class="cover" src="/systems/black-flag/system/sheets/assets/bf-banner-mask-wip1.webp" style="background-image: url('{{this.img}}')" />
+    <div class="info">
+        <h1 class="name">{{this.name}}</h1>
+        <div class="description">{{{this.system.description}}}</div>
+
+        {{!-- Age --}}
+        <fieldset>
+            <legend>{{localize "Age"}}</legend>
+            <p>{{this.system.age}}</p>
+            <div class="form-group">
+                <label for="age">{{localize "Your Age"}}</label>
+                <input type="number" name="age" id="age" value="{{this.system.age}}" min="0" step="1" />
+            </div>
+        </fieldset>
+
+        {{!-- Size --}}
+        <fieldset>
+            <legend>{{localize "Size"}}</legend>
+            <p>{{this.system.size.description}}</p>
+            <div class="form-group">
+                <label for="size">{{localize "Your Size"}}</label>
+                <select name="system.size">
+                    {{selectOptions ../sizeOptions selected=this.system.size.type}}
+                </select>
+            </div>
+        </fieldset>
+
+        {{!-- Traits --}}
+        <div class="traits">
+            <h2>{{localize "Traits"}}</h2>
+            {{#each this.system.traits}}
+                <div class="form-group stacked trait" data-id="{{this.id}}">
+                    <div class="flexrow">
+                        <img class="trait-img" src="{{this.img}}" alt="{{this.name}}" data-tooltip="{{this.name}}" width="80" height="80"/>
+                        <div class="flexcol">
+                            <label>{{this.name}}</label>
+                            <p>{{{this.description}}}</p>
+                        </div>
+<!--                            {{#if this.hasChoices}}-->
+<!--                                {{#if this.choicesFulfilled}}-->
+<!--                                    <i class="fas fa-square-check choices-icon fulfilled" data-tooltip="{{localize "Choices Fulfilled"}}"></i>-->
+<!--                                {{else}}-->
+<!--                                    <i class="fas fa-square-xmark choices-icon unfulfilled" data-tooltip="{{localize "Choices Unfulfilled"}}"></i>-->
+<!--                                {{/if}}-->
+<!--                            {{/if}}-->
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</section>
+{{/each}}
