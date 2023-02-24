@@ -5,6 +5,57 @@
         <h1 class="name">{{this.name}}</h1>
         <div class="description">{{{this.system.description}}}</div>
 
+        {{!-- Equipment --}}
+        <fieldset>
+            <legend>{{localize "Equipment"}}</legend>
+            <p class="equipment">{{this.system.equipment}}</p>
+        </fieldset>
+
+        {{!-- Talents --}}
+        <fieldset>
+            <legend>{{localize "Talent"}}</legend>
+            <p class="talents">{{this.system.talentDescription}}</p>
+            <p class="talents">{{localize "Choose one talent from the following list to represent this experience"}}:</p>
+
+            <div class="form-group stacked" data-name="system.talents">
+                <label>{{ localize "Talent Options" }}</label>
+                {{!-- Render each existing Talent as a document link, with a button to remove --}}
+                <div class="foreign-documents talents flexcol">
+<!--                    {{#each document.system.talents}}-->
+<!--                        <div class="foreign-document talent flexrow">-->
+<!--                            <a class="content-link talent-link" draggable="true" data-uuid="{{this.uuid}}" data-id="{{this.id}}" data-type="Item" data-tooltip="Item">-->
+<!--                                <i class="fas fa-suitcase"></i> {{this.name}}-->
+<!--                            </a>-->
+<!--                            <i class="fas fa-delete-left" data-action="delete"></i>-->
+<!--                        </div>-->
+<!--                    {{/each}}-->
+                    {{!-- Render a text input with search ahead to add a new Talent --}}
+                    <input name="system.talents" list="system-talents-list" type="text" value="" placeholder="Talent"/>
+                    <datalist id="system-talents-list">
+                        {{#each allTalents}}
+                            <option value="{{this._id}}" label="{{this.name}}"></option>
+                        {{/each}}
+                    </datalist>
+                </div>
+            </div>
+        </fieldset>
+
+        {{!-- Traits --}}
+        <div class="traits">
+            <h2>{{localize "Traits"}}</h2>
+            {{#each this.system.traits}}
+                <div class="form-group stacked trait" data-id="{{this.id}}">
+                    <div class="flexrow">
+                        <img class="trait-img" src="{{this.img}}" alt="{{this.name}}" data-tooltip="{{this.name}}" width="80" height="80"/>
+                        <div class="flexcol">
+                            <label>{{this.name}}</label>
+                            <p>{{{this.description}}}</p>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+
         {{!-- Choose Button --}}
         <button class="choose" data-id="{{this._id}}" data-type="background" data-action="choose">{{localize "Choose"}}</button>
     </div>

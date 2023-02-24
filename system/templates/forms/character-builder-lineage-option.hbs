@@ -10,8 +10,8 @@
             <legend>{{localize "Age"}}</legend>
             <p>{{this.system.age}}</p>
             <div class="form-group">
-                <label for="age">{{localize "Your Age"}}</label>
-                <input type="number" name="age" id="age" value="{{this.system.age}}" min="0" step="1" />
+                <label for="system.age">{{localize "Your Age"}}</label>
+                <input type="number" name="system.age" id="age" value="{{this.system.age}}" min="0" step="1" />
             </div>
         </fieldset>
 
@@ -20,7 +20,7 @@
             <legend>{{localize "Size"}}</legend>
             <p>{{this.system.size.description}}</p>
             <div class="form-group">
-                <label for="size">{{localize "Your Size"}}</label>
+                <label for="system.size">{{localize "Your Size"}}</label>
                 <select name="system.size">
                     {{selectOptions ../sizeOptions selected=this.system.size.type}}
                 </select>

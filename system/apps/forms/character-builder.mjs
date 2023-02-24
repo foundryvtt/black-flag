@@ -42,7 +42,7 @@ export default class CharacterBuilderForm extends FormApplication {
 
     /** @override */
     async _updateObject(event, formData) {
-        console.dir(formData);
+        CONFIG.SYSTEM.log(formData);
     }
 
     /* -------------------------------------------- */
@@ -54,8 +54,10 @@ export default class CharacterBuilderForm extends FormApplication {
         html.find(".heritages").click(async (event) => await this._onStepChange(event, "heritage"));
         html.find(".backgrounds").click(async (event) => await this._onStepChange(event, "background"));
 
-        // Bind to any buttons that might be created later
+        // Things that might be created later
         html.on("click", "button", async (event) => await this._onButtonClick(event));
+        html.on("click", "a.content-link", async (event) => await this._onClickContentLink(event));
+        html.on("input", "input[name='system.talents']", (event) => this._onTalentInputChange(event));
     }
 
     /* -------------------------------------------- */
@@ -77,6 +79,8 @@ export default class CharacterBuilderForm extends FormApplication {
         let templateData;
         switch ( step ) {
             case "lineage": templateData = this._getLineageData(stepOptions); break;
+            case "heritage": templateData = this._getHeritageData(stepOptions); break;
+            case "background": templateData = this._getBackgroundData(stepOptions); break;
             default: templateData = {options: stepOptions}; break;
         }
         console.dir(templateData);
@@ -114,29 +118,205 @@ export default class CharacterBuilderForm extends FormApplication {
 
     /* -------------------------------------------- */
 
+    _getHeritageData(heritages) {
+        const data = {
+            options: heritages,
+            alignmentOptions: BlackFlagSheet.getOptionsList(CONFIG.SYSTEM.ALIGNMENT_TYPES)
+        };
+
+        return data;
+    }
+
+    /* -------------------------------------------- */
+
+    _getBackgroundData(backgrounds) {
+        const data = {
+            options: backgrounds
+        };
+
+        // For each background description, enhance the HTML
+        for ( let background of data.options ) {
+            background.system.description = TextEditor.enrichHTML(background.system.description, {secrets: this.object.owner});
+        }
+
+        // For each background, get the list of Talents to choose from
+        for ( let background of data.options ) {
+            background.allTalents = background.system.talents.map(talent => {
+                return CONFIG.SYSTEM.TALENT_DOCUMENTS.get(talent);
+            });
+        }
+
+        return data;
+    }
+
+    /* -------------------------------------------- */
+
     async _onButtonClick(event) {
         event.preventDefault();
         const button = event.currentTarget;
         const action = button.dataset.action;
         switch ( action ) {
             case "done": await this.close(); break;
-            case "choose": await this._onChoose(event); break;
+            case "choose": await this._onChoose(button); break;
         }
     }
 
     /* -------------------------------------------- */
 
-    async _onChoose(event) {
-        const button = event.currentTarget;
+    async _onChoose(button) {
         const type = button.dataset.type;
         const id = button.dataset.id;
 
         switch ( type ) {
-            case "lineage": await this.object.update({"system.lineage": id}); break;
-            case "heritage": await this.object.update({"system.heritage": id}); break;
-            case "background": await this.object.update({"system.background": id}); break;
+            case "lineage": await this._submitLineageChange(button); break;
+            case "heritage": await this._submitHeritageChange(button); break;
+            case "background": await this._submitBackgroundChange(button); break;
         }
         this.render(true);
     }
-}
 
+    /* -------------------------------------------- */
+
+    async _submitLineageChange(button) {
+        const id = button.dataset.id;
+        const updateData = {"system.lineage": id};
+
+        let formData = this._getSubmitData();
+
+        // Find the index of this lineage in the lineages array, then reduce the formData arrays to only include the values for this lineage
+        const lineageIndex = Array.from(CONFIG.SYSTEM.LINEAGE_DOCUMENTS).findIndex(l => l.id === id);
+        const age = formData["system.age"][lineageIndex];
+        const size = formData["system.size"][lineageIndex];
+
+        // Attach to updateData
+        updateData["system.age"] = age;
+        updateData["system.size"] = size;
+
+        try {
+            await this.object.update(updateData);
+        }
+        catch (e) {
+            console.error(e);
+        }
+    }
+
+    /* -------------------------------------------- */
+
+    async _submitHeritageChange(button) {
+        const id = button.dataset.id;
+        const updateData = {"system.heritage": id};
+
+        let formData = this._getSubmitData();
+
+        // Find the index of this heritage in the heritages array, then reduce the formData arrays to only include the values for this heritage
+        const heritageIndex = Array.from(CONFIG.SYSTEM.HERITAGE_DOCUMENTS).findIndex(l => l.id === id);
+        const alignment = formData["system.alignment"][heritageIndex];
+
+        // Attach to updateData
+        updateData["system.alignment"] = alignment;
+
+        try {
+            await this.object.update(updateData);
+        }
+        catch (e) {
+            console.error(e);
+        }
+    }
+
+    /* -------------------------------------------- */
+
+    async _submitBackgroundChange(button) {
+        const id = button.dataset.id;
+        const updateData = {"system.background": id};
+
+        // Get the list of a.talent-link and add them to the update
+        const talentLinks = this.element.find("a.talent-link");
+        updateData["system.talents"] = Array.from(talentLinks.map((i, link) => link.dataset.id));
+
+        try {
+            await this.object.update(updateData);
+        }
+        catch (e) {
+            console.error(e);
+        }
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Handles opening a Content link
+     * @param {Event} event
+     * @returns {Promise<*>}
+     * @private
+     */
+    async _onClickContentLink(event) {
+        event.preventDefault();
+        const doc = await fromUuid(event.currentTarget.dataset.uuid);
+        return doc?._onClickDocumentLink(event);
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * Deletes an element's parent from the dom, readding the value to the dataset options
+     * @param {Event} event
+     * @protected
+     */
+    _onDeleteDatasetItem(event) {
+        const parent = event.currentTarget.parentElement;
+        const options = parent.parentElement.parentElement.querySelector("datalist");
+        const option = document.createElement("option");
+        option.value = parent.dataset.value;
+        option.label = parent.innerText;
+        options.appendChild(option);
+        parent.remove();
+    }
+
+    /* -------------------------------------------- */
+
+    /**
+     * If the input changes to match a talent ID, add it to the list
+     * @param {Event} event
+     * @private
+     */
+    _onTalentInputChange(event) {
+        const talent = CONFIG.SYSTEM.TALENT_DOCUMENTS.get(event.currentTarget.value);
+
+        // If the current value is not a talent ID, return
+        if ( !talent ) return;
+
+        // Otherwise, insert the talent into the list
+        const talentLink = document.createElement("a");
+        talentLink.classList.add("content-link");
+        talentLink.classList.add("talent-link");
+        talentLink.dataset.id = talent.id;
+        talentLink.dataset.uuid = talent.uuid;
+        talentLink.dataset.type = "Item";
+        talentLink.dataset.tooltip = "Item";
+        talentLink.innerHTML = `<i class="fas fa-suitcase"></i> ${talent.name}`;
+        talentLink.draggable = true;
+
+        const talentRow = document.createElement("div");
+        talentRow.classList.add("foreign-document");
+        talentRow.classList.add("talent");
+        talentRow.classList.add("flexrow");
+        talentRow.appendChild(talentLink);
+
+        const deleteIcon = document.createElement("i");
+        deleteIcon.classList.add("fas");
+        deleteIcon.classList.add("fa-delete-left");
+        deleteIcon.dataset.action = "delete";
+        deleteIcon.addEventListener("click", this._onDeleteDatasetItem.bind(this));
+        talentRow.appendChild(deleteIcon);
+
+        // Clear out any existing .talent-link elements
+        const existingTalents = event.currentTarget.parentElement.querySelectorAll(".talent");
+        for ( let existingTalent of existingTalents ) {
+            existingTalent.remove();
+        }
+
+        // Add the new talent
+        event.currentTarget.parentElement.insertBefore(talentRow, event.currentTarget);
+        event.currentTarget.value = "";
+    }
+}
