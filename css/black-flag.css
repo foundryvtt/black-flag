@@ -274,6 +274,12 @@
   padding: 0 10px;
   margin: 5px 0;
 }
+.black-flag.actor.pc .character-builder {
+  flex: 0;
+  height: 38px;
+  align-self: center;
+  font-size: large;
+}
 .black-flag.actor.pc .talents .talent {
   flex: 0 0 auto;
   text-align: center;
@@ -353,6 +359,71 @@
 .black-flag.actor.pc .tabs-container fieldset {
   background: #FFF;
   border-top: 0;
+}
+.black-flag.actor.characterBuilder {
+  --character-builder-light-font-color: #ECD9DA;
+  --character-builder-dark-font-color: #3B2031;
+}
+.black-flag.actor.characterBuilder .window-content {
+  background: url(../ui/denim075.png) repeat !important;
+}
+.black-flag.actor.characterBuilder .cover {
+  background-image: url("/systems/black-flag/system/sheets/assets/character-builder-cover.png");
+  background-size: cover;
+  width: 400px;
+  height: 400px;
+  flex: 0 auto;
+}
+.black-flag.actor.characterBuilder .main {
+  flex: 0 auto;
+  width: 400px;
+  background: linear-gradient(180deg, #190a11 0%, #634368 100%);
+  color: var(--character-builder-light-font-color);
+}
+.black-flag.actor.characterBuilder .main .cover {
+  background-image: url("/systems/black-flag/system/sheets/assets/character-builder-cover.png");
+}
+.black-flag.actor.characterBuilder .main h1 {
+  text-align: center;
+}
+.black-flag.actor.characterBuilder .main > * {
+  flex: 0 auto;
+}
+.black-flag.actor.characterBuilder .main .steps {
+  margin: 0 10px 0 10px;
+  padding: 0;
+}
+.black-flag.actor.characterBuilder .main .steps .step {
+  background-color: #1D0B1F;
+  border: 1px solid #3B2031;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+}
+.black-flag.actor.characterBuilder .main .steps .step:hover,
+.black-flag.actor.characterBuilder .main .steps .step.active {
+  background-color: #2f182a;
+  border: 1px solid #5e3a4d;
+}
+.black-flag.actor.characterBuilder .main .steps .step:not(:last-child) {
+  margin-bottom: 5px;
+}
+.black-flag.actor.characterBuilder .main .steps .step .icon {
+  flex: 0 auto;
+  width: 75px;
+  height: 75px;
+  margin-right: 10px;
+  align-self: center;
+}
+.black-flag.actor.characterBuilder .options {
+  flex: 3;
+}
+.black-flag.actor.characterBuilder .options .option {
+  flex: 0 auto;
+  width: 400px;
+  background: linear-gradient(90deg, #C6B8A5 0%, #D1C2AE 100%);
+  color: var(--character-builder-dark-font-color);
+  margin-left: 20px;
 }
 .black-flag div,
 .black-flag p,

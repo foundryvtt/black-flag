@@ -1,0 +1,78 @@
+.black-flag.actor.characterBuilder {
+
+  --character-builder-light-font-color: #ECD9DA;
+  --character-builder-dark-font-color: #3B2031;
+
+  .window-content {
+    background: url(../ui/denim075.png) repeat !important;
+  }
+
+  .cover {
+    background-image: url("/systems/black-flag/system/sheets/assets/character-builder-cover.png");
+    background-size: cover;
+    width: 400px;
+    height: 400px;
+    flex: 0 auto;
+  }
+
+  .main {
+    flex: 0 auto;
+    width: 400px;
+    background: linear-gradient(180deg, #190a11 0%, #634368 100%);
+    color: var(--character-builder-light-font-color);
+
+    .cover {
+      background-image: url("/systems/black-flag/system/sheets/assets/character-builder-cover.png");
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    >* {
+      flex: 0 auto;
+    }
+
+    .steps {
+      margin: 0 10px 0 10px;
+      padding: 0;
+
+      .step {
+        background-color: #1D0B1F;
+        border: 1px solid #3B2031;
+        border-radius: 5px;
+        padding: 5px;
+        cursor: pointer;
+
+        &:hover, &.active {
+          background-color: #2f182a;
+          border: 1px solid #5e3a4d;
+        }
+
+        &:not(:last-child) {
+          margin-bottom: 5px;
+        }
+
+        .icon {
+          flex: 0 auto;
+          width: 75px;
+          height: 75px;
+          margin-right: 10px;
+          align-self: center;
+        }
+      }
+    }
+  }
+
+  .options {
+    flex: 3;
+
+    .option {
+      flex: 0 auto;
+      width: 400px;
+      background: linear-gradient(90deg, #C6B8A5 0%, #D1C2AE 100%);
+      color: var(--character-builder-dark-font-color);
+      margin-left: 20px;
+    }
+  }
+}
