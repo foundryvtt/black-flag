@@ -2,6 +2,9 @@ import TraitDataModel from "../trait.mjs";
 
 export default class HeritageTypeDataModel extends foundry.abstract.DataModel {
 
+    /** @inheritdoc */
+    static _enableV10Validation = true;
+
     /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;

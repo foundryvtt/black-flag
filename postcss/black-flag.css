@@ -1,31 +1,28 @@
-@import "bf-journal.less";
-@import "bf-actor-pc.less";
-@import "bf-character-builder.less";
+@import "bf-journal.css";
+@import "bf-actor-pc.css";
+@import "bf-character-builder.css";
 
 .black-flag {
 
-  // Font Styles
-
-  div, p, input, textarea, label, span, button, select, option {
+  /* Font Styles */
+  & div, p, input, textarea, label, span, button, select, option {
     font-family: "Verdigris MVP Pro Text, Verdana, Arial, sans-serif";
   }
 
-  h1 {
+  & h1 {
     font-family: "Modesto Condensed Bold";
   }
 
-  h2 {
+  & h2 {
     font-family: "Modesto Condensed Bold";
     font-variant: small-caps;
   }
 
 
-  // Set Prosemirror editor height
   .editor {
     height: 190px;
   }
 
-  // Set Ace editor height
   .ace_editor {
     height: 375px;
     font-family: "Monaco", "Menlo", "Ubuntu Mono", "Droid Sans Mono", "Consolas", monospace !important;
@@ -35,22 +32,19 @@
     }
   }
 
-  // Set a faint background image for all forms
-  form {
+  & form {
     background-image: url("/systems/black-flag/system/sheets/assets/black-flag-mask-inverse.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
   }
 
-  // Foreign Documents
   .foreign-documents {
     .foreign-document {
       padding-bottom: 5px;
     }
   }
 
-  // Sheet headers shouldn't grow
   .sheet-header, .sheet-tabs, footer {
     flex: 0;
   }
@@ -61,7 +55,6 @@
     }
   }
 
-  // Tag List
   .tag-list {
     .tag {
       flex: none;
@@ -80,7 +73,6 @@
     }
   }
 
-  // Directory List
   .directory-list {
     padding: 0 0.5em 0 0.5em;
     margin: 0;
@@ -128,8 +120,7 @@
     }
   }
 
-  // Delete button TODO: Move under a joined css selector for tags and foreign documents
-  [data-action="delete"] {
+  & [data-action="delete"] {
     flex: none;
     margin-left: 5px;
     padding-top: 2px;

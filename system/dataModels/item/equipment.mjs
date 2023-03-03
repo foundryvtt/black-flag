@@ -1,5 +1,8 @@
 export default class EquipmentTypeDataModel extends foundry.abstract.DataModel {
 
+    /** @inheritdoc */
+    static _enableV10Validation = true;
+
     /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;

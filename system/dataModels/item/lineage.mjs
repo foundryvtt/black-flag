@@ -3,6 +3,9 @@ import TraitDataModel from "../trait.mjs";
 export default class LineageTypeDataModel extends foundry.abstract.DataModel {
 
     /** @inheritDoc */
+    static _enableV10Validation = true;
+
+    /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;
         return {

@@ -8,7 +8,7 @@
     overflow: hidden;
   }
 
-  h1 {
+  & h1 {
     text-align: center;
     font-weight: bold;
   }
@@ -69,7 +69,7 @@
         padding: 5px;
         cursor: pointer;
 
-        p {
+        & p {
           margin: 0;
         }
 
@@ -77,11 +77,6 @@
           background-color: #2f182a;
           border: 1px solid #5e3a4d;
         }
-
-        //&.completed {
-        //  background-color: #563849;
-        //  border: 1px solid #342626;
-        //}
 
         &:not(:last-child) {
           margin-bottom: 5px;
@@ -120,10 +115,10 @@
         flex: 0 auto;
       }
 
-      fieldset {
+      & fieldset {
         border-color: var(--character-builder-dark-font-color);
 
-        legend {
+        & legend {
           font-weight: bold;
         }
       }
@@ -139,7 +134,7 @@
             margin: 0px 5px 0px 5px;
           }
 
-          label {
+          & label {
             font-weight: bold;
           }
         }

@@ -264,17 +264,21 @@ export default class BlackFlagActor extends Actor {
             return result;
         }
         for (const trait of this.system.traits) {
-            this.system.proficiencies = this.system.proficiencies.concat(trait.innate.proficiencies
-                .map(p => mapInnate(trait, CONFIG.SYSTEM.PROFICIENCY_TYPES, p)));
+            trait.innate.proficiencies
+                .map(p => mapInnate(trait, CONFIG.SYSTEM.PROFICIENCY_TYPES, p))
+                .forEach(p => this.system.proficiencies.add(p));
 
-            this.system.resistances = this.system.resistances.concat(trait.innate.resistances
-                .map(r => mapInnate(trait, CONFIG.SYSTEM.DAMAGE_TYPES, r)));
+            trait.innate.resistances
+                .map(r => mapInnate(trait, CONFIG.SYSTEM.DAMAGE_TYPES, r))
+                .forEach(r => this.system.resistances.add(r));
 
-            this.system.languages = this.system.languages.concat(trait.innate.languages
-                .map(l => mapInnate(trait, CONFIG.SYSTEM.LANGUAGE_TYPES, l)));
+            trait.innate.languages
+                .map(l => mapInnate(trait, CONFIG.SYSTEM.LANGUAGE_TYPES, l))
+                .forEach(l => this.system.languages.add(l));
 
-            this.system.saveAdvantages = this.system.saveAdvantages.concat(trait.innate.saveAdvantages
-                .map(s => mapInnate(trait, CONFIG.SYSTEM.SAVE_TYPES, s)));
+            trait.innate.saveAdvantages
+                .map(s => mapInnate(trait, CONFIG.SYSTEM.SAVE_TYPES, s))
+                .forEach(s => this.system.saveAdvantages.add(s));
         }
 
         // Add trait choices
@@ -296,21 +300,28 @@ export default class BlackFlagActor extends Actor {
             return advantages;
         }
         for (const trait of this.system.traitChoices) {
-            this.system.proficiencies = this.system.proficiencies.concat(trait.choices
-                .reduce( (advantages, p) => reduceTraitChoice(trait, "PROFICIENCY_TYPES", p, advantages), []));
-            this.system.resistances = this.system.resistances.concat(trait.choices
-                .reduce( (advantages, r) => reduceTraitChoice(trait, "DAMAGE_TYPES", r, advantages), []));
-            this.system.languages = this.system.languages.concat(trait.choices
-                .reduce( (advantages, l) => reduceTraitChoice(trait, "LANGUAGE_TYPES", l, advantages), []));
-            this.system.saveAdvantages = this.system.saveAdvantages.concat(trait.choices
-                .reduce( (advantages, s) => reduceTraitChoice(trait, "SAVE_TYPES", s, advantages), []));
+            trait.choices
+                .reduce( (advantages, p) => reduceTraitChoice(trait, "PROFICIENCY_TYPES", p, advantages), [])
+                .forEach(p => this.system.proficiencies.add(p));
+
+            trait.choices
+                .reduce( (advantages, r) => reduceTraitChoice(trait, "DAMAGE_TYPES", r, advantages), [])
+                .forEach(r => this.system.resistances.add(r));
+
+            trait.choices
+                .reduce( (advantages, l) => reduceTraitChoice(trait, "LANGUAGE_TYPES", l, advantages), [])
+                .forEach(l => this.system.languages.add(l));
+
+            trait.choices
+                .reduce( (advantages, s) => reduceTraitChoice(trait, "SAVE_TYPES", s, advantages), [])
+                .forEach(s => this.system.saveAdvantages.add(s));
         }
 
-        // Dedupe and sort the lists alphabetically
-        this.system.proficiencies = Array.from(new Set(this.system.proficiencies)).sort((a, b) => a.label.localeCompare(b.label));
-        this.system.resistances = Array.from(new Set(this.system.resistances)).sort((a, b) => a.label.localeCompare(b.label));
-        this.system.languages = Array.from(new Set(this.system.languages)).sort((a, b) => a.label.localeCompare(b.label));
-        this.system.saveAdvantages = Array.from(new Set(this.system.saveAdvantages)).sort((a, b) => a.label.localeCompare(b.label));
+        // Sort the lists alphabetically
+        this.system.proficiencies = new Set(Array.from(this.system.proficiencies).sort((a, b) => a.label.localeCompare(b.label)));
+        this.system.resistances = new Set(Array.from(this.system.resistances).sort((a, b) => a.label.localeCompare(b.label)));
+        this.system.languages = new Set(Array.from(this.system.languages).sort((a, b) => a.label.localeCompare(b.label)));
+        this.system.saveAdvantages = new Set(Array.from(this.system.saveAdvantages).sort((a, b) => a.label.localeCompare(b.label)));
 
     }
 }

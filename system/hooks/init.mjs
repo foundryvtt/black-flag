@@ -27,11 +27,11 @@ export function init() {
 /* -------------------------------------------- */
 
 function registerDataModels() {
-    CONFIG.Actor.dataModels = {
+    CONFIG.Actor.systemDataModels = {
         pc: PlayerCharacterTypeDataModel,
     }
 
-    CONFIG.Item.dataModels = {
+    CONFIG.Item.systemDataModels = {
         background: BackgroundTypeDataModel,
         equipment: EquipmentTypeDataModel,
         heritage: HeritageTypeDataModel,

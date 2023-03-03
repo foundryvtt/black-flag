@@ -1,0 +1,17 @@
+{
+  "name": "black-flag",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "postcss postcss/black-flag.css --use autoprefixer --use postcss-nesting --use postcss-import -o css/black-flag.css -m",
+    "watch": "postcss postcss/black-flag.css --use autoprefixer --use postcss-nesting --use postcss-import -o css/black-flag.css -m -w"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "postcss-cli": "^10.1.0",
+    "postcss-import": "^15.1.0",
+    "postcss-nesting": "^11.2.1"
+  }
+}
