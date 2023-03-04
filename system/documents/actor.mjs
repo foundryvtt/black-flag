@@ -106,13 +106,13 @@ export default class BlackFlagActor extends Actor {
         this.system.lineage = CONFIG.SYSTEM.LINEAGE_DOCUMENTS.get(this._source.system.lineage);
 
         // Load Traits
-        this.system.traits = [];
+        this.system.traits = new Set();
         if (this.system.background) {
             for (const trait of this.system.background.system.traits) {
                 const data = foundry.utils.duplicate(trait);
                 data.source = this.system.background.name;
                 data.sourceId = this.system.background._id;
-                this.system.traits.push(data);
+                this.system.traits.add(data);
             }
         }
         if (this.system.heritage) {
@@ -120,7 +120,7 @@ export default class BlackFlagActor extends Actor {
                 const data = foundry.utils.duplicate(trait);
                 data.source = this.system.heritage.name;
                 data.sourceId = this.system.heritage._id;
-                this.system.traits.push(data);
+                this.system.traits.add(data);
             }
         }
         if (this.system.lineage) {
@@ -128,16 +128,15 @@ export default class BlackFlagActor extends Actor {
                 const data = foundry.utils.duplicate(trait);
                 data.source = this.system.lineage.name;
                 data.sourceId = this.system.lineage._id;
-                this.system.traits.push(data);
+                this.system.traits.add(data);
             }
         }
 
         // If the actor doesn't have traitChoices for some traits, add them
-        if ( foundry.utils.isEmpty(this.system.traitChoices) ) this.system.traitChoices = [];
         for ( const trait of this.system.traits ) {
             if ( !trait.id ) continue;
             if ( !this.system.traitChoices.find(t => t.id === trait.id) ) {
-                this.system.traitChoices.push(foundry.utils.mergeObject(foundry.utils.duplicate(trait), {
+                this.system.traitChoices.add(foundry.utils.mergeObject(foundry.utils.duplicate(trait), {
                     choices: [],
                     choicesFulfilled: false
                 }));
@@ -199,7 +198,7 @@ export default class BlackFlagActor extends Actor {
                     currentChoice.category = option.category;
                     currentChoice.options = values;
                     currentChoice.amount = amount;
-                    if ( currentChoice.chosenValues.length === amount ) choicesMade++;
+                    if ( currentChoice.chosenValues.size === amount ) choicesMade++;
                 }
                 else {
                     trait.choices.push({
@@ -207,7 +206,7 @@ export default class BlackFlagActor extends Actor {
                         label: option.label ?? key,
                         category: option.category,
                         options: values,
-                        chosenValues: [],
+                        chosenValues: new Set(),
                         amount: amount
                     });
                 }

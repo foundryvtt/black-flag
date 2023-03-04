@@ -1,6 +1,9 @@
 export default class TraitDataModel extends foundry.abstract.DataModel {
 
     /** @inheritDoc */
+    static _enableV10Validation = true;
+
+    /** @inheritDoc */
     static defineSchema() {
         const fields = foundry.data.fields;
         return {

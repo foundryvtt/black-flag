@@ -63,8 +63,8 @@ export default class ChoicesForm extends FormApplication {
             }, this.object.choices),
         });
         trait.choicesFulfilled = trait.choices.every(c => c.chosenValues.length === c.amount);
-        console.dir(trait);
-        this.parent.object.system.traitChoices = this.parent.object.system.traitChoices.map(t => {
+        CONFIG.SYSTEM.log(trait);
+        this.parent.object.system.traitChoices = Array.from(this.parent.object.system.traitChoices).map(t => {
             if ( t.id === trait.id ) {
                 return trait;
             } else {

@@ -57,14 +57,14 @@ export default class PcConfig extends ActorDocumentSheet {
                 choice.values = choice.options.map(v => {
                    return {
                       value: v,
-                      selected: choice.chosenValues.includes(v),
-                      disabled: (!choice.chosenValues.includes(v)) && t.choicesFulfilled
+                      selected: choice.chosenValues.has(v),
+                      disabled: (!choice.chosenValues.has(v)) && t.choicesFulfilled
                    }
                 });
             }
         });
 
-        console.log("PC Config Data", context)
+        CONFIG.SYSTEM.log("PC Config Data", context)
 
         return context;
     }
