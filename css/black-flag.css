@@ -212,6 +212,9 @@
     font-weight: bold;
     padding: 0px 5px;
   }
+.black-flag.actor.pc .tag {
+    cursor: pointer;
+  }
 .black-flag.actor.pc .tag.innate {
       background: #2f5388;
     }

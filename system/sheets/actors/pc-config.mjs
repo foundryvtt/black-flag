@@ -116,6 +116,7 @@ export default class PcConfig extends ActorDocumentSheet {
         html.find("a[data-action='important-info']").on('click', this._onImportantInfo.bind(this));
         html.find(".choices-icon").on('click', this._onChoicesIconClick.bind(this));
         html.find(".character-builder").on('click', this._onCharacterBuilderClick.bind(this));
+        html.find(".tag[data-source-id]").on('click', this._onTagClick.bind(this));
     }
 
     /* -------------------------------------------- */
@@ -259,5 +260,30 @@ export default class PcConfig extends ActorDocumentSheet {
         event.preventDefault();
         const builder = new CharacterBuilderForm(this.object);
         builder.render(true);
+    }
+
+    /* -------------------------------------------- */
+
+    _onTagClick(event) {
+        event.preventDefault();
+        const tag = event.currentTarget;
+        const sourceId = tag.dataset.sourceId;
+        // The Source is either a Heritage, a Lineage, or a Background
+
+        const heritage = CONFIG.SYSTEM.HERITAGE_DOCUMENTS.get(sourceId);
+        if ( heritage ) {
+            heritage.sheet.render(true);
+            return;
+        }
+        const lineage = CONFIG.SYSTEM.LINEAGE_DOCUMENTS.get(sourceId);
+        if ( lineage ) {
+            lineage.sheet.render(true);
+            return;
+        }
+        const background = CONFIG.SYSTEM.BACKGROUND_DOCUMENTS.get(sourceId);
+        if ( background ) {
+            background.sheet.render(true);
+            return;
+        }
     }
 }

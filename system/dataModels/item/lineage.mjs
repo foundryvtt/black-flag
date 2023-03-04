@@ -10,6 +10,9 @@ export default class LineageTypeDataModel extends foundry.abstract.DataModel {
         const fields = foundry.data.fields;
         return {
             description: new fields.HTMLField(),
+            color: new fields.ColorField({required: true, nullable: false,
+                initial: () => Color.fromHSV([Math.random(), 0.8, 0.8]).css
+            }),
             age: new fields.StringField(),
             size: new fields.SchemaField({
                 description: new fields.StringField(),

@@ -183,6 +183,7 @@
             <div class="tab character flexrow" data-group="primary" data-tab="character">
                 {{!-- Build --}}
                 <fieldset>
+
                     {{!-- Talents --}}
                     <div class="form-group stacked" data-name="system.talents">
                         <label>{{ localize "Chosen Talents" }}</label>
@@ -213,7 +214,7 @@
                         <div class="proficiencies flexcol">
                             <div class="tag-list flexrow">
                                 {{#each document.system.proficiencies}}
-                                    <div class="proficiency tag {{this.sourceType}}" data-value="{{this.value}}" data-source="{{this.source}}" data-tooltip="{{this.source}}">
+                                    <div class="proficiency tag {{this.sourceType}}" data-value="{{this.value}}" data-source-id="{{this.sourceId}}" data-tooltip="{{this.source}}" style="{{this.style}}">
                                         {{this.label}}{{#if this.canDelete}} <i class="fas fa-delete-left" data-action="delete"></i>{{/if}}
                                     </div>
                                 {{/each}}
@@ -235,7 +236,7 @@
                         <div class="languages flexcol">
                             <div class="tag-list flexrow">
                                 {{#each document.system.languages}}
-                                    <div class="language tag {{this.sourceType}}" data-value="{{this.value}}" data-source="{{this.source}}" data-tooltip="{{this.source}}">
+                                    <div class="language tag {{this.sourceType}}" data-value="{{this.value}}" data-source-id="{{this.sourceId}}" data-tooltip="{{this.source}}" style="{{this.style}}">
                                         {{this.label}}{{#if this.canDelete}} <i class="fas fa-delete-left" data-action="delete"></i>{{/if}}
                                     </div>
                                 {{/each}}

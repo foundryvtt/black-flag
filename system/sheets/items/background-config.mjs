@@ -29,6 +29,7 @@ export default class BackgroundConfig extends ItemDocumentSheet {
     /** @override */
     _getSubmitData(updateData = {}) {
         let update = super._getSubmitData(updateData);
+        CONFIG.SYSTEM.log("BackgroundConfig._getSubmitData", update);
 
         // Get the list of a.talent-link and add them to the update
         const talentLinks = this.element.find("a.talent-link");

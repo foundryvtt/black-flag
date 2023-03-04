@@ -112,6 +112,7 @@ export default class BlackFlagActor extends Actor {
                 const data = foundry.utils.duplicate(trait);
                 data.source = this.system.background.name;
                 data.sourceId = this.system.background._id;
+                data.color = this.system.background.system.color;
                 this.system.traits.add(data);
             }
         }
@@ -120,6 +121,7 @@ export default class BlackFlagActor extends Actor {
                 const data = foundry.utils.duplicate(trait);
                 data.source = this.system.heritage.name;
                 data.sourceId = this.system.heritage._id;
+                data.color = this.system.heritage.system.color;
                 this.system.traits.add(data);
             }
         }
@@ -128,6 +130,7 @@ export default class BlackFlagActor extends Actor {
                 const data = foundry.utils.duplicate(trait);
                 data.source = this.system.lineage.name;
                 data.sourceId = this.system.lineage._id;
+                data.color = this.system.lineage.system.color;
                 this.system.traits.add(data);
             }
         }
@@ -248,6 +251,21 @@ export default class BlackFlagActor extends Actor {
         this.system.languages = this.system.languages.map(l => mapManualData(CONFIG.SYSTEM.LANGUAGE_TYPES, l));
         this.system.saveAdvantages = this.system.saveAdvantages.map(s => mapManualData(CONFIG.SYSTEM.SAVE_TYPES, s));
 
+        function buildStyleString(trait, result) {
+            // Build a Style string
+            let style = "";
+            if (trait.color) {
+                style += `background-color: ${trait.color};`;
+
+                // Calculate the font color based on the background HEX color
+                const rgb = trait.color.match(/\w\w/g).map(c => parseInt(c, 16));
+                const brightness = Math.round((rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000);
+                style += `color: ${brightness > 125 ? 'black' : 'white'};`;
+            }
+
+            result.style = style;
+        }
+
         // Add innate values
         function mapInnate(trait, types, innate) {
             const config = types[innate];
@@ -258,8 +276,10 @@ export default class BlackFlagActor extends Actor {
             let result = {};
             result.source = trait.source + " (" + trait.name + ")";
             result.sourceType = "innate";
+            result.sourceId = trait.sourceId;
             result.value = innate;
             result.label = config.label;
+            buildStyleString(trait, result);
             return result;
         }
         for (const trait of this.system.traits) {
@@ -291,9 +311,11 @@ export default class BlackFlagActor extends Actor {
                 }
                 let result = {};
                 result.source = trait.source + " (" + trait.name + ")";
+                result.sourceId = trait.sourceId;
                 result.sourceType = "choice";
                 result.value = value;
                 result.label = config.label;
+                buildStyleString(trait, result);
                 advantages.push(result);
             }
             return advantages;

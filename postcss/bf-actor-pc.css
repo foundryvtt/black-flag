@@ -80,6 +80,8 @@
   }
 
   .tag {
+    cursor: pointer;
+    
     &.innate {
       background: #2f5388;
     }
