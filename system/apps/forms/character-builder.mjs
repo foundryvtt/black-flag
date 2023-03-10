@@ -58,6 +58,22 @@ export default class CharacterBuilderForm extends FormApplication {
         html.on("click", "button", async (event) => await this._onButtonClick(event));
         html.on("click", "a.content-link", async (event) => await this._onClickContentLink(event));
         html.on("input", "input[name='system.talents']", (event) => this._onTalentInputChange(event));
+        
+        //Adds Horizonal Scrolling to the section .options part of the sheet by default for users
+        const scrollContainer = document.querySelector(".options");
+        scrollContainer.addEventListener("wheel", (event) => {
+
+            // Check if the mouse is over an element with the "info" class
+            const isMouseOverInfo = event.target.closest(".info") !== null;
+
+            //early exit out of this event, to allow for vertical scrolling of the options info
+            if (isMouseOverInfo) {
+                return;
+            }
+            event.preventDefault();
+            scrollContainer.scrollLeft += event.deltaY;
+          
+        });
     }
 
     /* -------------------------------------------- */
