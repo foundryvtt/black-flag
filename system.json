@@ -9,7 +9,7 @@
     "maximum": 11
   },
   "relationships": {
-    "recommends": [
+    "requires": [
       {
         "id": "black-flag-content",
         "type": "module",

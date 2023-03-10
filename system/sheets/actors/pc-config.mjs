@@ -219,7 +219,10 @@ export default class PcConfig extends ActorDocumentSheet {
                 pointBuy: {
                     label: game.i18n.localize("Point Buy"),
                     callback: async () => { 
-                        const j = await fromUuid("Compendium.black-flag.playtest-1-packet.bHbtZZkt9UyEMu2r");
+                        const j = await fromUuid("Compendium.black-flag-content.playtest-1-packet.bHbtZZkt9UyEMu2r");
+                        if ( !j ) {
+                            return ui.notifications.error("The playtest packet is not available. Please install the Black Flag Content module.");
+                        }
                         j.sheet.render(true, {pageId: "goMWEmijPIYdsdTt", anchor: "point-buy"});
                     },
                     icon: `<i class="fa-solid fa-cart-shopping"></i>`
