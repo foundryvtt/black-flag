@@ -58,8 +58,8 @@ export default class PlayerCharacterTypeDataModel extends foundry.abstract.DataM
 
             talents: new fields.SetField(new fields.ForeignDocumentField(BlackFlagItem, {required: true, type: "talent", idOnly: true})),
             equipment: new fields.SetField(new fields.ForeignDocumentField(BlackFlagItem, {required: true, type: "equipment", idOnly: true})),
-            traits: new fields.SetField(new fields.SchemaField({...TraitDataModel.defineSchema()}), {initial: new Set()}),
-            traitChoices: new fields.SetField(new fields.SchemaField({...TraitChoiceDataModel.defineSchema()}), {initial: new Set()})
+            traits: new fields.SetField(new fields.SchemaField({...TraitDataModel.defineSchema()})),
+            traitChoices: new fields.SetField(new fields.SchemaField({...TraitChoiceDataModel.defineSchema()}))
         }
     }
 }
