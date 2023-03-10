@@ -1,0 +1,20 @@
+{{#each this.options}}
+<section class="option flexcol">
+    <img class="cover" src="/systems/black-flag/system/sheets/assets/bf-banner-mask-wip3.webp" style="background-image: url('{{this.img}}')" />
+    <h1 class="name">{{this.name}}</h1>
+    <div class="info">
+        <div class="description">{{{this.system.description}}}</div>
+
+        {{!-- Uses Magic Checkbox --}}
+        <div class="form-group">
+            <label>{{localize "Uses Magic"}}</label>
+            <div class="form-fields">
+                <input type="checkbox" name="system.usesMagic" data-dtype="Boolean" {{checked this.system.usesMagic}} disabled />
+            </div>
+        </div>
+
+        {{!-- Choose Button --}}
+        <button class="choose" data-id="{{this._id}}" data-type="class" data-action="choose">{{localize "Choose"}}</button>
+    </div>
+</section>
+{{/each}}

@@ -22,7 +22,7 @@
     }
   },
   "Item": {
-    "types": ["background", "equipment", "heritage", "lineage", "talent"],
+    "types": ["background", "equipment", "heritage", "lineage", "talent", "class"],
     "background": {
       "languages": [],
       "proficiencies": [],
@@ -38,6 +38,7 @@
       "sight": {},
       "traits": []
     },
-    "talent": {}
+    "talent": {},
+    "class": {}
   }
 }

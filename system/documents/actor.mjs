@@ -52,6 +52,7 @@ export default class BlackFlagActor extends Actor {
         CONFIG.SYSTEM.HERITAGE_DOCUMENTS = await getForeignDocuments("Item", "heritage");
         CONFIG.SYSTEM.BACKGROUND_DOCUMENTS = await getForeignDocuments("Item", "background");
         CONFIG.SYSTEM.TALENT_DOCUMENTS = await getForeignDocuments("Item", "talent");
+        CONFIG.SYSTEM.CLASS_DOCUMENTS = await getForeignDocuments("Item", "class");
     }
 
     /* -------------------------------------------- */
@@ -104,6 +105,8 @@ export default class BlackFlagActor extends Actor {
         this.system.heritage = CONFIG.SYSTEM.HERITAGE_DOCUMENTS.get(this._source.system.heritage);
         this.system.lineageId = this._source.system.lineage;
         this.system.lineage = CONFIG.SYSTEM.LINEAGE_DOCUMENTS.get(this._source.system.lineage);
+        this.system.classId = this._source.system.class;
+        this.system.class = CONFIG.SYSTEM.CLASS_DOCUMENTS.get(this._source.system.class);
 
         // Load Traits
         this.system.traits = new Set();

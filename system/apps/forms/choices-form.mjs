@@ -59,19 +59,20 @@ export default class ChoicesForm extends FormApplication {
                 const traitChoice = choices.find(x => x.key === key);
                 if ( chosen && !traitChoice.chosenValues.includes(value) ) traitChoice.chosenValues.push(value);
                 traitChoice.values.find(v => v.value === value).selected = chosen;
+                traitChoice.chosenValues = Array.from(traitChoice.chosenValues);
                 return choices;
             }, this.object.choices),
-        });
+        }, {insertKeys: true, insertValues: true, performDeletions: false});
         trait.choicesFulfilled = trait.choices.every(c => c.chosenValues.length === c.amount);
         CONFIG.SYSTEM.log(trait);
-        this.parent.object.system.traitChoices = Array.from(this.parent.object.system.traitChoices).map(t => {
+        const updatedTraitChoices = Array.from(this.parent.object.system.traitChoices).map(t => {
             if ( t.id === trait.id ) {
                 return trait;
             } else {
                 return t;
             }
         });
-        await this.parent.object.update({"system.traitChoices": this.parent.object.system.traitChoices});
+        await this.parent.object.update({"system.traitChoices": updatedTraitChoices});
     }
 
     /* -------------------------------------------- */

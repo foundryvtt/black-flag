@@ -1,0 +1,37 @@
+<form class="{{cssClass}} flexcol" autocomplete="off">
+
+    {{!-- Sheet Header --}}
+    <header class="sheet-header flexrow">
+        <img class="profile" src="{{document.img}}" title="{{document.name}}" data-edit="img"/>
+        <h1 class="title">
+            <input name="name" type="text" value="{{document.name}}" placeholder="Class Name"/>
+        </h1>
+        <div class="form-group">
+            <div class="form-fields">
+                {{colorPicker name="system.color" value=document.system.color}}
+            </div>
+        </div>
+    </header>
+
+    {{!-- Description Tab --}}
+    <section class="sheet-body">
+
+        {{!-- Description --}}
+        <div class="form-group stacked" data-name="system.description">
+            <label>{{ localize "Description" }}</label>
+            {{editor descriptionHTML target="system.description" button=false editable=editable engine="prosemirror" collaborate=false}}
+        </div>
+
+        {{!-- Uses Magic Checkbox --}}
+        <div class="form-group">
+            <label>{{localize "Uses Magic"}}</label>
+            <div class="form-fields">
+                <input type="checkbox" name="system.usesMagic" data-dtype="Boolean" {{checked document.system.usesMagic}} />
+            </div>
+        </div>
+
+    {{!-- Save Changes --}}
+    <footer>
+        <button type="submit">{{localize "Save"}}</button>
+    </footer>
+</form>

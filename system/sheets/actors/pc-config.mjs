@@ -28,6 +28,8 @@ export default class PcConfig extends ActorDocumentSheet {
         context.heritageInfo = game.items.get(this.object.system.heritage);
         context.BACKGROUND_TYPES = await this.getForeignDocumentOptions("Item", "background");
         context.backgroundInfo = game.items.get(this.object.system.background);
+        context.CLASS_TYPES = await this.getForeignDocumentOptions("Item", "class");
+        context.classInfo = game.items.get(this.object.system.class);
         context.PROFICIENCY_TYPES = this.getDatalistOptions(CONFIG.SYSTEM.PROFICIENCY_TYPES, this.object.system.proficiencies);
         context.LANGUAGE_TYPES = this.getDatalistOptions(CONFIG.SYSTEM.LANGUAGE_TYPES, this.object.system.languages);
         context.RESISTANCE_TYPES = this.getDatalistOptions(CONFIG.SYSTEM.DAMAGE_TYPES, this.object.system.resistances);

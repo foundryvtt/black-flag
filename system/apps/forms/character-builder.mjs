@@ -34,6 +34,9 @@ export default class CharacterBuilderForm extends FormApplication {
         if ( this.object.system.background ) {
             context.backgroundCompleted = true;
         }
+        if ( this.object.system.class ) {
+            context.classCompleted = true;
+        }
 
         return context;
     }
@@ -53,6 +56,7 @@ export default class CharacterBuilderForm extends FormApplication {
         html.find(".lineages").click(async (event) => await this._onStepChange(event, "lineage"));
         html.find(".heritages").click(async (event) => await this._onStepChange(event, "heritage"));
         html.find(".backgrounds").click(async (event) => await this._onStepChange(event, "background"));
+        html.find(".classes").click(async (event) => await this._onStepChange(event, "class"));
 
         // Things that might be created later
         html.on("click", "button", async (event) => await this._onButtonClick(event));
@@ -64,15 +68,10 @@ export default class CharacterBuilderForm extends FormApplication {
         scrollContainer.addEventListener("wheel", (event) => {
 
             // Check if the mouse is over an element with the "info" class
-            const isMouseOverInfo = event.target.closest(".info") !== null;
+            if ( event.target.closest(".info") !== null ) return;
 
-            //early exit out of this event, to allow for vertical scrolling of the options info
-            if (isMouseOverInfo) {
-                return;
-            }
             event.preventDefault();
             scrollContainer.scrollLeft += event.deltaY;
-          
         });
     }
 
@@ -97,6 +96,7 @@ export default class CharacterBuilderForm extends FormApplication {
             case "lineage": templateData = this._getLineageData(stepOptions); break;
             case "heritage": templateData = this._getHeritageData(stepOptions); break;
             case "background": templateData = this._getBackgroundData(stepOptions); break;
+            case "class": templateData = this._getClassData(stepOptions); break;
             default: templateData = {options: stepOptions}; break;
         }
         console.dir(templateData);
@@ -167,6 +167,21 @@ export default class CharacterBuilderForm extends FormApplication {
 
     /* -------------------------------------------- */
 
+    _getClassData(classes) {
+        const data = {
+            options: classes
+        };
+
+        // For each class description, enhance the HTML
+        for ( let classData of data.options ) {
+            classData.system.description = TextEditor.enrichHTML(classData.system.description, {secrets: this.object.owner});
+        }
+
+        return data;
+    }
+
+    /* -------------------------------------------- */
+
     async _onButtonClick(event) {
         event.preventDefault();
         const button = event.currentTarget;
@@ -187,6 +202,7 @@ export default class CharacterBuilderForm extends FormApplication {
             case "lineage": await this._submitLineageChange(button); break;
             case "heritage": await this._submitHeritageChange(button); break;
             case "background": await this._submitBackgroundChange(button); break;
+            case "class": await this._submitClassChange(button); break;
         }
         this.render(true);
     }
@@ -248,6 +264,20 @@ export default class CharacterBuilderForm extends FormApplication {
         // Get the list of a.talent-link and add them to the update
         const talentLinks = this.element.find("a.talent-link");
         updateData["system.talents"] = Array.from(talentLinks.map((i, link) => link.dataset.id));
+
+        try {
+            await this.object.update(updateData);
+        }
+        catch (e) {
+            console.error(e);
+        }
+    }
+
+    /* -------------------------------------------- */
+
+    async _submitClassChange(button) {
+        const id = button.dataset.id;
+        const updateData = {"system.class": id};
 
         try {
             await this.object.update(updateData);

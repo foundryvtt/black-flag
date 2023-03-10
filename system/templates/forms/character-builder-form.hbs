@@ -43,6 +43,19 @@
                         <p>{{localize "Your choice of background helps define your character’s personal history  prior to taking up the mantle of an adventurer."}}</p>
                     </div>
                 </li>
+
+                {{!-- Class --}}
+                <li class="step flexrow classes {{#if this.classCompleted}}completed{{/if}}">
+                    {{#if this.classCompleted}}
+                        <img class="icon" src="{{this.document.system.class.img}}"/>
+                    {{else}}
+                        <img class="icon" src="/systems/black-flag/system/sheets/assets/classes-icon.webp"/>
+                    {{/if}}
+                    <div class="step-info flexcol">
+                        <h2>{{localize "Class"}}{{#if this.classCompleted}}: {{this.document.system.class.name}}{{/if}}</h2>
+                        <p>{{localize "Your choice of class helps define your character’s role in the party."}}</p>
+                    </div>
+                </li>
             </ul>
 
             {{!-- Done Button --}}

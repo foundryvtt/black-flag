@@ -158,6 +158,14 @@
                 </select>
             </div>
 
+            {{!-- Class --}}
+            <div class="form-group stacked" data-name="system.class">
+                <label>{{ localize "Class" }}</label>
+                <select name="system.class">
+                    {{selectOptions CLASS_TYPES selected=document.system.classId}}
+                </select>
+            </div>
+
             {{!-- Alignment --}}
             <div class="form-group stacked" data-name="system.alignment">
                 <label>{{ localize "Alignment" }}</label>
@@ -198,6 +206,7 @@
                                 </div>
                             {{/each}}
                         </div>
+
                         {{!-- Render a text input with search ahead to add a new Talent --}}
                         <input name="system.talents" list="system-talents-list" type="text" value="" placeholder="Talent"/>
                         <datalist id="system-talents-list">

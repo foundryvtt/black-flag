@@ -12,6 +12,8 @@ import HeritageConfig from "../sheets/items/heritage-config.mjs";
 import LineageConfig from "../sheets/items/lineage-config.mjs";
 import PcConfig from "../sheets/actors/pc-config.mjs";
 import BlackFlagItem from "../documents/item.mjs";
+import ClassConfig from "../sheets/items/class-config.mjs";
+import ClassTypeDataModel from "../datamodels/item/class.mjs";
 
 export function init() {
     console.log(`${SYSTEM_NAME} | Initializing  System`)
@@ -36,7 +38,8 @@ function registerDataModels() {
         equipment: EquipmentTypeDataModel,
         heritage: HeritageTypeDataModel,
         lineage: LineageTypeDataModel,
-        talent: TalentTypeDataModel
+        talent: TalentTypeDataModel,
+        class: ClassTypeDataModel,
     }
 }
 
@@ -63,6 +66,7 @@ function registerDocumentSheets() {
     Items.registerSheet(SYSTEM_ID, BackgroundConfig, {types: ["background"], makeDefault: true});
     Items.registerSheet(SYSTEM_ID, HeritageConfig, {types: ["heritage"], makeDefault: true});
     Items.registerSheet(SYSTEM_ID, LineageConfig, {types: ["lineage"], makeDefault: true});
+    Items.registerSheet(SYSTEM_ID, ClassConfig, {types: ["class"], makeDefault: true});
 }
 
 /* -------------------------------------------- */
