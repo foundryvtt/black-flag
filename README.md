@@ -6,7 +6,7 @@ Black Flag is intended to be flexible, so it doesn’t assume a standard setting
 
 This system is being developed concurrently with the Black Flag playtest packets and will expand as the playtest data does.
 
-**This system currently includes:**
+**This system and content module currently includes:**
 - Basic Character Creation
 - 3 Lineages
 - 6 Heritages
