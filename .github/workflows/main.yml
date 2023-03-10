@@ -95,9 +95,9 @@ jobs:
           files: 'system.json'
         env:
           version: ${{steps.get_version.outputs.version-without-v}}
-          url: ${{ $env.project_url }}
-          manifest: ${{ $env.latest_manifest_url }}
-          download: ${{ $env.release_module_url }}
+          url: ${{ env.project_url }}
+          manifest: ${{ env.latest_manifest_url }}
+          download: ${{ env.release_module_url }}
 
 
       # Create a "system.zip" archive containing all the system's required files.
