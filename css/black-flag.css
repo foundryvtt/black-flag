@@ -416,6 +416,7 @@
 .black-flag.actor.characterBuilder .options {
     flex: 3;
     overflow-x: scroll;
+    overflow-y: hidden;
     max-width: 1260px;
     flex-wrap: nowrap;
     height: 955px;
