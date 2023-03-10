@@ -1,6 +1,6 @@
 import {SYSTEM_ID} from "../../CONSTANTS.mjs";
 import ItemDocumentSheet from "./item-config.mjs";
-import TraitDataModel from "../../dataModels/trait.mjs";
+import TraitDataModel from "../../datamodels/trait.mjs";
 import TraitForm from "../../apps/forms/trait-form.mjs";
 
 export default class LineageConfig extends ItemDocumentSheet {

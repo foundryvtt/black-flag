@@ -3,7 +3,7 @@ import PlayerCharacterTypeDataModel from "../datamodels/actor/player-character.m
 import BackgroundTypeDataModel from "../datamodels/item/background.mjs";
 import EquipmentTypeDataModel from "../datamodels/item/equipment.mjs";
 import HeritageTypeDataModel from "../datamodels/item/heritage.mjs";
-import LineageTypeDataModel from "../dataModels/item/lineage.mjs";
+import LineageTypeDataModel from "../datamodels/item/lineage.mjs";
 import TalentTypeDataModel from "../datamodels/item/talent.mjs";
 import BlackFlagActor from "../documents/actor.mjs";
 import TalentConfig from "../sheets/items/talent-config.mjs";
