@@ -16,17 +16,17 @@ This system is being developed concurrently with the Black Flag playtest packets
 **If you have feedback on the content of Black Flag, please use the official feedback form from Kobold Press:** [Feedback Form](https://koboldpress.com/project-black-flag-playtest-packet-1-feedback/)
 
 ## License
-The Black Flag Game System for Foundry VTT is supported by a partnership between Kobold Press and Foundry Gaming LLC. For now, you may not: redistribute, edit, modify, update, change, or in any other way use the data or code of this repository. It is intended solely to allow users to install as a game system in Foundry VTT for the purposes of participating in the Black Flag playtest.
-
-In the future, we anticipate applying a suitable software license to this repository. 
+The Black Flag Game System for Foundry VTT is supported by a partnership between Kobold Press and Foundry Gaming LLC. For now, you may not: redistribute, reuse, nor fork the compendium data located at https://github.com/foundryvtt/black-flag/tree/main/packs in this repository. It is intended solely to allow users to install as a game system in Foundry VTT for the purposes of participating in the Black Flag playtest.
 
 Once the Open Content is defined by Kobold Press in accordance with the Open RPG Content (ORC) License we will apply that license to the compendium data stored here.
 
+The software itself is licensed MIT.
+
 ## Contributing to `foundryvtt/black-flag`
 
-Code and content contributions are not being accepted at this time. Once the system has been further developed, contributions will be allowed.
+Code and content contributions (from official playtests distributed publically by Kobold Press) are accepted. Please feel free to submit issues to the issue tracker or submit merge requests for code/content changes. Approval for such requests involves code and (if necessary) design review by the Maintainers of this repo. Please reach out on the Foundry Community Discord with any questions.
 
-Please feel free to submit issues to the issue tracker in the interim. 
+Please ensure there is an open issue about whatever contribution you are submitting. Please also ensure your contribution does not duplicate an existing one.
 
 ## Issues
 
