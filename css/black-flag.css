@@ -356,6 +356,19 @@
     background-size: contain;
     border: none;
   }
+.black-flag.actor.characterBuilder .options .option img.cover  {
+  max-height: 100%;
+  height: auto;
+  width: auto;
+  
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.black-flag.actor.characterBuilder .options .option .cover-container  {
+  max-height: 452px;
+  height: 50%;
+}
 .black-flag.actor.characterBuilder .info {
     padding: 10px;
     height: 100%;
@@ -367,7 +380,7 @@
 .black-flag.actor.characterBuilder .main {
     flex: 0 auto;
     width: 400px;
-    height: 955px;
+    height: 100%;
     background: linear-gradient(180deg, #190a11 0%, #634368 100%);
     color: var(--character-builder-light-font-color);
 
@@ -419,13 +432,13 @@
     overflow-y: hidden;
     max-width: 1260px;
     flex-wrap: nowrap;
-    height: 955px;
+    height: 100%;
   }
 .black-flag.actor.characterBuilder .options .option {
       flex: 0 auto;
       flex-shrink: 0;
       width: 400px;
-      height: 955px;
+      height: 100%;
       background: linear-gradient(90deg, #C6B8A5 0%, #D1C2AE 100%);
       color: var(--character-builder-dark-font-color);
       margin-left: 20px;
@@ -486,6 +499,9 @@
     background-repeat: no-repeat;
     background-position: center;
   }
+.black-flag.actor.characterBuilder form {
+  height: 100%;
+}
 .black-flag .foreign-documents .foreign-document {
       padding-bottom: 5px;
     }
