@@ -346,6 +346,9 @@
     text-align: center;
     font-weight: bold;
   }
+.black-flag.actor.characterBuilder form {
+    height: 100%;
+  }
 .black-flag.actor.characterBuilder .cover {
     background-size: cover;
     width: 400px;
@@ -367,7 +370,7 @@
 .black-flag.actor.characterBuilder .main {
     flex: 0 auto;
     width: 400px;
-    height: 955px;
+    height: 100%;
     background: linear-gradient(180deg, #190a11 0%, #634368 100%);
     color: var(--character-builder-light-font-color);
 
@@ -419,13 +422,13 @@
     overflow-y: hidden;
     max-width: 1260px;
     flex-wrap: nowrap;
-    height: 955px;
+    height: 100%;
   }
 .black-flag.actor.characterBuilder .options .option {
       flex: 0 auto;
       flex-shrink: 0;
       width: 400px;
-      height: 955px;
+      height: 100%;
       background: linear-gradient(90deg, #C6B8A5 0%, #D1C2AE 100%);
       color: var(--character-builder-dark-font-color);
       margin-left: 20px;
@@ -458,6 +461,19 @@
         color: var(--character-builder-light-font-color);
         background-color: #1D0B1F;
         border: 1px solid #3B2031;
+      }
+.black-flag.actor.characterBuilder .options .option img.cover {
+        max-height: 100%;
+        height: auto;
+        width: auto;
+        
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+.black-flag.actor.characterBuilder .options .option .cover-container  {
+        max-height: 452px;
+        height: 50%;
       }
 /* Font Styles */
 .black-flag div, .black-flag p, .black-flag input, .black-flag textarea, .black-flag label, .black-flag span, .black-flag button, .black-flag select, .black-flag option {
