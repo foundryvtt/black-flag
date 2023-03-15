@@ -95,7 +95,7 @@ export default class ChoicesForm extends FormApplication {
         const fieldset = checkbox.closest("fieldset");
         const checkboxes = fieldset.querySelectorAll("input[type=checkbox]");
         const checked = Array.from(checkboxes).filter(c => c.checked);
-        if ( checked.length >= fieldset.dataset.amount ) {
+        if ( checked.length >= parseInt(fieldset.dataset.amount) ) {
             Array.from(checkboxes).filter(c => !c.checked).forEach(c => c.disabled = true);
         } else {
             Array.from(checkboxes).filter(c => c.disabled).forEach(c => c.disabled = false);
@@ -122,7 +122,12 @@ export default class ChoicesForm extends FormApplication {
             });
         }
         else {
-            Array.from(fieldsets).filter(f => f !== fieldset).forEach(f => {
+            // Enable fieldsets that have less checked than the amount
+            Array.from(fieldsets).filter(f => f !== fieldset).filter(f => {
+                const checkboxes = f.querySelectorAll("input[type=checkbox]");
+                const checked = Array.from(checkboxes).filter(c => c.checked);
+                return checked.length < parseInt(f.dataset.amount);
+            }).forEach(f => {
                 const checkboxes = f.querySelectorAll("input[type=checkbox]");
                 Array.from(checkboxes).filter(c => c.disabled).forEach(c => c.disabled = false);
             });
