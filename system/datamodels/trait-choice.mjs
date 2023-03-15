@@ -17,7 +17,7 @@ export default class TraitChoiceDataModel extends foundry.abstract.DataModel {
                 options: new fields.SetField(new fields.StringField()),
                 chosenValues: new fields.SetField(new fields.StringField()),
                 amount: new fields.NumberField({min: 0, initial: 0, integer: true}),
-            }), {initial: new Set()}),
+            })),
             choicesFulfilled: new fields.BooleanField({initial: false}),
         }
     }

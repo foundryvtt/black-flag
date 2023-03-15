@@ -72,6 +72,8 @@ export default class ChoicesForm extends FormApplication {
                 return t;
             }
         });
+        // Ensure all chosenValues are arrays
+        updatedTraitChoices.forEach(t => t.choices.forEach(c => c.chosenValues = Array.from(c.chosenValues)));
         await this.parent.object.update({"system.traitChoices": updatedTraitChoices});
     }
 
