@@ -1,13 +1,16 @@
+.journal-sheet {
+  --font-primary: Verdigris MVP Pro Text, Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+  --font-header: "Modesto Condensed Bold", Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans-serif;
+  --font-sans-serif: Helvetica, "Helvetica Neue", Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, Arial, sans-serif;
 
-  .journal-sheet div, .journal-sheet p, .journal-sheet input, .journal-sheet textarea, .journal-sheet label, .journal-sheet span, .journal-sheet button, .journal-sheet select, .journal-sheet option {
-    font-family: "Verdigris MVP Pro Text, Verdana, Arial, sans-serif";
-  }
+  font-family: var(--font-primary);
+}
 .journal-sheet .journal-entry-content {
 
     position: relative;
   }
 .journal-sheet .journal-entry-content h1, .journal-sheet .journal-entry-content h2, .journal-sheet .journal-entry-content h3, .journal-sheet .journal-entry-content h4, .journal-sheet .journal-entry-content h5, .journal-sheet .journal-entry-content h6, .journal-sheet .journal-entry-content .journal-header input {
-      font-family: "Modesto Condensed";
+      font-family: var(--font-header);
       font-weight: bold;
     }
 .journal-sheet .journal-entry-content h2, .journal-sheet .journal-entry-content h3, .journal-sheet .journal-entry-content h4, .journal-sheet .journal-entry-content h5, .journal-sheet .journal-entry-content h6 {
@@ -41,13 +44,13 @@
       border-bottom: 1px solid #000;
     }
 .journal-sheet p.subheading {
-    font-family: "Helvetica";
+    font-family: var(--font-sans-serif);
     font-size: var(--font-size-14);
     font-weight: bold;
     text-transform: uppercase;
   }
 .journal-sheet p.bar {
-    font-family: "Helvetica";
+    font-family: var(--font-sans-serif);
     font-size: var(--font-size-14);
     font-weight: bold;
     text-transform: uppercase;
@@ -96,7 +99,7 @@
     background-position: center;
   }
 .journal-sheet table {
-    font-family: "Helvetica";
+    font-family: var(--font-sans-serif);
   }
 .journal-sheet table th {
     background: #000;
@@ -127,7 +130,7 @@
     padding: 10px;
   }
 .journal-sheet .callout.advice p {
-    font-family: "Helvetica";
+    font-family: var(--font-sans-serif);
   }
 .journal-sheet .align-right {
     min-width: 25%;
@@ -475,15 +478,19 @@
         max-height: 452px;
         height: 50%;
       }
-/* Font Styles */
-.black-flag div, .black-flag p, .black-flag input, .black-flag textarea, .black-flag label, .black-flag span, .black-flag button, .black-flag select, .black-flag option {
-    font-family: "Verdigris MVP Pro Text, Verdana, Arial, sans-serif";
-  }
+.black-flag {
+  /* Font Styles */
+  --font-primary: Verdigris MVP Pro Text, Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+  --font-header: "Modesto Condensed Bold", Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans-serif;
+  --font-mono: "Monaco", "Menlo", "Ubuntu Mono", "Droid Sans Mono", "Consolas", monospace;
+
+  font-family: var(--font-primary);
+}
 .black-flag h1 {
-    font-family: "Modesto Condensed Bold";
+    font-family: var(--font-header);
   }
 .black-flag h2 {
-    font-family: "Modesto Condensed Bold";
+    font-family: var(--font-header);
     font-variant: small-caps;
   }
 .black-flag .editor {
@@ -491,10 +498,10 @@
   }
 .black-flag .ace_editor {
     height: 375px;
-    font-family: "Monaco", "Menlo", "Ubuntu Mono", "Droid Sans Mono", "Consolas", monospace !important;
+    font-family: var(--font-mono) !important;
   }
 .black-flag .ace_editor * {
-      font-family: "Monaco", "Menlo", "Ubuntu Mono", "Droid Sans Mono", "Consolas", monospace !important;
+      font-family: var(--font-mono) !important;
     }
 .black-flag form {
     background-image: url("/systems/black-flag/system/sheets/assets/black-flag-mask-inverse.png");
