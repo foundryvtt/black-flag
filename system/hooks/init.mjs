@@ -16,73 +16,73 @@ import ClassConfig from "../sheets/items/class-config.mjs";
 import ClassTypeDataModel from "../datamodels/item/class.mjs";
 
 export function init() {
-    console.log(`${SYSTEM_NAME} | Initializing  System`)
+  console.log(`${SYSTEM_NAME} | Initializing  System`);
 
-    CONFIG.SYSTEM = SYSTEM;
+  CONFIG.SYSTEM = SYSTEM;
 
-    registerDataModels();
-    registerDocumentSheets();
-    registerDocumentClasses();
-    registerHandlebarsHelpers();
+  registerDataModels();
+  registerDocumentSheets();
+  registerDocumentClasses();
+  registerHandlebarsHelpers();
 }
 
 /* -------------------------------------------- */
 
 function registerDataModels() {
-    CONFIG.Actor.systemDataModels = {
-        pc: PlayerCharacterTypeDataModel,
-    }
+  CONFIG.Actor.systemDataModels = {
+    pc: PlayerCharacterTypeDataModel
+  };
 
-    CONFIG.Item.systemDataModels = {
-        background: BackgroundTypeDataModel,
-        equipment: EquipmentTypeDataModel,
-        heritage: HeritageTypeDataModel,
-        lineage: LineageTypeDataModel,
-        talent: TalentTypeDataModel,
-        class: ClassTypeDataModel,
-    }
+  CONFIG.Item.systemDataModels = {
+    background: BackgroundTypeDataModel,
+    equipment: EquipmentTypeDataModel,
+    heritage: HeritageTypeDataModel,
+    lineage: LineageTypeDataModel,
+    talent: TalentTypeDataModel,
+    class: ClassTypeDataModel
+  };
 }
 
 /* -------------------------------------------- */
 
 function registerDocumentClasses() {
-    CONFIG.Actor.documentClass = BlackFlagActor;
-    CONFIG.Item.documentClass = BlackFlagItem;
+  CONFIG.Actor.documentClass = BlackFlagActor;
+  CONFIG.Item.documentClass = BlackFlagItem;
 }
 
 /* -------------------------------------------- */
 
 function registerDocumentSheets() {
-    if ( !CONFIG.SYSTEM.isDebugging() ){
-        Actors.unregisterSheet("core", ActorSheet);
-        Items.unregisterSheet("core", ItemSheet);
-    }
+  if ( !CONFIG.SYSTEM.isDebugging() ) {
+    Actors.unregisterSheet("core", ActorSheet);
+    Items.unregisterSheet("core", ItemSheet);
+  }
 
-    // Actors
-    Actors.registerSheet(SYSTEM_ID, PcConfig, {types: ["pc"], makeDefault: true});
+  // Actors
+  Actors.registerSheet(SYSTEM_ID, PcConfig, {types: ["pc"], makeDefault: true});
 
-    // Items
-    Items.registerSheet(SYSTEM_ID, TalentConfig, {types: ["talent"], makeDefault: true});
-    Items.registerSheet(SYSTEM_ID, BackgroundConfig, {types: ["background"], makeDefault: true});
-    Items.registerSheet(SYSTEM_ID, HeritageConfig, {types: ["heritage"], makeDefault: true});
-    Items.registerSheet(SYSTEM_ID, LineageConfig, {types: ["lineage"], makeDefault: true});
-    Items.registerSheet(SYSTEM_ID, ClassConfig, {types: ["class"], makeDefault: true});
+  // Items
+  Items.registerSheet(SYSTEM_ID, TalentConfig, {types: ["talent"], makeDefault: true});
+  Items.registerSheet(SYSTEM_ID, BackgroundConfig, {types: ["background"], makeDefault: true});
+  Items.registerSheet(SYSTEM_ID, HeritageConfig, {types: ["heritage"], makeDefault: true});
+  Items.registerSheet(SYSTEM_ID, LineageConfig, {types: ["lineage"], makeDefault: true});
+  Items.registerSheet(SYSTEM_ID, ClassConfig, {types: ["class"], makeDefault: true});
 }
 
 /* -------------------------------------------- */
 
 function registerHandlebarsHelpers() {
 
-    // Convert a type and value to a localized label
-    Handlebars.registerHelper('typeLabel', (type, value) => {
-        return game.i18n.localize(CONFIG.SYSTEM[type][value]?.label);
-    });
+  // Convert a type and value to a localized label
+  Handlebars.registerHelper("typeLabel", (type, value) => {
+    return game.i18n.localize(CONFIG.SYSTEM[type][value]?.label);
+  });
 
-    // Truncate a string to a certain length with an ellipsis
-    Handlebars.registerHelper('truncate', (str, len) => {
-        if (str.length > len) {
-            return str.slice(0, len) + "...";
-        }
-        return str;
-    });
+  // Truncate a string to a certain length with an ellipsis
+  Handlebars.registerHelper("truncate", (str, len) => {
+    if (str.length > len) {
+      return `${str.slice(0, len)}...`;
+    }
+    return str;
+  });
 }
