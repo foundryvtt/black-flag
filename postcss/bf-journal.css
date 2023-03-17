@@ -1,14 +1,16 @@
 .journal-sheet {
-  & div, p, input, textarea, label, span, button, select, option {
-    font-family: "Verdigris MVP Pro Text, Verdana, Arial, sans-serif";
-  }
+  --font-primary: Verdigris MVP Pro Text, Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+  --font-header: "Modesto Condensed Bold", Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans-serif;
+  --font-sans-serif: Helvetica, "Helvetica Neue", Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, Arial, sans-serif;
+
+  font-family: var(--font-primary);
 
   .journal-entry-content {
 
     position: relative;
 
     & h1, h2, h3, h4, h5, h6, .journal-header input {
-      font-family: "Modesto Condensed";
+      font-family: var(--font-header);
       font-weight: bold;
     }
     & h2, h3, h4, h5, h6 {
@@ -48,14 +50,14 @@
   }
 
   & p.subheading {
-    font-family: "Helvetica";
+    font-family: var(--font-sans-serif);
     font-size: var(--font-size-14);
     font-weight: bold;
     text-transform: uppercase;
   }
 
   & p.bar {
-    font-family: "Helvetica";
+    font-family: var(--font-sans-serif);
     font-size: var(--font-size-14);
     font-weight: bold;
     text-transform: uppercase;
@@ -112,7 +114,7 @@
   }
 
   & table {
-    font-family: "Helvetica";
+    font-family: var(--font-sans-serif);
   }
 
   & table th {
@@ -146,7 +148,7 @@
     padding: 10px;
   }
   .callout.advice p {
-    font-family: "Helvetica";
+    font-family: var(--font-sans-serif);
   }
   .align-right {
     min-width: 25%;

@@ -3,18 +3,19 @@
 @import "bf-character-builder.css";
 
 .black-flag {
-
   /* Font Styles */
-  & div, p, input, textarea, label, span, button, select, option {
-    font-family: "Verdigris MVP Pro Text, Verdana, Arial, sans-serif";
-  }
+  --font-primary: Verdigris MVP Pro Text, Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
+  --font-header: "Modesto Condensed Bold", Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans-serif;
+  --font-mono: "Monaco", "Menlo", "Ubuntu Mono", "Droid Sans Mono", "Consolas", monospace;
+
+  font-family: var(--font-primary);
 
   & h1 {
-    font-family: "Modesto Condensed Bold";
+    font-family: var(--font-header);
   }
 
   & h2 {
-    font-family: "Modesto Condensed Bold";
+    font-family: var(--font-header);
     font-variant: small-caps;
   }
 
@@ -25,10 +26,10 @@
 
   .ace_editor {
     height: 375px;
-    font-family: "Monaco", "Menlo", "Ubuntu Mono", "Droid Sans Mono", "Consolas", monospace !important;
+    font-family: var(--font-mono) !important;
 
     * {
-      font-family: "Monaco", "Menlo", "Ubuntu Mono", "Droid Sans Mono", "Consolas", monospace !important;
+      font-family: var(--font-mono) !important;
     }
   }
 
