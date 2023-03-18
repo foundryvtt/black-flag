@@ -34,6 +34,8 @@ name: Create System Files For GitHub Release
 
 
 env:
+  node_version: 18
+
   # The URL used for the system's "Project URL" link on FoundryVTT's website.
   project_url: "https://github.com/${{github.repository}}"
 
@@ -63,12 +65,32 @@ on:
 
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Install node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.node_version }}
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: .npm
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-
+            ${{ runner.OS }}-
+
+      - name: Install dependencies
+        run: npm ci --cache .npm --prefer-offline
+
+      # Run `build` command to generate any output files from source
+      - name: Build
+        run: npm run build
 
       # Extract version embedded in the tag.
       # This step expects the tag to be one of the following formats:
@@ -99,7 +121,6 @@ jobs:
           manifest: ${{ env.latest_manifest_url }}
           download: ${{ env.release_module_url }}
 
-
       # Create a "system.zip" archive containing all the system's required files.
       # If you have other directories or files that will need to be added to
       # your packaged system, add them here.
@@ -124,6 +145,7 @@ jobs:
             system/
           # Don't forget to add a backslash at the end of the line for any
           # additional files or directories!
+
       # Update the GitHub release with the manifest and system archive files.
       - name: Update Release With Files
         id: create_version_release
