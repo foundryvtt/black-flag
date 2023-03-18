@@ -65,22 +65,33 @@ on:
 
 
 jobs:
-  # Use a Common Setup workflow
-  call_setup:
-    uses: ./.github/workflows/setup.yml
-
-  build:
-    needs: call_setup
+  release:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.node_version }}
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: .npm
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-
+            ${{ runner.OS }}-
+
+      - name: Install dependencies
+        run: npm ci --cache .npm --prefer-offline
+
       # Run `build` command to generate any output files from source
       - name: Build
         run: npm run build
 
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       # Extract version embedded in the tag.
       # This step expects the tag to be one of the following formats:
       #   - "v<major>.<minor>.<patch>" (e.g., "v1.2.3")
