@@ -4,7 +4,7 @@
     <header class="sheet-header flexrow">
         <img class="profile" src="{{document.img}}" title="{{document.name}}" data-edit="img"/>
         <h1 class="title">
-            <input name="name" type="text" value="{{document.name}}" placeholder="Talent Name"/>
+            <input name="name" type="text" value="{{document.name}}" placeholder="{{localize "BlackFlag.Character.TalentName"}}"/>
         </h1>
     </header>
 
@@ -13,18 +13,18 @@
 
         {{!-- Prequisite --}}
         <div class="form-group" data-name="system.prerequisite">
-            <label>{{ localize "Prerequisite" }}</label>
-            <input name="system.prerequisite" type="text" value="{{document.system.prerequisite}}" placeholder="Prerequisite"/>
+            <label>{{ localize "BlackFlag.Character.TraitPrerequisite" }}</label>
+            <input name="system.prerequisite" type="text" value="{{document.system.prerequisite}}" placeholder="{{localize "BlackFlag.Character.TraitPrerequisite"}}"/>
         </div>
 
         {{!-- Description --}}
         <div class="form-group stacked" data-name="system.description">
-            <label>{{ localize "Description" }}</label>
+            <label>{{ localize "BlackFlag.Common.Description" }}</label>
             {{editor descriptionHTML target="system.description" button=false editable=editable engine="prosemirror" collaborate=false}}
         </div>
     </section>
 
     <footer>
-        <button type="submit">{{localize "Save"}}</button>
+        <button type="submit">{{localize "BlackFlag.Common.Save"}}</button>
     </footer>
 </form>

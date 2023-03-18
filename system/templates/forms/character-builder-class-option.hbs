@@ -9,14 +9,14 @@
 
         {{!-- Uses Magic Checkbox --}}
         <div class="form-group">
-            <label>{{localize "Uses Magic"}}</label>
+            <label>{{localize "BlackFlag.CharacterBuilder.UsesMagic"}}</label>
             <div class="form-fields">
                 <input type="checkbox" name="system.usesMagic" data-dtype="Boolean" {{checked this.system.usesMagic}} disabled />
             </div>
         </div>
 
         {{!-- Choose Button --}}
-        <button class="choose" data-id="{{this._id}}" data-type="class" data-action="choose">{{localize "Choose"}}</button>
+        <button class="choose" data-id="{{this._id}}" data-type="class" data-action="choose">{{localize "BlackFlag.Common.Choose"}}</button>
     </div>
 </section>
 {{/each}}

@@ -203,7 +203,7 @@ export default class TraitForm extends FormApplication {
     proficiency.classList.add(tagClass);
     proficiency.classList.add("tag");
     proficiency.dataset.value = value;
-    proficiency.innerText = game.i18n.localize(configList[value].label);
+    proficiency.innerText = game.i18n.localize(`BF[${configList[value].label}]`);
 
     const deleteIcon = document.createElement("i");
     deleteIcon.classList.add("fas");

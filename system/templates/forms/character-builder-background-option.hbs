@@ -9,18 +9,18 @@
 
         {{!-- Equipment --}}
         <fieldset>
-            <legend>{{localize "Equipment"}}</legend>
+            <legend>{{localize "BlackFlag.CharacterBuilder.Equipment"}}</legend>
             <p class="equipment">{{this.system.equipment}}</p>
         </fieldset>
 
         {{!-- Talents --}}
         <fieldset>
-            <legend>{{localize "Talent"}}</legend>
+            <legend>{{localize "BlackFlag.CharacterBuilder.Talent"}}</legend>
             <p class="talents">{{this.system.talentDescription}}</p>
-            <p class="talents">{{localize "Choose one talent from the following list to represent this experience"}}:</p>
+            <p class="talents">{{localize "BlackFlag.CharacterBuilder.ChooseTalentFromList"}}:</p>
 
             <div class="form-group stacked" data-name="system.talents">
-                <label>{{ localize "Talent Options" }}</label>
+                <label>{{ localize "BlackFlag.CharacterBuilder.TalentOptions" }}</label>
                 {{!-- Render each existing Talent as a document link, with a button to remove --}}
                 <div class="foreign-documents talents flexcol">
 <!--                    {{#each document.system.talents}}-->
@@ -32,7 +32,7 @@
 <!--                        </div>-->
 <!--                    {{/each}}-->
                     {{!-- Render a text input with search ahead to add a new Talent --}}
-                    <input name="system.talents" list="{{this.name}}-system-talents-list" type="text" value="" placeholder="Talent"/>
+                    <input name="system.talents" list="{{this.name}}-system-talents-list" type="text" value="" placeholder="{{localize "BlackFlag.Character.Talent"}}"/>
                     <datalist id="{{this.name}}-system-talents-list">
                         {{#each allTalents}}
                             <option value="{{this._id}}" label="{{this.name}}"></option>
@@ -44,7 +44,7 @@
 
         {{!-- Traits --}}
         <div class="traits">
-            <h2>{{localize "Traits"}}</h2>
+            <h2>{{localize "BlackFlag.CharacterBuilder.Traits"}}</h2>
             {{#each this.system.traits}}
                 <div class="form-group stacked trait" data-id="{{this.id}}">
                     <div class="flexrow">
@@ -59,7 +59,7 @@
         </div>
 
         {{!-- Choose Button --}}
-        <button class="choose" data-id="{{this._id}}" data-type="background" data-action="choose">{{localize "Choose"}}</button>
+        <button class="choose" data-id="{{this._id}}" data-type="background" data-action="choose">{{localize "BlackFlag.Common.Choose"}}</button>
     </div>
 </section>
 {{/each}}

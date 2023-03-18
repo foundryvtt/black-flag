@@ -4,14 +4,14 @@
     <header class="sheet-header flexrow">
         <img class="profile" src="{{document.img}}" title="{{document.name}}" data-edit="img"/>
         <h1 class="title">
-            <input name="name" type="text" value="{{document.name}}" placeholder="Talent Name"/>
+            <input name="name" type="text" value="{{document.name}}" placeholder="{{localize "BlackFlag.Character.TalentName"}}"/>
         </h1>
     </header>
 
     <!-- Configuration Tabs -->
     <nav class="sheet-tabs tabs">
-        <a class="item" data-tab="summary"><i class="fas fa-scroll"></i> Summary</a>
-        <a class="item" data-tab="advanced"><i class="fas fa-cogs"></i> Advanced</a>
+        <a class="item" data-tab="summary"><i class="fas fa-scroll"></i> {{ localize "BlackFlag.Character.Summary" }}</a>
+        <a class="item" data-tab="advanced"><i class="fas fa-cogs"></i> {{ localize "BlackFlag.Character.Advanced" }}</a>
     </nav>
 
     {{!-- Main Content --}}
@@ -21,17 +21,17 @@
 
             {{!-- Description --}}
             <div class="form-group stacked" data-name="description">
-                <label>{{ localize "Description" }}</label>
+                <label>{{ localize "BlackFlag.Character.Description" }}</label>
                 <textarea name="description" rows=4>{{document.description}}</textarea>
             </div>
 
             <fieldset>
-                <legend>{{localize "Innate"}}</legend>
-                <p class="hint">These values are granted automatically to an owning PC</p>
+                <legend>{{localize "BlackFlag.Character.InnateTraits"}}</legend>
+                <p class="hint">{{ localize "BlackFlag.Character.TraitInnateDesc" }}</p>
 
                 {{!-- Proficiencies --}}
                 <div class="form-group stacked" data-name="innate.proficiencies">
-                    <label>{{ localize "Proficiencies" }}</label>
+                    <label>{{ localize "BlackFlag.Character.Proficiencies" }}</label>
                     {{!-- Render each existing Proficiency as a .tag, with a button to remove --}}
                     <div class="proficiencies flexcol">
                         <div class="tag-list flexrow">
@@ -42,7 +42,7 @@
                             {{/each}}
                         </div>
                         {{!-- Render a text input with search ahead to add a new Proficiency --}}
-                        <input name="innate.proficiencies" list="innate-proficiencies-list" type="text" value="" placeholder="Proficiency"/>
+                        <input name="innate.proficiencies" list="innate-proficiencies-list" type="text" value="" placeholder="{{localize "BlackFlag.Character.Proficiency"}}"/>
                         <datalist id="innate-proficiencies-list">
                             {{#each PROFICIENCY_TYPES}}
                                 <option value="{{this.value}}" label="{{this.label}}"></option>
@@ -53,7 +53,7 @@
 
                 {{!-- Languages --}}
                 <div class="form-group stacked" data-name="innate.languages">
-                    <label>{{ localize "Languages" }}</label>
+                    <label>{{ localize "BlackFlag.Character.Languages" }}</label>
                     {{!-- Render each existing Language as a .tag, with a button to remove --}}
                     <div class="languages flexcol">
                         <div class="tag-list flexrow">
@@ -64,7 +64,7 @@
                             {{/each}}
                         </div>
                         {{!-- Render a text input with search ahead to add a new Language --}}
-                        <input name="innate.languages" list="innate-languages-list" type="text" value="" placeholder="Language"/>
+                        <input name="innate.languages" list="innate-languages-list" type="text" value="" placeholder="{{localize "BlackFlag.Character.Language"}}"/>
                         <datalist id="innate-languages-list">
                             {{#each LANGUAGE_TYPES}}
                                 <option value="{{this.value}}" label="{{this.label}}"></option>
@@ -75,7 +75,7 @@
 
                 {{!-- Resistances --}}
                 <div class="form-group stacked" data-name="innate.resistances">
-                    <label>{{ localize "Resistances" }}</label>
+                    <label>{{ localize "BlackFlag.Character.Resistances" }}</label>
                     {{!-- Render each existing Resistance as a .tag, with a button to remove --}}
                     <div class="languages flexcol">
                         <div class="tag-list flexrow">
@@ -86,7 +86,7 @@
                             {{/each}}
                         </div>
                         {{!-- Render a text input with search ahead to add a new Talent --}}
-                        <input name="innate.resistances" list="innate-resistances-list" type="text" value="" placeholder="Damage Type"/>
+                        <input name="innate.resistances" list="innate-resistances-list" type="text" value="" placeholder="{{localize "BlackFlag.Common.DamageType"}}"/>
                         <datalist id="innate-resistances-list">
                             {{#each RESISTANCE_TYPES}}
                                 <option value="{{this.value}}" label="{{this.label}}"></option>
@@ -97,7 +97,7 @@
 
                 {{!-- Save Advantages --}}
                 <div class="form-group stacked" data-name="innate.saveAdvantages">
-                    <label>{{ localize "Save Advantages" }}</label>
+                    <label>{{ localize "BlackFlag.Character.SaveAdvantages" }}</label>
                     {{!-- Render each existing Save Advantage as a .tag, with a button to remove --}}
                     <div class="languages flexcol">
                         <div class="tag-list flexrow">
@@ -108,7 +108,7 @@
                             {{/each}}
                         </div>
                         {{!-- Render a text input with search ahead to add a new Talent --}}
-                        <input name="innate.saveAdvantages" list="innate-saveAdvantages-list" type="text" value="" placeholder="Damage Type"/>
+                        <input name="innate.saveAdvantages" list="innate-saveAdvantages-list" type="text" value="" placeholder="{{localize "BlackFlag.Common.DamageType"}}"/>
                         <datalist id="innate-saveAdvantages-list">
                             {{#each SAVE_ADVANTAGE_TYPES}}
                                 <option value="{{this.value}}" label="{{this.label}}"></option>
@@ -125,7 +125,7 @@
 
             {{!-- Character Builder JSON --}}
             <div class="form-group stacked">
-                <label>{{localize "Character Builder JSON"}}</label>
+                <label>{{localize "BlackFlag.CharacterBuilder.CharacterBuilderJson"}}</label>
                 {{#if hasAceEditor}}
                     <div name="builderInfo">{{builderInfoJson}}</div>
                 {{else}}
@@ -136,7 +136,7 @@
 
         {{!-- Save Changes --}}
         <footer>
-            <button type="submit">{{localize "Save"}}</button>
+            <button type="submit">{{localize "BlackFlag.Common.Save"}}</button>
         </footer>
     </section>
 </form>
