@@ -9,6 +9,20 @@ function log(...args) {
   if ( isDebugging() ) console.log(`${SYSTEM_NAME} |`, ...args);
 }
 
+const DISTANCE_UNITS = {
+  ft: {label: "ft"},
+  mi: {label: "mi"}
+};
+
+const AREA_OF_EFFECT_TYPES = {
+  sphere: {label: "sphere"},
+  cylinder: {label: "cylinder"},
+  cone: {label: "cone"},
+  square: {label: "square"},
+  cube: {label: "cube"},
+  line: {label: "line"}
+};
+
 /**
  * The supported skill types.
  * @type {{label: string}}
@@ -173,8 +187,8 @@ const TALENT_CATEGORIES = {
  */
 const HIT_DIE_TYPES = {
   d6: {label: "d6"},
-  d10: {label: "d10"},
-}
+  d10: {label: "d10"}
+};
 
 /**
  * The supported ability types.
@@ -186,7 +200,7 @@ const ABILITY_TYPES = {
   intelligence: {label: "Intelligence", shorthand: "INT"},
   wisdom: {label: "Wisdom", shorthand: "WIS"},
   charisma: {label: "Charisma", shorthand: "CHA"}
-}
+};
 
 /**
  * Given a level, return the XP required to the level.
@@ -243,6 +257,8 @@ export const SYSTEM = {
   RACE_SIZE_TYPES,
   ALIGNMENT_TYPES,
   EQUIPMENT_SIZES,
+  DISTANCE_UNITS,
+  AREA_OF_EFFECT_TYPES,
   TALENT_CATEGORIES,
   BACKGROUND_DOCUMENTS: new Collection(),
   HERITAGE_DOCUMENTS: new Collection(),
