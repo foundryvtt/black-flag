@@ -168,6 +168,27 @@ const TALENT_CATEGORIES = {
 };
 
 /**
+ * The supported hit die types.
+ * @type {{label: string}}
+ */
+const HIT_DIE_TYPES = {
+  d6: {label: "d6"},
+  d10: {label: "d10"},
+}
+
+/**
+ * The supported ability types.
+ * @type {{label: string, shorthand: string}} */
+const ABILITY_TYPES = {
+  strength: {label: "Strength", shorthand: "STR"},
+  dexterity: {label: "Dexterity", shorthand: "DEX"},
+  constitution: {label: "Constitution", shorthand: "CON"},
+  intelligence: {label: "Intelligence", shorthand: "INT"},
+  wisdom: {label: "Wisdom", shorthand: "WIS"},
+  charisma: {label: "Charisma", shorthand: "CHA"}
+}
+
+/**
  * Given a level, return the XP required to the level.
  * @type {Map<int, int>}
  */
@@ -228,5 +249,7 @@ export const SYSTEM = {
   LINEAGE_DOCUMENTS: new Collection(),
   SAVE_TYPES,
   XP_TABLE,
-  CHARACTER_BUILDER_MODES
+  CHARACTER_BUILDER_MODES,
+  HIT_DIE_TYPES,
+  ABILITY_TYPES
 };
