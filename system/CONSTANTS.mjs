@@ -1,13 +1,7 @@
+import { HELPERS } from "./helpers/HELPERS.mjs";
+
 export const SYSTEM_ID = "black-flag";
 export const SYSTEM_NAME = "Black Flag 🏴";
-
-function isDebugging() {
-  return game.modules.get("_dev-mode")?.api?.getPackageDebugValue(SYSTEM_ID);
-}
-
-function log(...args) {
-  if ( isDebugging() ) console.log(`${SYSTEM_NAME} |`, ...args);
-}
 
 /**
  * The expected distance units.
@@ -252,10 +246,9 @@ const CHARACTER_BUILDER_MODES = {
  * @type {Object}
  */
 export const SYSTEM = {
+  ...HELPERS,
   id: SYSTEM_ID,
   name: SYSTEM_NAME,
-  log,
-  isDebugging,
   TOOL_TYPES,
   SKILL_TYPES,
   PROFICIENCY_TYPES,
