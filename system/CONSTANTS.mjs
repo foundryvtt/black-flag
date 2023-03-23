@@ -9,11 +9,19 @@ function log(...args) {
   if ( isDebugging() ) console.log(`${SYSTEM_NAME} |`, ...args);
 }
 
+/**
+ * The expected distance units.
+ * @type {{label: string}}
+ */
 const DISTANCE_UNITS = {
   ft: {label: "ft"},
   mi: {label: "mi"}
 };
 
+/**
+ * The expected power area of effect types.
+ * @type {{label: string}}
+ */
 const AREA_OF_EFFECT_TYPES = {
   sphere: {label: "sphere"},
   cylinder: {label: "cylinder"},
