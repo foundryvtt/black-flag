@@ -89,42 +89,42 @@
 
                 {{!-- Strength --}}
                 <div class="form-group ability" data-name="system.abilities.strength">
-                    <label>{{ localize "Strength" }}</label>
+                    <label data-tooltip="{{localize 'Strength'}}">{{localize "STR"}}</label>
                     <div class="mod">{{document.system.abilities.strength.mod}}</div>
                     {{numberInput document.system.abilities.strength.value name="system.abilities.strength" step=1 min=0 max=20}}
                 </div>
 
                 {{!-- Dexterity --}}
                 <div class="form-group ability flexcol" data-name="system.abilities.dexterity">
-                    <label>{{ localize "Dexterity" }}</label>
+                    <label data-tooltip="{{localize 'Dexterity'}}">{{ localize "DEX" }}</label>
                     <div class="mod">{{document.system.abilities.dexterity.mod}}</div>
                     {{numberInput document.system.abilities.dexterity.value name="system.abilities.dexterity" step=1 min=0 max=20}}
                 </div>
 
                 {{!-- Constitution --}}
                 <div class="form-group ability flexcol" data-name="system.abilities.constitution">
-                    <label>{{ localize "Constitution" }}</label>
+                    <label data-tooltip="{{localize 'Constitution'}}">{{ localize "CON" }}</label>
                     <div class="mod">{{document.system.abilities.constitution.mod}}</div>
                     {{numberInput document.system.abilities.constitution.value name="system.abilities.constitution" step=1 min=0 max=20}}
                 </div>
 
                 {{!-- Intelligence --}}
                 <div class="form-group ability flexcol" data-name="system.abilities.intelligence">
-                    <label>{{ localize "Intelligence" }}</label>
+                    <label data-tooltip="{{localize 'Intelligence'}}">{{ localize "INT" }}</label>
                     <div class="mod">{{document.system.abilities.intelligence.mod}}</div>
                     {{numberInput document.system.abilities.intelligence.value name="system.abilities.intelligence" step=1 min=0 max=20}}
                 </div>
 
                 {{!-- Wisdom --}}
                 <div class="form-group ability flexcol" data-name="system.abilities.wisdom">
-                    <label>{{ localize "Wisdom" }}</label>
+                    <label data-tooltip="{{localize 'Wisdom'}}">{{ localize "WIS" }}</label>
                     <div class="mod">{{document.system.abilities.wisdom.mod}}</div>
                     {{numberInput document.system.abilities.wisdom.value name="system.abilities.wisdom" step=1 min=0 max=20}}
                 </div>
 
                 {{!-- Charisma --}}
                 <div class="form-group ability flexcol" data-name="system.abilities.charisma">
-                    <label>{{ localize "Charisma" }}</label>
+                    <label data-tooltip="{{localize 'Charisma'}}">{{ localize "CHA" }}</label>
                     <div class="mod">{{document.system.abilities.charisma.mod}}</div>
                     {{numberInput document.system.abilities.charisma.value name="system.abilities.charisma" step=1 min=0 max=20}}
                 </div>
