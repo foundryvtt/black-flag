@@ -13,12 +13,6 @@ export default class DurationDataModel extends foundry.abstract.DataModel {
   static defineSchema() {
     const fields = foundry.data.fields;
     return {
-      type: new fields.StringField({
-        required: true,
-        choices: ["instantaneous", "time", "permanent", "special"],
-        initial: "instantaneous"
-      }),
-
       // Store duration internally as rounds, translating into human readable on the fly
       rounds: new fields.NumberField({
         required: false
@@ -28,6 +22,12 @@ export default class DurationDataModel extends foundry.abstract.DataModel {
       // e.g. "end of target's turn" or "end of caster's turn"
       special: new fields.StringField({
         required: false
+      }),
+
+      type: new fields.StringField({
+        required: true,
+        choices: ["instantaneous", "time", "permanent", "special"],
+        initial: "instantaneous"
       })
     };
   }
