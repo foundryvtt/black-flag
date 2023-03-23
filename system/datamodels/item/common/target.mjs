@@ -73,7 +73,7 @@ export default class TargetDataModel extends foundry.abstract.DataModel {
 
       type: new fields.StringField({
         required: true,
-        choices: ["self" | "within-range" | "aoe"]
+        choices: ["self", "within-range", "aoe"]
       })
     };
   }
