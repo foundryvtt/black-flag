@@ -1,7 +1,7 @@
-import {SYSTEM_ID} from "../../CONSTANTS.mjs";
-import BlackFlagSheet from "../black-flag-sheet.mjs";
+import { SYSTEM_ID } from "../../CONSTANTS.mjs";
+import BlackFlagSheetMixin from "../black-flag-sheet.mjs";
 
-export default class ItemDocumentSheet extends BlackFlagSheet {
+export default class ItemDocumentSheet extends BlackFlagSheetMixin(ItemSheet) {
 
   /** @override */
   static get defaultOptions() {
