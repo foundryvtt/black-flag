@@ -1,6 +1,11 @@
 import {SYSTEM_ID} from "../CONSTANTS.mjs";
 
-export default class BlackFlagSheet extends DocumentSheet {
+/**
+ * A mixin that extends a `DocumentSheet`, providing shared logic among system sheet classes
+ * @param {(...args: unknown[]) => ActorSheet | ItemSheet} Base a core `DocumentSheet` subclass
+ * @returns {BlackFlagSheet} the mixed-in sheet class
+ */
+const BlackFlagSheetMixin = Base => class BlackFlagSheet extends Base {
 
   /** @override */
   static get defaultOptions() {
@@ -120,11 +125,11 @@ export default class BlackFlagSheet extends DocumentSheet {
   /* -------------------------------------------- */
 
   /**
-     * Turns a choices object into an array of options for a multi-select, with the selected options excluded
-     * @param choices
-     * @param selected
-     * @returns {unknown[]}
-     */
+   * Turns a choices object into an array of options for a multi-select, with the selected options excluded
+   * @param choices
+   * @param selected
+   * @returns {unknown[]}
+   */
   static getDatalistOptions(choices, selected) {
     let set = new Set(Array.from(selected));
     return Object.entries(choices).map(type => {
@@ -140,10 +145,10 @@ export default class BlackFlagSheet extends DocumentSheet {
   /* -------------------------------------------- */
 
   /**
-     * Deletes an element's parent from the dom, readding the value to the dataset options
-     * @param {Event} event
-     * @protected
-     */
+   * Deletes an element's parent from the dom, readding the value to the dataset options
+   * @param {Event} event
+   * @protected
+   */
   _onDeleteDatasetItem(event) {
     const parent = event.currentTarget.parentElement;
     const options = parent.parentElement.parentElement.querySelector("datalist");
@@ -157,10 +162,10 @@ export default class BlackFlagSheet extends DocumentSheet {
   /* -------------------------------------------- */
 
   /**
-     * If the input changes to match a value from the given CONFIG list, add it to the list
-     * @param {Event} event
-     * @protected
-     */
+   * If the input changes to match a value from the given CONFIG list, add it to the list
+   * @param {Event} event
+   * @protected
+   */
   _onTagInputChange(event, tagClass, configList) {
     const value = event.currentTarget.value;
 
@@ -186,4 +191,6 @@ export default class BlackFlagSheet extends DocumentSheet {
     event.currentTarget.value = "";
     event.currentTarget.parentElement.querySelector(`option[value="${value}"]`).remove();
   }
-}
+};
+
+export default BlackFlagSheetMixin;
