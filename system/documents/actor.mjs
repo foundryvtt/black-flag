@@ -246,7 +246,7 @@ export default class BlackFlagActor extends Actor {
       result.source = "Manual";
       result.sourceType = "manual";
       result.value = value;
-      result.label = types[value].label;
+      result.label = types[value.value].label;
       return result;
     }
     this.system.proficiencies = this.system.proficiencies.map(p => mapManualData(CONFIG.SYSTEM.PROFICIENCY_TYPES, p));
