@@ -226,6 +226,7 @@ export const SYSTEM = {
   BACKGROUND_DOCUMENTS: new Collection(),
   HERITAGE_DOCUMENTS: new Collection(),
   LINEAGE_DOCUMENTS: new Collection(),
+  CLASS_DOCUMENTS: new Collection(),
   SAVE_TYPES,
   XP_TABLE,
   CHARACTER_BUILDER_MODES
