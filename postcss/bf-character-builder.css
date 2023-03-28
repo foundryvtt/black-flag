@@ -149,6 +149,8 @@
         color: var(--character-builder-light-font-color);
         background-color: #1D0B1F;
         border: 1px solid #3B2031;
+        width: auto;
+        margin: 0 5px 5px;
       }
 
       & img.cover {
