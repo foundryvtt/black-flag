@@ -4,7 +4,7 @@
     <header class="sheet-header flexrow">
         <img class="profile" src="{{document.img}}" title="{{document.name}}" data-edit="img"/>
         <h1 class="title">
-            <input name="name" type="text" value="{{document.name}}" placeholder="Class Name"/>
+            <input name="name" type="text" value="{{document.name}}" placeholder="{{localize "BlackFlag.Character.ClassName"}}"/>
         </h1>
         <div class="form-group">
             <div class="form-fields">
@@ -18,13 +18,13 @@
 
         {{!-- Description --}}
         <div class="form-group stacked" data-name="system.description">
-            <label>{{ localize "Description" }}</label>
+            <label>{{ localize "BlackFlag.Character.ClassDescription" }}</label>
             {{editor descriptionHTML target="system.description" button=false editable=editable engine="prosemirror" collaborate=false}}
         </div>
 
         {{!-- Uses Magic Checkbox --}}
         <div class="form-group">
-            <label>{{localize "Uses Magic"}}</label>
+            <label>{{localize "BlackFlag.Character.ClassUsesMagic"}}</label>
             <div class="form-fields">
                 <input type="checkbox" name="system.usesMagic" data-dtype="Boolean" {{checked document.system.usesMagic}} />
             </div>
@@ -32,6 +32,6 @@
 
     {{!-- Save Changes --}}
     <footer>
-        <button type="submit">{{localize "Save"}}</button>
+        <button type="submit">{{localize "BlackFlag.Common.Save"}}</button>
     </footer>
 </form>

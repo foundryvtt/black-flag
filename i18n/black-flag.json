@@ -1,0 +1,3 @@
+{
+    "$import": ["playtest.json", "common.json", "character.json", "char-builder.json"]
+}

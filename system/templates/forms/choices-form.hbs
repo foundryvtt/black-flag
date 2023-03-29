@@ -4,7 +4,7 @@
     <header class="sheet-header flexrow">
         <img class="profile" src="{{document.img}}" title="{{document.name}}" data-edit="img"/>
         <h1 class="title">
-            <input name="name" type="text" value="{{document.name}}" placeholder="Talent Name"/>
+            <input name="name" type="text" value="{{document.name}}" placeholder="{{localize "BlackFlag.Character.TalentName"}}"/>
         </h1>
     </header>
 
@@ -33,7 +33,7 @@
 
         {{!-- Save Changes --}}
         <footer>
-            <button type="submit">{{localize "Save"}} {{localize "Choices"}}</button>
+            <button type="submit">{{localize "BlackFlag.Common.SaveChoices"}}</button>
         </footer>
     </section>
 </form>

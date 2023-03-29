@@ -7,7 +7,8 @@
     "build": "postcss postcss/black-flag.css --use autoprefixer --use postcss-nesting --use postcss-import -o css/black-flag.css -m",
     "lint": "eslint --ext .mjs ./",
     "lint:fix": "eslint --ext .mjs ./ --fix",
-    "watch": "postcss postcss/black-flag.css --use autoprefixer --use postcss-nesting --use postcss-import -o css/black-flag.css -m -w"
+    "watch": "postcss postcss/black-flag.css --use autoprefixer --use postcss-nesting --use postcss-import -o css/black-flag.css -m -w",
+    "build:i18n": "json-merger -p ./i18n/black-flag.json > ./lang/en.json"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
@@ -15,6 +16,7 @@
     "postcss": "^8.4.21",
     "postcss-cli": "^10.1.0",
     "postcss-import": "^15.1.0",
-    "postcss-nesting": "^11.2.1"
+    "postcss-nesting": "^11.2.1",
+    "json-merger": "^1.1.9"
   }
 }

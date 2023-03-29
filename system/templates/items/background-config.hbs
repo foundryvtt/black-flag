@@ -4,7 +4,7 @@
     <header class="sheet-header flexrow">
         <img class="profile" src="{{document.img}}" title="{{document.name}}" data-edit="img"/>
         <h1 class="title">
-            <input name="name" type="text" value="{{document.name}}" placeholder="Talent Name"/>
+            <input name="name" type="text" value="{{document.name}}" placeholder="{{localize "BlackFlag.Character.TalentName"}}"/>
         </h1>
         <div class="form-group">
             <div class="form-fields">
@@ -17,19 +17,19 @@
     <section class="sheet-body">
         {{!-- Description --}}
         <div class="form-group stacked" data-name="system.description">
-            <label>{{ localize "Description" }}</label>
+            <label>{{ localize "BlackFlag.Character.BackgroundDescription" }}</label>
             {{editor descriptionHTML target="system.description" button=false editable=editable engine="prosemirror" collaborate=false}}
         </div>
 
         {{!-- Talent Description --}}
         <div class="form-group stacked" data-name="system.talentDescription">
-            <label>{{ localize "Talent Description" }}</label>
-            <textarea name="system.talentDescription" rows="4" placeholder="Talent Description">{{document.system.talentDescription}}</textarea>
+            <label>{{ localize "BlackFlag.Character.TalentDescription" }}</label>
+            <textarea name="system.talentDescription" rows="4" placeholder="{{localize "BlackFlag.Character.TalentDescription"}}">{{document.system.talentDescription}}</textarea>
         </div>
 
         {{!-- Talents --}}
         <div class="form-group stacked" data-name="system.talents">
-            <label>{{ localize "Talent Options" }}</label>
+            <label>{{ localize "BlackFlag.Character.TalentOptions" }}</label>
             {{!-- Render each existing Talent as a document link, with a button to remove --}}
             <div class="foreign-documents talents flexcol">
                 {{#each document.system.talents}}
@@ -41,7 +41,7 @@
                     </div>
                 {{/each}}
                 {{!-- Render a text input with search ahead to add a new Talent --}}
-                <input name="system.talents" list="system-talents-list" type="text" value="" placeholder="Talent"/>
+                <input name="system.talents" list="system-talents-list" type="text" value="" placeholder="{{localize "BlackFlag.Character.Talent"}}"/>
                 <datalist id="system-talents-list">
                     {{#each allTalents}}
                         <option value="{{this._id}}" label="{{this.name}}"></option>
@@ -52,14 +52,14 @@
 
         {{!-- Number of Talents --}}
         <div class="form-group stacked" data-name="system.numberOfTalents">
-            <label>{{ localize "Number of Talents to select" }}</label>
-            <input name="system.numberOfTalents" type="number" value="{{document.system.numberOfTalents}}" placeholder="Number of Talents to select"/>
+            <label>{{ localize "BlackFlag.Character.TalentsNumber" }}</label>
+            <input name="system.numberOfTalents" type="number" value="{{document.system.numberOfTalents}}" placeholder="{{localize "BlackFlag.Character.TalentsNumber"}}"/>
         </div>
 
         {{!-- Equipment --}}
         <div class="form-group stacked" data-name="system.equipment">
-            <label>{{ localize "Equipment" }}</label>
-            <input name="system.equipment" type="text" value="{{document.system.equipment}}" placeholder="Equipment"/>
+            <label>{{ localize "BlackFlag.Character.Equipment" }}</label>
+            <input name="system.equipment" type="text" value="{{document.system.equipment}}" placeholder="{{localize "BlackFlag.Character.Equipment"}}"/>
         </div>
 
         <hr>
@@ -67,11 +67,11 @@
         {{!-- Traits --}}
         <div class="form-group stacked">
             <div class="header flexrow">
-                <h3>{{ localize "Traits" }}</h3>
+                <h3>{{ localize "BlackFlag.Character.Traits" }}</h3>
                 {{#if owner}}
                     <div class="item-controls">
-                        <a class="item-control trait-create" data-tooltip="{{localize "Create"}} {{localize "Trait"}}">
-                            <i class="fas fa-plus"></i> {{localize 'Add'}}
+                        <a class="item-control trait-create" data-tooltip="{{localize "BlackFlag.CharacterBuilder.CreateElement" elem='({{localize "BlackFlag.Character.Trait"}})'"}} >
+                            <i class="fas fa-plus"></i> {{localize "BlackFlag.Common.Add"}}
                         </a>
                     </div>
                 {{/if}}
@@ -87,8 +87,8 @@
                         <div class="description" data-tooltip="{{{trait.description}}}">{{truncate trait.description 50}}</div>
                         {{#if ../owner}}
                             <div class="item-controls">
-                                <a class="item-control trait-edit" data-tooltip="{{localize "Edit"}}"><i class="fas fa-edit"></i></a>
-                                <a class="item-control trait-delete" data-tooltip="{{localize "Delete"}}"><i class="fas fa-trash"></i></a>
+                                <a class="item-control trait-edit" data-tooltip="{{localize "BlackFlag.Common.Edit"}}"><i class="fas fa-edit"></i></a>
+                                <a class="item-control trait-delete" data-tooltip="{{localize "BlackFlag.Common.Delete"}}"><i class="fas fa-trash"></i></a>
                             </div>
                         {{/if}}
                     </li>
@@ -98,6 +98,6 @@
     </section>
 
     <footer>
-        <button type="submit">{{localize "Save"}}</button>
+        <button type="submit">{{localize "BlackFlag.Common.Save"}}</button>
     </footer>
 </form>

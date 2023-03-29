@@ -75,7 +75,7 @@ function registerHandlebarsHelpers() {
 
   // Convert a type and value to a localized label
   Handlebars.registerHelper("typeLabel", (type, value) => {
-    return game.i18n.localize(CONFIG.SYSTEM[type][value]?.label);
+    return game.i18n.localize(`BF[${CONFIG.SYSTEM[type][value]?.label}`);
   });
 
   // Truncate a string to a certain length with an ellipsis

@@ -9,20 +9,20 @@
 
         {{!-- Age --}}
         <fieldset>
-            <legend>{{localize "Age"}}</legend>
+            <legend>{{localize "BlackFlag.Character.Age"}}</legend>
             <p>{{this.system.age}}</p>
             <div class="form-group">
-                <label for="system.age">{{localize "Your Age"}}</label>
+                <label for="system.age">{{localize "BlackFlag.Character.YourAge"}}</label>
                 <input type="number" name="system.age" id="age" value="{{this.system.age}}" min="0" step="1" />
             </div>
         </fieldset>
 
         {{!-- Size --}}
         <fieldset>
-            <legend>{{localize "Size"}}</legend>
+            <legend>{{localize "BlackFlag.Character.Size"}}</legend>
             <p>{{this.system.size.description}}</p>
             <div class="form-group">
-                <label for="system.size">{{localize "Your Size"}}</label>
+                <label for="system.size">{{localize "BlackFlag.Character.YourSize"}}</label>
                 <select name="system.size">
                     {{selectOptions ../sizeOptions selected=this.system.size.type}}
                 </select>
@@ -31,7 +31,7 @@
 
         {{!-- Traits --}}
         <div class="traits">
-            <h2>{{localize "Traits"}}</h2>
+            <h2>{{localize "BlackFlag.Character.Traits"}}</h2>
             {{#each this.system.traits}}
                 <div class="form-group stacked trait" data-id="{{this.id}}">
                     <div class="flexrow">
@@ -46,7 +46,7 @@
         </div>
 
         {{!-- Choose Button --}}
-        <button class="choose" data-id="{{this._id}}" data-type="lineage" data-action="choose">{{localize "Choose"}}</button>
+        <button class="choose" data-id="{{this._id}}" data-type="lineage" data-action="choose">{{localize "BlackFlag.Common.Choose"}}</button>
     </div>
 </section>
 {{/each}}

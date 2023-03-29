@@ -20,7 +20,7 @@ export default class LineageConfig extends ItemDocumentSheet {
   async getData() {
     const context = await super.getData();
     context.SIZE_TYPES = Object.entries(CONFIG.SYSTEM.RACE_SIZE_TYPES).reduce((obj, [k, v]) => {
-      obj[k] = game.i18n.localize(v.label);
+      obj[k] = game.i18n.localize(`BF[${v.label}`);
       return obj;
     }, {});
     return context;

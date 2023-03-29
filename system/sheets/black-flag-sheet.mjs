@@ -24,7 +24,7 @@ const BlackFlagSheetMixin = Base => class BlackFlagSheet extends Base {
 
   /** @override */
   get title() {
-    return `${this.object.name} ${game.i18n.localize("Config")}`;
+    return `${this.object.name} ${game.i18n.localize("BlackFlag.Common.Config")}`;
   }
 
   /* -------------------------------------------- */
@@ -110,7 +110,7 @@ const BlackFlagSheetMixin = Base => class BlackFlagSheet extends Base {
 
   static getOptionsList(choices) {
     return Object.entries(choices).reduce((obj, [k, v]) => {
-      obj[k] = game.i18n.localize(v.label);
+      obj[k] = game.i18n.localize(`BF[${v.label}`);
       return obj;
     }, {});
   }
@@ -178,7 +178,7 @@ const BlackFlagSheetMixin = Base => class BlackFlagSheet extends Base {
     proficiency.classList.add("tag");
     proficiency.classList.add("manual");
     proficiency.dataset.value = value;
-    proficiency.innerText = game.i18n.localize(configList[value].label);
+    proficiency.innerText = game.i18n.localize(`BF[${configList[value].label}`);
 
     const deleteIcon = document.createElement("i");
     deleteIcon.classList.add("fas");

@@ -215,11 +215,11 @@ export default class PcConfig extends ActorDocumentSheet {
     }, 50);
 
     new Dialog({
-      title: "How do you want to do this?",
+      title: game.i18n.localize("BlackFlag.CharacterBuilder.HowToGenerateAbilities"),
       content: "",
       buttons: {
         roll: {
-          label: game.i18n.localize("Roll"),
+          label: game.i18n.localize("BlackFlag.CharacterBuilder.AbilityScoresButtonRoll"),
           callback: async () => {
             const result = await new Roll("{4d6kh3,4d6kh3,4d6kh3,4d6kh3,4d6kh3,4d6kh3}").toMessage({flavor: "Your ability score rolls:"});
             expandRoll(result);
@@ -227,7 +227,7 @@ export default class PcConfig extends ActorDocumentSheet {
           icon: '<i class="fa-solid fa-dice"></i>'
         },
         pointBuy: {
-          label: game.i18n.localize("Point Buy"),
+          label: game.i18n.localize("BlackFlag.CharacterBuilder.AbilityScoresButtonPointBuy"),
           callback: async () => {
             const j = await fromUuid("Compendium.black-flag-content.playtest-1-packet.bHbtZZkt9UyEMu2r");
             if ( !j ) {
@@ -238,7 +238,7 @@ export default class PcConfig extends ActorDocumentSheet {
           icon: "<i class=\"fa-solid fa-cart-shopping\"></i>"
         },
         standard: {
-          label: game.i18n.localize("Standard Array"),
+          label: game.i18n.localize("BlackFlag.CharacterBuilder.AbilityScoresButtonStandardArray"),
           callback: () => {return new Dialog({title: "Standard Array", content: "<p>Assign one of the following numbers to each ability score: 16, 15, 13, 12, 10, and 8.</p>", buttons: {}}).render(true);},
           icon: "<i class=\"fa-solid fa-standard-definition\"></i>"
         }

@@ -9,10 +9,10 @@
 
         {{!-- Alignment --}}
         <fieldset>
-            <legend>{{localize "Alignment"}}</legend>
+            <legend>{{localize "BlackFlag.Character.Alignment"}}</legend>
             <p>{{this.system.alignment}}</p>
             <div class="form-group">
-                <label for="system.alignment">{{localize "Your Alignment"}}</label>
+                <label for="system.alignment">{{localize "BlackFlag.Character.YourAlignment"}}</label>
                 <select name="system.alignment">
                     {{selectOptions ../alignmentOptions}}
                 </select>
@@ -21,7 +21,7 @@
 
         {{!-- Traits --}}
         <div class="traits">
-            <h2>{{localize "Traits"}}</h2>
+            <h2>{{localize "BlackFlag.Character.Traits"}}</h2>
             {{#each this.system.traits}}
                 <div class="form-group stacked trait" data-id="{{this.id}}">
                     <div class="flexrow">
@@ -36,7 +36,7 @@
         </div>
 
         {{!-- Choose Button --}}
-        <button class="choose" data-id="{{this._id}}" data-type="heritage" data-action="choose">{{localize "Choose"}}</button>
+        <button class="choose" data-id="{{this._id}}" data-type="heritage" data-action="choose">{{localize "BlackFlag.Common.Choose"}}</button>
     </div>
 </section>
 {{/each}}

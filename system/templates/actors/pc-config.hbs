@@ -1,47 +1,48 @@
 <form class="{{cssClass}} flexcol" autocomplete="off">
     <div class="important-info">
-        <a data-action="important-info"><i class="fa-solid fa-circle-exclamation"></i> Important Notes <i class="fa-solid fa-angle-down"></i></a>
+        <a data-action="important-info"><i class="fa-solid fa-circle-exclamation"></i> {{ localize "BlackFlag.Playtest.ActorSheetNoticeTitle" }} <i class="fa-solid fa-angle-down"></i></a>
         <div class="collapsible collapsed">
-            <p>The Playtest does not currently have data for classes or items yet. The focus is on the character-building experience. Check out the <a class="content-link" draggable="true" data-uuid="Compendium.black-flag-content.playtest-1-packet.bHbtZZkt9UyEMu2r" data-id="bHbtZZkt9UyEMu2r" data-type="JournalEntry" data-pack="black-flag-content.playtest-1-packet" data-tooltip="Journal Entry"><i class="fas fa-book-open"></i>Character Creation Rules</a>.</p>
+            <p>{{ localize "BlackFlag.Playtest.ActorSheetNotice" }}</p>
+            <p><a class="content-link" draggable="true" data-uuid="Compendium.black-flag-content.playtest-1-packet.bHbtZZkt9UyEMu2r" data-id="bHbtZZkt9UyEMu2r" data-type="JournalEntry" data-pack="black-flag-content.playtest-1-packet" data-tooltip="Journal Entry"><i class="fas fa-book-open"></i>{{ localize "BlackFlag.Playtest.CharCreationRules"}}</a></p>
         </div>
     </div>
     {{!-- Sheet Header --}}
     <header class="sheet-header flexrow">
         <img class="profile" src="{{document.img}}" title="{{document.name}}" data-edit="img"/>
         <h1 class="title flex3">
-            <input name="name" type="text" value="{{document.name}}" placeholder="Player Name"/>
+            <input name="name" type="text" value="{{document.name}}" placeholder="{{localize "BlackFlag.Character.Name"}}"/>
         </h1>
 
         {{!-- Level --}}
         <fieldset>
-            <legend>{{localize "Level"}}</legend>
+            <legend>{{localize "BlackFlag.Character.Level"}}</legend>
 
             {{!-- Current --}}
             <div class="form-group" data-name="system.level">
-                <label>{{ localize "Level" }}</label>
+                <label>{{ localize "BlackFlag.Character.Level" }}</label>
                 {{numberInput document.system.level name="system.level" min=0 max=20 step=1}}
             </div>
 
             {{!-- Experience --}}
             <div class="form-group" data-name="system.experience">
-                <label>{{ localize "XP" }}</label>
+                <label>{{ localize "BlackFlag.Character.XP" }}</label>
                 {{numberInput document.system.experience name="system.experience" min=0 max=nextLevelXP step=1}}
             </div>
         </fieldset>
 
         {{!-- Resources --}}
         <fieldset>
-            <legend>{{localize "Details"}}</legend>
+            <legend>{{localize "BlackFlag.Character.Details"}}</legend>
 
-             {{!-- Age --}}
+            {{!-- Age --}}
             <div class="form-group" data-name="system.age">
-                <label>{{ localize "Age" }}</label>
-                <input name="system.age" type="number" value="{{document.system.age}}" placeholder="Age"/>
+                <label>{{ localize "BlackFlag.Character.Age" }}</label>
+                <input name="system.age" type="number" value="{{document.system.age}}" placeholder="{{localize "BlackFlag.Character.Age"}}"/>
             </div>
 
             {{!-- Size --}}
             <div class="form-group" data-name="system.size">
-                <label>{{ localize "Size" }}</label>
+                <label>{{ localize "BlackFlag.Character.Size" }}</label>
                 <select name="system.size">
                     {{selectOptions SIZE_TYPES selected=document.system.size}}
                 </select>
@@ -55,17 +56,17 @@
         <div class="flexrow">
             {{!-- Health --}}
             <fieldset class="flex1">
-                <legend>{{localize "HP & Luck"}}</legend>
+                <legend>{{localize "BlackFlag.Character.HPAndLuck"}}</legend>
 
                 {{!-- Current --}}
                 <div class="form-group" data-name="system.hp.current">
-                    <label>{{ localize "Current" }}</label>
+                    <label>{{ localize "BlackFlag.Character.HpCurrent" }}</label>
                     {{numberInput document.system.hp.current name="system.hp.current" min=0 max=document.system.hp.max step=1}}
                 </div>
 
                 {{!-- Max --}}
                 <div class="form-group" data-name="system.hp.max">
-                    <label>{{ localize "Max" }}</label>
+                    <label>{{ localize "BlackFlag.Character.HpMax" }}</label>
                     {{numberInput document.system.hp.max name="system.hp.max" min=0 max=100 step=1}}
                 </div>
 
@@ -78,53 +79,53 @@
 
                 {{!-- Luck --}}
                 <div class="form-group" data-name="system.luck">
-                    <label>{{ localize "Luck" }}</label>
+                    <label>{{ localize "BlackFlag.Character.Luck" }}</label>
                     {{numberInput document.system.luck name="system.luck" min=0 step=1}}
                 </div>
             </fieldset>
 
             {{!-- Abilitity Scores --}}
             <fieldset class="flexrow abilities flex3">
-                <legend>{{localize "Ability Scores"}} <a data-action="roll-ability" data-tooltip="{{localize "Click to roll for your ability scores."}}"><i class="fa-solid fa-dice"></i></a></legend>
+                <legend>{{localize "BlackFlag.Common.AbilityScores"}} <a data-action="roll-ability" data-tooltip="{{localize "BlackFlag.CharacterBuilder.AbilityScoresClickToRoll"}}"><i class="fa-solid fa-dice"></i></a></legend>
 
                 {{!-- Strength --}}
                 <div class="form-group ability" data-name="system.abilities.strength">
-                    <label data-tooltip="{{localize 'Strength'}}">{{localize "STR"}}</label>
+                    <label data-tooltip="{{localize 'BlackFlag.Common.Ability.Strength'}}">{{localize "BlackFlag.Common.Ability.Str"}}</label>
                     <div class="mod">{{document.system.abilities.strength.mod}}</div>
                     {{numberInput document.system.abilities.strength.value name="system.abilities.strength" step=1 min=0 max=20}}
                 </div>
 
                 {{!-- Dexterity --}}
                 <div class="form-group ability flexcol" data-name="system.abilities.dexterity">
-                    <label data-tooltip="{{localize 'Dexterity'}}">{{ localize "DEX" }}</label>
+                    <label data-tooltip="{{localize 'BlackFlag.Common.Ability.Dexterity'}}">{{ localize "BlackFlag.Common.Ability.Dex" }}</label>
                     <div class="mod">{{document.system.abilities.dexterity.mod}}</div>
                     {{numberInput document.system.abilities.dexterity.value name="system.abilities.dexterity" step=1 min=0 max=20}}
                 </div>
 
                 {{!-- Constitution --}}
                 <div class="form-group ability flexcol" data-name="system.abilities.constitution">
-                    <label data-tooltip="{{localize 'Constitution'}}">{{ localize "CON" }}</label>
+                    <label data-tooltip="{{localize 'BlackFlag.Common.Ability.Constitution'}}">{{ localize "BlackFlag.Common.Ability.Con" }}</label>
                     <div class="mod">{{document.system.abilities.constitution.mod}}</div>
                     {{numberInput document.system.abilities.constitution.value name="system.abilities.constitution" step=1 min=0 max=20}}
                 </div>
 
                 {{!-- Intelligence --}}
                 <div class="form-group ability flexcol" data-name="system.abilities.intelligence">
-                    <label data-tooltip="{{localize 'Intelligence'}}">{{ localize "INT" }}</label>
+                    <label data-tooltip="{{localize 'BlackFlag.Common.Ability.Intelligence'}}">{{ localize "BlackFlag.Common.Ability.Int" }}</label>
                     <div class="mod">{{document.system.abilities.intelligence.mod}}</div>
                     {{numberInput document.system.abilities.intelligence.value name="system.abilities.intelligence" step=1 min=0 max=20}}
                 </div>
 
                 {{!-- Wisdom --}}
                 <div class="form-group ability flexcol" data-name="system.abilities.wisdom">
-                    <label data-tooltip="{{localize 'Wisdom'}}">{{ localize "WIS" }}</label>
+                    <label data-tooltip="{{localize 'BlackFlag.Common.Ability.Wisdom'}}">{{ localize "BlackFlag.Common.Ability.Wis" }}</label>
                     <div class="mod">{{document.system.abilities.wisdom.mod}}</div>
                     {{numberInput document.system.abilities.wisdom.value name="system.abilities.wisdom" step=1 min=0 max=20}}
                 </div>
 
                 {{!-- Charisma --}}
                 <div class="form-group ability flexcol" data-name="system.abilities.charisma">
-                    <label data-tooltip="{{localize 'Charisma'}}">{{ localize "CHA" }}</label>
+                    <label data-tooltip="{{localize 'BlackFlag.Common.Ability.Charisma'}}">{{ localize "BlackFlag.Common.Ability.Cha" }}</label>
                     <div class="mod">{{document.system.abilities.charisma.mod}}</div>
                     {{numberInput document.system.abilities.charisma.value name="system.abilities.charisma" step=1 min=0 max=20}}
                 </div>
@@ -133,10 +134,10 @@
 
         {{!-- Core Details --}}
         <fieldset class="flexrow lineage-heritage">
-            <legend>{{localize "Lineage & Heritage"}}</legend>
+            <legend>{{localize "BlackFlag.Character.LineageAndHeritage"}}</legend>
             {{!-- Lineage --}}
             <div class="form-group stacked" data-name="system.lineage">
-                <label>{{ localize "Lineage" }}</label>
+                <label>{{ localize "BlackFlag.Character.Lineage" }}</label>
                 <select name="system.lineage">
                     {{selectOptions LINEAGE_TYPES selected=document.system.lineageId}}
                 </select>
@@ -144,7 +145,7 @@
 
             {{!-- Heritage --}}
             <div class="form-group stacked" data-name="system.heritage">
-                <label>{{ localize "Heritage" }}</label>
+                <label>{{ localize "BlackFlag.Character.Heritage" }}</label>
                 <select name="system.heritage">
                     {{selectOptions HERITAGE_TYPES selected=document.system.heritageId}}
                 </select>
@@ -152,7 +153,7 @@
 
             {{!-- Background --}}
             <div class="form-group stacked" data-name="system.background">
-                <label>{{ localize "Background" }}</label>
+                <label>{{ localize "BlackFlag.Character.Background" }}</label>
                 <select name="system.background">
                     {{selectOptions BACKGROUND_TYPES selected=document.system.backgroundId}}
                 </select>
@@ -160,7 +161,7 @@
 
             {{!-- Class --}}
             <div class="form-group stacked" data-name="system.class">
-                <label>{{ localize "Class" }}</label>
+                <label>{{ localize "BlackFlag.Character.Class" }}</label>
                 <select name="system.class">
                     {{selectOptions CLASS_TYPES selected=document.system.classId}}
                 </select>
@@ -168,7 +169,7 @@
 
             {{!-- Alignment --}}
             <div class="form-group stacked" data-name="system.alignment">
-                <label>{{ localize "Alignment" }}</label>
+                <label>{{ localize "BlackFlag.Character.Alignment" }}</label>
                 <select name="system.alignment">
                     {{selectOptions ALIGNMENT_TYPES selected=document.system.alignment}}
                 </select>
@@ -181,9 +182,9 @@
 
         {{!-- Character Sheet Navigation --}}
         <nav class="sheet-navigation tabs" data-group="primary">
-            <a class="item" data-tab="character"><i class="fa-solid fa-head-side"></i> {{ localize "Character" }}</a>
-            <a class="item" data-tab="biography"><i class="fa-solid fa-book"></i> {{ localize "Biography" }}</a>
-            <a class="item" data-tab="traits"><i class="fa-solid fa-image-portrait"></i> {{ localize "Traits" }}</a>
+            <a class="item" data-tab="character"><i class="fa-solid fa-head-side"></i> {{ localize "BlackFlag.Character.CharacterTab" }}</a>
+            <a class="item" data-tab="biography"><i class="fa-solid fa-book"></i> {{ localize "BlackFlag.Character.BiographyTab" }}</a>
+            <a class="item" data-tab="traits"><i class="fa-solid fa-image-portrait"></i> {{ localize "BlackFlag.Character.TraitsTab" }}</a>
 <!--            <a class="item" data-tab="inventory">{{ localize "Inventory" }}</a>-->
         </nav>
         
@@ -194,7 +195,7 @@
 
                     {{!-- Talents --}}
                     <div class="form-group stacked" data-name="system.talents">
-                        <label>{{ localize "Chosen Talents" }}</label>
+                        <label>{{ localize "BlackFlag.Character.TraitsChosen" }}</label>
                         {{!-- Render each existing Talent as a document link, with a button to remove --}}
                         <div class="foreign-documents talents flexrow">
                             {{#each document.system.talents}}
@@ -208,7 +209,7 @@
                         </div>
 
                         {{!-- Render a text input with search ahead to add a new Talent --}}
-                        <input name="system.talents" list="system-talents-list" type="text" value="" placeholder="Talent"/>
+                        <input name="system.talents" list="system-talents-list" type="text" value="" placeholder="{{localize "BlackFlag.Character.Talent"}}"/>
                         <datalist id="system-talents-list">
                             {{#each allTalents}}
                                 <option value="{{this._id}}" label="{{this.name}}"></option>
@@ -218,7 +219,7 @@
 
                     {{!-- Proficiencies --}}
                     <div class="form-group stacked" data-name="system.proficiencies">
-                        <label>{{ localize "Proficiencies" }}</label>
+                        <label>{{ localize "BlackFlag.Character.Proficiencies" }}</label>
                         {{!-- Render each existing Proficiency as a .tag, with a button to remove --}}
                         <div class="proficiencies flexcol">
                             <div class="tag-list flexrow">
@@ -229,7 +230,7 @@
                                 {{/each}}
                             </div>
                             {{!-- Render a text input with search ahead to add a new Proficiency --}}
-                            <input name="system.proficiencies" list="system-proficiencies-list" type="text" value="" placeholder="Proficiency"/>
+                            <input name="system.proficiencies" list="system-proficiencies-list" type="text" value="" placeholder="{{localize "BlackFlag.Character.Proficiency"}}"/>
                             <datalist id="system-proficiencies-list">
                                 {{#each PROFICIENCY_TYPES}}
                                     <option value="{{this.value}}" label="{{this.label}}"></option>
@@ -240,7 +241,7 @@
 
                     {{!-- Languages --}}
                     <div class="form-group stacked" data-name="system.languages">
-                        <label>{{ localize "Languages" }}</label>
+                        <label>{{ localize "BlackFlag.Character.Languages" }}</label>
                         {{!-- Render each existing Language as a .tag, with a button to remove --}}
                         <div class="languages flexcol">
                             <div class="tag-list flexrow">
@@ -251,7 +252,7 @@
                                 {{/each}}
                             </div>
                             {{!-- Render a text input with search ahead to add a new Language --}}
-                            <input name="system.languages" list="system-languages-list" type="text" value="" placeholder="Language"/>
+                            <input name="system.languages" list="system-languages-list" type="text" value="" placeholder="{{localize "BlackFlag.Character.Language"}}"/>
                             <datalist id="system-languages-list">
                                 {{#each LANGUAGE_TYPES}}
                                     <option value="{{this.value}}" label="{{this.label}}"></option>
@@ -267,7 +268,7 @@
                 <fieldset>
                     {{!-- Description --}}
                     <div class="form-group stacked" data-name="system.description">
-                        <label>{{ localize "Description" }}</label>
+                        <label>{{ localize "BlackFlag.Character.BiographyDesc" }}</label>
                         {{editor descriptionHTML target="system.description" button=false editable=editable engine="prosemirror" collaborate=false}}
                     </div>
                 </fieldset>
@@ -284,13 +285,13 @@
                                 <div class="flexcol">
                                     <label>{{this.name}}</label>
                                     <p>{{{this.description}}}</p>
-                                    <p class="notes">{{localize "Source"}}: {{this.source}}</p>
+                                    <p class="notes">{{localize "BlackFlag.Character.TraitSource"}}: {{this.source}}</p>
                                 </div>
                                 {{#if this.hasChoices}}
                                     {{#if this.choicesFulfilled}}
-                                        <i class="fas fa-square-check choices-icon fulfilled" data-tooltip="{{localize "Choices Fulfilled"}}"></i>
+                                        <i class="fas fa-square-check choices-icon fulfilled" data-tooltip="{{localize "BlackFlag.Character.TraitChoicesFulfilled"}}"></i>
                                     {{else}}
-                                        <i class="fas fa-square-xmark choices-icon unfulfilled" data-tooltip="{{localize "Choices Unfulfilled"}}"></i>
+                                        <i class="fas fa-square-xmark choices-icon unfulfilled" data-tooltip="{{localize "BlackFlag.Character.TraitChoicesUnfulfilled"}}"></i>
                                     {{/if}}
                                 {{/if}}
                             </div>
@@ -299,5 +300,5 @@
                 </fieldset>
             </div>
         </section>
-   </section>
+    </section>
 </form>

@@ -1,0 +1,15 @@
+{
+    "BlackFlag.CharacterBuilder.AbilityScoresClickToRoll": "Click to roll for your ability scores.",
+    "BlackFlag.CharacterBuilder.AbilityScoresButtonRoll": "Roll",
+    "BlackFlag.CharacterBuilder.AbilityScoresButtonPointBuy": "Point Buy",
+    "BlackFlag.CharacterBuilder.AbilityScoresButtonStandardArray": "Standard Array",
+    "BlackFlag.CharacterBuilder.BackgroundDesc": "Your choice of background helps define your character’s personal history  prior to taking up the mantle of an adventurer.",
+    "BlackFlag.CharacterBuilder.CharacterBuilderJson": "Character Builder JSON",
+    "BlackFlag.CharacterBuilder.ChooseTalentFromList": "Choose one talent from the following list to represent this experience",
+    "BlackFlag.CharacterBuilder.ClassDesc": "Your choice of class helps define your character’s role in the party.",
+    "BlackFlag.CharacterBuilder.CreateElement": "Create {elem}",
+    "BlackFlag.CharacterBuilder.HeritageDesc": "Your heritage dictates certain abilities you have because of your connection to a particular group or society.",
+    "BlackFlag.CharacterBuilder.HowToGenerateAbilities": "How do you want to do this?",
+    "BlackFlag.CharacterBuilder.LineageDesc": "Your lineage dictates certain fantastical lineage traits your character has because of their ancestry.",
+    "BlackFlag.CharacterBuilder.RollAbilityScores": "Click to roll for your ability scores."
+}

@@ -4,7 +4,7 @@
     <header class="sheet-header flexrow">
         <img class="profile" src="{{document.img}}" title="{{document.name}}" data-edit="img"/>
         <h1 class="title">
-            <input name="name" type="text" value="{{document.name}}" placeholder="Race Name"/>
+            <input name="name" type="text" value="{{document.name}}" placeholder="{{localize "BlackFlag.Character.RaceName"}}"/>
         </h1>
         <div class="form-group">
             <div class="form-fields">
@@ -18,28 +18,28 @@
 
         {{!-- Description --}}
         <div class="form-group stacked" data-name="system.description">
-            <label>{{ localize "Description" }}</label>
+            <label>{{ localize "BlackFlag.Character.LineageDescription" }}</label>
             {{editor descriptionHTML target="system.description" button=false editable=editable engine="prosemirror" collaborate=false}}
         </div>
 
         <fieldset>
-            <legend>{{ localize "Hereditary Traits" }}</legend>
+            <legend>{{ localize "BlackFlag.Character.HereditaryTraits" }}</legend>
 
             {{!-- Age --}}
             <div class="form-group" data-name="system.age">
-                <label>{{ localize "Age" }}</label>
-                <textarea name="system.age" rows=2 type="text" placeholder="Age">{{document.system.age}}</textarea>
+                <label>{{ localize "BlackFlag.Character.LineageAge" }}</label>
+                <textarea name="system.age" rows=2 type="text" placeholder="{{localize "BlackFlag.Character.LineageAge"}}">{{document.system.age}}</textarea>
             </div>
 
             {{!-- Size Description --}}
             <div class="form-group" data-name="system.size.description">
-                <label>{{ localize "Size Info" }}</label>
-                <textarea name="system.size.description" rows=2 type="text" placeholder="Size">{{document.system.size.description}}</textarea>
+                <label>{{ localize "BlackFlag.Character.LineageSizeInfo" }}</label>
+                <textarea name="system.size.description" rows=2 type="text" placeholder="{{localize "BlackFlag.Character.LineageSize"}}">{{document.system.size.description}}</textarea>
             </div>
 
             {{!-- Size --}}
             <div class="form-group" data-name="system.size.type">
-                <label>{{ localize "Size" }}</label>
+                <label>{{ localize "BlackFlag.Character.LineageSize" }}</label>
                 <select name="system.size.type">
                     {{selectOptions SIZE_TYPES selected=document.system.size.type}}
                 </select>
@@ -47,35 +47,35 @@
 
             {{!-- Speed --}}
             <div class="form-group" data-name="system.speed">
-                <label>{{ localize "Speed" }} <span class="units">({{localize "Feet"}})</span></label>
-                <input name="system.speed" type="number" value="{{document.system.speed}}" placeholder="Speed"/>
+                <label>{{ localize "BlackFlag.Character.LineageSpeed" }} <span class="units">({{localize "BlackFlag.Common.Units.Speed.Feet"}})</span></label>
+                <input name="system.speed" type="number" value="{{document.system.speed}}" placeholder="{{localize "BlackFlag.Character.LineageSpeed"}}"/>
             </div>
 
             <fieldset>
-                <legend>{{localize "Sight"}}</legend>
+                <legend>{{localize "BlackFlag.Character.LineageSight"}}</legend>
 
                 {{!-- Sight Description --}}
                 <div class="form-group" data-name="system.sight.description">
-                    <label>{{ localize "Info" }}</label>
-                    <textarea name="system.sight.description" rows=2 type="text" placeholder="Sight">{{document.system.sight.description}}</textarea>
+                    <label>{{ localize "BlackFlag.Common.Info" }}</label>
+                    <textarea name="system.sight.description" rows=2 type="text" placeholder="BlackFlag.Character.LineageSight">{{document.system.sight.description}}</textarea>
                 </div>
 
                 {{!-- Bright --}}
                 <div class="form-group" data-name="system.sight.bright">
-                    <label>{{ localize "Bright Vision" }} <span class="units">({{localize "Feet"}})</span></label>
-                    <input name="system.sight.bright" type="number" value="{{document.system.sight.bright}}" placeholder="Bright Vision"/>
+                    <label>{{ localize "BlackFlag.Character.LineageBrightVision" }} <span class="units">({{localize "BlackFlag.Common.Units.Distance.Feet"}})</span></label>
+                    <input name="system.sight.bright" type="number" value="{{document.system.sight.bright}}" placeholder="{{localize "BlackFlag.Character.LineageBrightVision"}}"/>
                 </div>
 
                 {{!-- Dim --}}
                 <div class="form-group" data-name="system.sight.dim">
-                    <label>{{ localize "Dim Vision" }} <span class="units">({{localize "Feet"}})</span></label>
-                    <input name="system.sight.dim" type="number" value="{{document.system.sight.dim}}" placeholder="Dim Vision"/>
+                    <label>{{ localize "BlackFlag.Character.LineageDimVision" }} <span class="units">({{localize "BlackFlag.Common.Units.Distance.Feet"}})</span></label>
+                    <input name="system.sight.dim" type="number" value="{{document.system.sight.dim}}" placeholder="{{localize "BlackFlag.Character.LineageDimVision"}}"/>
                 </div>
 
                 {{!-- Dark --}}
                 <div class="form-group" data-name="system.sight.dark">
-                    <label>{{ localize "Dark Vision" }} <span class="units">({{localize "Feet"}})</span></label>
-                    <input name="system.sight.dark" type="number" value="{{document.system.sight.dark}}" placeholder="Dark Vision"/>
+                    <label>{{ localize "BlackFlag.Character.LineageDarkVision" }} <span class="units">({{localize "BlackFlag.Common.Units.Distance.Feet"}})</span></label>
+                    <input name="system.sight.dark" type="number" value="{{document.system.sight.dark}}" placeholder="{{localize "BlackFlag.Character.LineageDarkVision"}}"/>
                 </div>
 
             </fieldset>
@@ -86,11 +86,11 @@
         {{!-- Traits --}}
         <div class="form-group stacked">
             <div class="header flexrow">
-                <h3>{{ localize "Traits" }}</h3>
+                <h3>{{ localize "BlackFlag.Character.Traits" }}</h3>
                 {{#if owner}}
                     <div class="item-controls">
-                        <a class="item-control trait-create" data-tooltip="{{localize "Create"}} {{localize "Trait"}}">
-                            <i class="fas fa-plus"></i> {{localize 'Add'}}
+                        <a class="item-control trait-create" data-tooltip="{{localize "BlackFlag.CharacterBuilder.CreateElement" elem='({{localize "BlackFlag.Character.Trait"}})'}}">
+                            <i class="fas fa-plus"></i> {{localize "BlackFlag.Common.Add"}}
                         </a>
                     </div>
                 {{/if}}
@@ -106,8 +106,8 @@
                         <div class="description" data-tooltip="{{{trait.description}}}">{{truncate trait.description 50}}</div>
                         {{#if ../owner}}
                             <div class="item-controls">
-                                <a class="item-control trait-edit" data-tooltip="{{localize "Edit"}}"><i class="fas fa-edit"></i></a>
-                                <a class="item-control trait-delete" data-tooltip="{{localize "Delete"}}"><i class="fas fa-trash"></i></a>
+                                <a class="item-control trait-edit" data-tooltip="{{localize "BlackFlag.Common.Edit"}}"><i class="fas fa-edit"></i></a>
+                                <a class="item-control trait-delete" data-tooltip="{{localize "BlackFlag.Common.Delete"}}"><i class="fas fa-trash"></i></a>
                             </div>
                         {{/if}}
                     </li>
@@ -118,6 +118,6 @@
 
     {{!-- Save Changes --}}
     <footer>
-        <button type="submit">{{localize "Save"}}</button>
+        <button type="submit">{{localize "BlackFlag.Common.Save"}}</button>
     </footer>
 </form>
