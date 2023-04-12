@@ -14,9 +14,8 @@
                 <input type="checkbox" name="system.usesMagic" data-dtype="Boolean" {{checked this.system.usesMagic}} disabled />
             </div>
         </div>
-
-        {{!-- Choose Button --}}
-        <button class="choose" data-id="{{this._id}}" data-type="class" data-action="choose">{{localize "Choose"}}</button>
     </div>
+    {{!-- Choose Button --}}
+    <button class="choose" data-id="{{this._id}}" data-type="class" data-action="choose">{{localize "Choose"}}</button>
 </section>
 {{/each}}
